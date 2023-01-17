@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Sujeto } from 'src/app/models/sujeto';
+import { DataBibliotecaService } from 'src/app/services/data-biblioteca.service';
 import { SujetoService } from 'src/app/services/sujeto.service';
 
 @Component({
@@ -20,10 +21,19 @@ export class SujetoComponent implements OnInit {
     'fechaNacimiento'
   ];
 
-  constructor(private sujetoService: SujetoService) { }
+  constructor(public sujetoService: SujetoService,
+    private dataBiblioteca : DataBibliotecaService) { }
 
   ngOnInit(): void {
+    this.emitDescriptionModule();
     this.getSujetos();
+  }
+
+  /*NOTE - EMITIMOS EL NOMBRE DEL ENCABEZADO DEL MODULO EN TURNO
+          PARA IMPRIMIRLO EN LA PANTALLA
+  */
+  public emitDescriptionModule(): void{
+    this.dataBiblioteca.descripModulo$.emit('Sujetos');
   }
 
   public getSujetos(): void {
