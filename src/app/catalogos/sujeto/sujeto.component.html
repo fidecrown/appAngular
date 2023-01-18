@@ -1,4 +1,62 @@
+
+
+
+<!-- Button trigger modal -->
+<div class="d-flex justify-content-end">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+    <i class="fas fa-plus-circle"></i>
+    Nuevo
+  </button>
+</div>
+
 <div class="card card-primary card-outline">
+  <div class="card-body">
+    <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped hover">
+    </table> -->
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped hover">
+      <thead class="thead-light">
+        <tr>
+          <th *ngFor="let e of encaPrueba">{{e}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of lstPruebas; let i=index;">
+          <td>{{p.userId}}</td>
+          <td>{{p.id}}</td>
+          <td>{{p.title}}</td>
+          <td>{{p.body}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="card card-primary card-outline">
   <div class="card-body">
     <table datatable [dtOptions]="dtOptions" class="table table-striped hover">
       <thead class="thead-light">
@@ -20,3 +78,4 @@
     </table>
   </div>
 </div>
+ -->

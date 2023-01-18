@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'creditos', component: CreditosComponent},
   {path: 'cajas', component: CajasComponent},
   {path: 'catalogos/sujetos', component: SujetoComponent},
-  {path: '**', pathMatch: 'full', redirectTo: 'inicio'}
+  {path: '**', pathMatch: 'prefix', redirectTo: 'inicio'}
 ];
 
 @NgModule({

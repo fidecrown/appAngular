@@ -10,3 +10,10 @@ export interface Sujeto {
   created_at?: string;
   update_at?: string;
 }
+
+export interface Prueba {
+  userId: number,
+  id: number,
+  title: string,
+  body: string
+}
