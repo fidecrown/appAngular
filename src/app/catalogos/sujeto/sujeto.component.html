@@ -1,6 +1,3 @@
-
-
-
 <!-- Button trigger modal -->
 <div class="d-flex justify-content-end">
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
@@ -35,22 +32,92 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title" id="staticBackdropLabel">Nuevo Sujeto</h5>
       </div>
       <div class="modal-body">
-        ...
+        <form [formGroup]="formSujeto" (ngSubmit)="guardar()">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresa Nombre(s)"
+              formControlName="nombre" 
+              [class.is-invalid]="campoNoValido('nombre')">
+              <div *ngIf="campoNoValido('nombre')">
+                <small *ngIf="f['nombre'].errors?.['required']" class="text-danger">Campo requerido</small>
+                <small *ngIf="f['nombre'].errors?.['minlength']" class="text-danger">Campo minimo de 2 caracteres </small>
+              </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="paterno">Apellido Paterno</label>
+                <input type="text" class="form-control" name="paterno" id="paterno" placeholder="Apellido Paterno"
+                  formControlName="paterno" [class.is-invalid]="campoNoValido('paterno')">
+                  <div *ngIf="campoNoValido('paterno')">
+                    <small *ngIf="f['paterno'].errors?.['required']" class="text-danger">Campo requerido</small>
+                    <small *ngIf="f['paterno'].errors?.['minlength']" class="text-danger">Campo minimo de 2 caracteres </small>
+                  </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="materno">Apellido Materno</label>
+                <input type="text" class="form-control" name="materno" id="materno" placeholder="Apellido Materno"
+                  formControlName="materno" [class.is-invalid]="campoNoValido('materno')">
+                  <div *ngIf="campoNoValido('materno')">
+                    <small *ngIf="f['materno'].errors?.['required']" class="text-danger">Campo requerido</small>
+                    <small *ngIf="f['materno'].errors?.['minlength']" class="text-danger">Campo minimo de 2 caracteres </small>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="rfc">Rfc</label>
+            <input type="text" class="form-control" name="rfc" id="rfc" placeholder="Ingresa rfc" formControlName="rfc"
+              [class.is-invalid]="campoNoValido('rfc')">
+              <div *ngIf="campoNoValido('rfc')">
+                <small *ngIf="f['rfc'].errors?.['required']" class="text-danger">Campo requerido</small>
+                <small *ngIf="f['rfc'].errors?.['minlength']" class="text-danger">Campo minimo de 13 caracteres </small>
+                <small *ngIf="f['rfc'].errors?.['maxlength']" class="text-danger">Campo máximo de 13 caracteres </small>
+              </div>
+          </div>
+
+          <div class="form-group">
+            <label for="curp">Curp</label>
+            <input type="text" class="form-control" name="curp" id="curp" placeholder="Ingresa curp"
+              formControlName="curp" [class.is-invalid]="campoNoValido('curp')">
+              <div *ngIf="campoNoValido('curp')">
+                <small *ngIf="f['curp'].errors?.['required']" class="text-danger">Campo requerido</small>
+                <small *ngIf="f['curp'].errors?.['minlength']" class="text-danger">Campo minimo de 18 caracteres </small>
+                <small *ngIf="f['curp'].errors?.['maxlength']" class="text-danger">Campo máximo de 18 caracteres </small>
+              </div>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary"
+            [disabled]="formSujeto.invalid"
+            >
+            Guardar
+          </button>
+          </div>
+        </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
+      <pre>
+        Estado FORMULARIO : {{formSujeto.valid}}
+        <br>
+        ESTATUS: {{formSujeto.status}}
+        {{formSujeto.value | json}}
+      </pre>
+      <pre>
+        {{formSujeto.value | json}}
+      </pre>
     </div>
   </div>
 </div>

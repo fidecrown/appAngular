@@ -1,4 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { Prueba, Sujeto } from 'src/app/models/sujeto';
@@ -13,22 +14,20 @@ import { SujetoService } from 'src/app/services/sujeto.service';
 export class SujetoComponent implements OnDestroy, OnInit {
 
   @ViewChild(DataTableDirective, { static: false }) dtElement: any = DataTableDirective;
-
   dtTrigger: Subject<any> = new Subject<any>();
 
   dtOptions: DataTables.Settings = {};
   sujetos: Sujeto[] = [];
+  sujeto: Sujeto = { nombre: '', paterno: '', materno: '', rfc: '', curp: '', };
   lstPruebas: Prueba[] = [];
-  encabezados: string[] = [
-    '#', 'nombre', 'paterno', 'materno', 'rfc', 'curp', 'fechaNacimiento'
-  ];
-  encaPrueba: string[] = [
-    'id', 'userId', 'title', 'body'
-  ];
+  encabezados: string[] = ['#', 'nombre', 'paterno', 'materno', 'rfc', 'curp', 'fechaNacimiento'];
+  encaPrueba: string[] = ['id', 'userId', 'title', 'body'];
+  formSujeto!: FormGroup;
 
   constructor(public sujetoService: SujetoService,
     private dataBiblioteca: DataBibliotecaService,
-    private change: ChangeDetectorRef) { }
+    private change: ChangeDetectorRef,
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
     /*NOTE - EMITIMOS EL NOMBRE DEL ENCABEZADO DEL MODULO EN TURNO
@@ -44,6 +43,8 @@ export class SujetoComponent implements OnDestroy, OnInit {
           LOS DATOS Y POSTERIORMENTE LLENAR EL LISTADO DE LA TABLA
   */
     this.getPruebas();
+
+    this.loadFormulario();
   }
 
 
@@ -57,7 +58,7 @@ export class SujetoComponent implements OnDestroy, OnInit {
       scrollY: '200px',
       language: {
         url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/es-MX.json'
-    },
+      },
       order: []
     };
   }
@@ -74,6 +75,30 @@ export class SujetoComponent implements OnDestroy, OnInit {
       this.dtTrigger.next(0);
     });
   }
+
+  guardar(): void {
+    console.log(this.formSujeto.value.nombre);
+  }
+
+  loadFormulario(): void {
+    this.formSujeto = this.fb.group({
+      nombre: ['', [Validators.required]],
+      paterno: ['', Validators.required],
+      materno: ['', Validators.required],
+      rfc: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
+      curp: ['', [Validators.required, Validators.minLength(18), Validators.maxLength(18)]]
+    });
+  }
+
+  campoNoValido(campo: string): boolean | undefined {
+    //console.log(JSON.stringify(this.formSujeto.get(campo)?.errors))
+    const control = this.formSujeto.controls;
+    console.log(control['rfc'].errors);
+    return this.formSujeto.get(campo)?.invalid &&
+      this.formSujeto.get(campo)?.touched 
+  }
+
+  get f() { return this.formSujeto.controls; }
 
   /*NOTE - UNA VEZ DE ACTUALIZAR LOS DATOS SE LLAMA A LA SIGUIENTE FUNCION 
          CON LA FINALIDAD DE RECARGAR LA TABLA.

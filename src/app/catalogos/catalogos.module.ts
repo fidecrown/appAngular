@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { DataTablesModule } from 'angular-datatables';
 
 import { SujetoComponent } from './sujeto/sujeto.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -12,7 +14,8 @@ import { SujetoComponent } from './sujeto/sujeto.component';
   ],
   imports: [
     CommonModule,
-    DataTablesModule
+    DataTablesModule,
+    ReactiveFormsModule
   ],
   exports:[
     SujetoComponent
