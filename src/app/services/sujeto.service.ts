@@ -26,6 +26,10 @@ export class SujetoService {
     return this.http.get<Sujeto>(this.API_REST + '/' + sujetoid);
   }
 
+  updateSujeto(sujetoid: number, sujeto : Sujeto): Observable<any>{
+    return this.http.put<any>(`${this.API_REST}/${sujetoid}`,sujeto);
+  }
+
   getPrueba(): Observable<Prueba[]> {
     return this.http.get<Prueba[]>(this.API_PRUEBA);
   }

@@ -27,7 +27,8 @@
           <td>{{sujeto.curp}}</td>
           <td>{{sujeto.fechaNacimiento}}</td>
           <td>
-            <button (click)="editRow(sujeto.sujetoid)" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#miModal">
+            <button (click)="editRow(sujeto.sujetoid)" class="btn btn-outline-success btn-sm" data-toggle="modal"
+              data-target="#miModal">
               <i class="fas fa-pencil-alt"></i>
             </button>
           </td>
@@ -45,11 +46,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title" id="staticBackdropLabel">{{existSujetoId? 'Editar': 'Nuevo'}} Sujeto</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">{{existRowById? 'Editar': 'Nuevo'}} Sujeto</h5>
       </div>
       <div class="modal-body">
         <!-- #INICIA FORMULARIO -->
-        <form [formGroup]="formSujeto" (ngSubmit)="addRow()">
+        <form [formGroup]="formSujeto" (ngSubmit)="existRowById? updateRow() :addRow()">
           <!-- CAMPO NOMBRE -->
           <div class="form-group">
             <label for="nombre">Nombre</label>
@@ -110,7 +111,7 @@
             <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal" id="cerrar"
               (click)="cleanForm()">Cancelar</button>
             <button type="submit" class="btn btn-primary" [disabled]="formSujeto.invalid">
-               {{existSujetoId? 'Actuailzar': 'Guardar'}}
+              {{existRowById? 'Actualizar': 'Guardar'}}
             </button>
           </div>
         </form>

@@ -58,7 +58,7 @@ export class SujetoComponent implements OnDestroy, OnInit {
 
   cargarSettingsTable(): void {
     this.dtOptions = {
-      pagingType: 'full_numbers',
+      //pagingType: 'full_numbers',
       pageLength: 10,
       //info: false,
       //searching: false,
@@ -78,7 +78,7 @@ export class SujetoComponent implements OnDestroy, OnInit {
   getSujetos(): void {
     this.sujetoService.getSujetos().subscribe(sujetos => {
       this.lstSujetos = sujetos
-      console.log(sujetos);
+      //console.log(sujetos);
       this.change.detectChanges();
       this.dtTrigger.next(0);
     });
@@ -97,16 +97,26 @@ export class SujetoComponent implements OnDestroy, OnInit {
 
   addRow(): void {
     this.sujeto = this.formSujeto.value;
-    this.sujetoService.saveSujeto(this.sujeto).subscribe(response => {
+    this.sujetoService.saveSujeto(this.sujeto).subscribe(msj => {
       this.renderTable();
       this.cleanForm();
-      document.getElementById("miModal")?.click();
+      document.getElementById("cerrar")?.click();
     });
   }
 
   editRow(sujetoid: number) {
     this.sujetoService.getSujetoById(sujetoid).subscribe(sujeto => {
       this.formSujeto.patchValue(sujeto);
+    });
+  }
+
+  updateRow(): void{
+    const sujetoid: number = this.formSujeto.value.sujetoid;
+    this.sujetoService.updateSujeto(sujetoid,this.formSujeto.value).subscribe(msj => {
+      this.renderTable();
+      //this.cleanForm();
+      document.getElementById("cerrar")?.click();
+      console.log(msj);
     });
   }
 
@@ -120,7 +130,7 @@ export class SujetoComponent implements OnDestroy, OnInit {
 
   get f() { return this.formSujeto.controls; }
 
-  get existSujetoId() {
+  get existRowById() {
     return this.formSujeto.value.sujetoid > 0
   }
 
