@@ -18,6 +18,14 @@ export class SujetoService {
     return this.http.get<Sujeto[]>(this.API_REST);
   }
 
+  saveSujeto(sujeto: Sujeto): Observable<any> {
+    return this.http.post<any>(this.API_REST, sujeto);
+  }
+
+  getSujetoById(sujetoid: number): Observable<Sujeto>{
+    return this.http.get<Sujeto>(this.API_REST + '/' + sujetoid);
+  }
+
   getPrueba(): Observable<Prueba[]> {
     return this.http.get<Prueba[]>(this.API_PRUEBA);
   }

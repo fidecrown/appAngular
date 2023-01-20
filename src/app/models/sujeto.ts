@@ -1,5 +1,5 @@
 export interface Sujeto {
-  sujetoid?: number;
+  sujetoid: number;
   nombre: string;
   paterno: string;
   materno: string;

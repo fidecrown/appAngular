@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
@@ -14,15 +14,17 @@ import { SujetoService } from 'src/app/services/sujeto.service';
 export class SujetoComponent implements OnDestroy, OnInit {
 
   @ViewChild(DataTableDirective, { static: false }) dtElement: any = DataTableDirective;
-  dtTrigger: Subject<any> = new Subject<any>();
 
+  dtTrigger: Subject<any> = new Subject<any>();
   dtOptions: DataTables.Settings = {};
-  sujetos: Sujeto[] = [];
-  sujeto: Sujeto = { nombre: '', paterno: '', materno: '', rfc: '', curp: '', };
+  lstSujetos: Sujeto[] = [];
+  sujeto!: Sujeto;
   lstPruebas: Prueba[] = [];
-  encabezados: string[] = ['#', 'nombre', 'paterno', 'materno', 'rfc', 'curp', 'fechaNacimiento'];
+  encabezados: string[] = ['#', 'nombre', 'paterno', 'materno', 'rfc', 'curp', 'fechaNacimiento', 'Acciones'];
   encaPrueba: string[] = ['id', 'userId', 'title', 'body'];
   formSujeto!: FormGroup;
+  newOrUpdate: string = '';
+  btnSaveorUpdate: string = '';
 
   constructor(public sujetoService: SujetoService,
     private dataBiblioteca: DataBibliotecaService,
@@ -30,6 +32,9 @@ export class SujetoComponent implements OnDestroy, OnInit {
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
+
+    //this.resetFlat('Nuevo', 'Guardar');
+
     /*NOTE - EMITIMOS EL NOMBRE DEL ENCABEZADO DEL MODULO EN TURNO
           PARA IMPRIMIRLO EN LA PANTALLA
   */
@@ -42,11 +47,14 @@ export class SujetoComponent implements OnDestroy, OnInit {
     /*NOTE - HACEMOS UNA PATECION AL BACK-END PARA EXTRAER
           LOS DATOS Y POSTERIORMENTE LLENAR EL LISTADO DE LA TABLA
   */
-    this.getPruebas();
+    this.getSujetos();
 
-    this.loadFormulario();
+    /*NOTE - CARGAMOS LOS DATOS DEL FORMULARIO
+          Y LOS ENLAZAMOS DENTRO DE LA PLANTILLA HTML
+  */
+    this.loadForm();
+
   }
-
 
   cargarSettingsTable(): void {
     this.dtOptions = {
@@ -67,22 +75,19 @@ export class SujetoComponent implements OnDestroy, OnInit {
     this.dataBiblioteca.descripModulo$.emit('Sujetos');
   }
 
-  getPruebas(): void {
-    this.sujetoService.getPrueba().subscribe(p => {
-      this.lstPruebas = p
-      console.log(p);
+  getSujetos(): void {
+    this.sujetoService.getSujetos().subscribe(sujetos => {
+      this.lstSujetos = sujetos
+      console.log(sujetos);
       this.change.detectChanges();
       this.dtTrigger.next(0);
     });
   }
 
-  guardar(): void {
-    console.log(this.formSujeto.value.nombre);
-  }
-
-  loadFormulario(): void {
+  loadForm(): void {
     this.formSujeto = this.fb.group({
-      nombre: ['', [Validators.required]],
+      sujetoid: [0],
+      nombre: ['', Validators.required],
       paterno: ['', Validators.required],
       materno: ['', Validators.required],
       rfc: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
@@ -90,90 +95,64 @@ export class SujetoComponent implements OnDestroy, OnInit {
     });
   }
 
-  campoNoValido(campo: string): boolean | undefined {
+  addRow(): void {
+    this.sujeto = this.formSujeto.value;
+    this.sujetoService.saveSujeto(this.sujeto).subscribe(response => {
+      this.renderTable();
+      this.cleanForm();
+      document.getElementById("miModal")?.click();
+    });
+  }
+
+  editRow(sujetoid: number) {
+    this.sujetoService.getSujetoById(sujetoid).subscribe(sujeto => {
+      this.formSujeto.patchValue(sujeto);
+    });
+  }
+
+  fieldNotValid(field: string): boolean | undefined {
     //console.log(JSON.stringify(this.formSujeto.get(campo)?.errors))
     const control = this.formSujeto.controls;
-    console.log(control['rfc'].errors);
-    return this.formSujeto.get(campo)?.invalid &&
-      this.formSujeto.get(campo)?.touched 
+    //console.log(control['rfc'].errors);
+    return this.formSujeto.get(field)?.invalid &&
+      this.formSujeto.get(field)?.touched
   }
 
   get f() { return this.formSujeto.controls; }
 
-  /*NOTE - UNA VEZ DE ACTUALIZAR LOS DATOS SE LLAMA A LA SIGUIENTE FUNCION 
-         CON LA FINALIDAD DE RECARGAR LA TABLA.
-*/
-  renderizarTable(): void {
-    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      // Destroy the table first
-      dtInstance.destroy();
-      // Call the dtTrigger to rerender again
-      this.dtTrigger.next(0);
-    });
+  get existSujetoId() {
+    return this.formSujeto.value.sujetoid > 0
   }
 
-  /*  public getSujetos(): void {
-     this.sujetoService.getSujetos().subscribe(s => {
-       this.sujetos = s
-       console.log(s);
+  cleanForm(): void {
+    this.formSujeto.reset();
+  }
 
-     });
-   } */
+  renderTable(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // PRIMERO DESTRUIMOS LA TABLA
+      dtInstance.destroy();
+      // HACEMOS PETICION AL SERVIDOR PARA TRAER EL LISTADO
+      this.getSujetos();
+
+    });
+  }
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
 
-  /*
-  cargarDataTables(): void {
 
-    this.dtOptions = {
 
-      ajax: (dataTablesParameters: any, callback) => {
-        this.sujetoService.getPrueba().subscribe(datos => {
-          console.log('ENTRADA DE DATOS' + JSON.stringify(datos))
-          callback({
-            data: datos
-          });
-        });
-      },
-      columns: [{
-        title: 'ID',
-        data: 'id'
-      }, {
-        title: 'User Id',
-        data: 'userId'
-      }, {
-        title: 'Titulo',
-        data: 'title'
-      },
-      {
-        title: 'Contenido',
-        data: 'body'
-      }
-      ]
-    };
+  //SECTION - PRUEBAS UNITARIAS
 
-    /* this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-      serverSide: true,
-      processing: true,
-      stateSave: true,
-      ajax: (dataTablesParameters: any, callback) => {
-        this.sujetoService.getSujetos().subscribe(s => {
-          this.sujetos = s;
-          callback({
-            data: s
-          });
-        });
-      },
-    }; 
-  }
-  */
-
-  /*   ngAfterViewInit(): void {
+  /* getPruebas(): void {
+    this.sujetoService.getPrueba().subscribe(p => {
+      this.lstPruebas = p
+      console.log(p);
+      this.change.detectChanges();
       this.dtTrigger.next(0);
-    } */
+    });
+  } */
 
 }
