@@ -23,11 +23,15 @@ export class SujetoService {
   }
 
   getSujetoById(sujetoid: number): Observable<Sujeto>{
-    return this.http.get<Sujeto>(this.API_REST + '/' + sujetoid);
+    return this.http.get<Sujeto>(`${this.API_REST}/${sujetoid}`);
   }
 
   updateSujeto(sujetoid: number, sujeto : Sujeto): Observable<any>{
     return this.http.put<any>(`${this.API_REST}/${sujetoid}`,sujeto);
+  }
+
+  deleteSujeto(sujetoid: number):Observable<any>{
+    return this.http.delete<any>(`${this.API_REST}/${sujetoid}`);
   }
 
   getPrueba(): Observable<Prueba[]> {

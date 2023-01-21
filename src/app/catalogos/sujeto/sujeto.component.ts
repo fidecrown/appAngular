@@ -17,14 +17,15 @@ export class SujetoComponent implements OnDestroy, OnInit {
 
   dtTrigger: Subject<any> = new Subject<any>();
   dtOptions: DataTables.Settings = {};
-  lstSujetos: Sujeto[] = [];
   sujeto!: Sujeto;
-  lstPruebas: Prueba[] = [];
-  encabezados: string[] = ['#', 'nombre', 'paterno', 'materno', 'rfc', 'curp', 'fechaNacimiento', 'Acciones'];
-  encaPrueba: string[] = ['id', 'userId', 'title', 'body'];
   formSujeto!: FormGroup;
   newOrUpdate: string = '';
   btnSaveorUpdate: string = '';
+
+  lstSujetos: Sujeto[] = [];
+  lstPruebas: Prueba[] = [];
+  encabezados: string[] = ['#', 'nombre', 'paterno', 'materno', 'rfc', 'curp', 'fechaNacimiento', 'Acciones'];
+  encaPrueba: string[] = ['id', 'userId', 'title', 'body'];
 
   constructor(public sujetoService: SujetoService,
     private dataBiblioteca: DataBibliotecaService,
@@ -56,6 +57,10 @@ export class SujetoComponent implements OnDestroy, OnInit {
 
   }
 
+  emitDescriptionModule(): void {
+    this.dataBiblioteca.descripModulo$.emit('Sujetos');
+  }
+
   cargarSettingsTable(): void {
     this.dtOptions = {
       //pagingType: 'full_numbers',
@@ -71,19 +76,6 @@ export class SujetoComponent implements OnDestroy, OnInit {
     };
   }
 
-  emitDescriptionModule(): void {
-    this.dataBiblioteca.descripModulo$.emit('Sujetos');
-  }
-
-  getSujetos(): void {
-    this.sujetoService.getSujetos().subscribe(sujetos => {
-      this.lstSujetos = sujetos
-      //console.log(sujetos);
-      this.change.detectChanges();
-      this.dtTrigger.next(0);
-    });
-  }
-
   loadForm(): void {
     this.formSujeto = this.fb.group({
       sujetoid: [0],
@@ -92,6 +84,15 @@ export class SujetoComponent implements OnDestroy, OnInit {
       materno: ['', Validators.required],
       rfc: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
       curp: ['', [Validators.required, Validators.minLength(18), Validators.maxLength(18)]]
+    });
+  }
+
+  getSujetos(): void {
+    this.sujetoService.getSujetos().subscribe(sujetos => {
+      this.lstSujetos = sujetos
+      //console.log(sujetos);
+      this.change.detectChanges();
+      this.dtTrigger.next(0);
     });
   }
 
@@ -110,13 +111,20 @@ export class SujetoComponent implements OnDestroy, OnInit {
     });
   }
 
-  updateRow(): void{
+  updateRow(): void {
     const sujetoid: number = this.formSujeto.value.sujetoid;
-    this.sujetoService.updateSujeto(sujetoid,this.formSujeto.value).subscribe(msj => {
+    this.sujetoService.updateSujeto(sujetoid, this.formSujeto.value).subscribe(msj => {
       this.renderTable();
       //this.cleanForm();
       document.getElementById("cerrar")?.click();
-      console.log(msj);
+      //console.log(msj);
+    });
+  }
+
+  deleteRow():void{
+    const sujetoid: number = this.formSujeto.value.sujetoid;
+    this.sujetoService.deleteSujeto(sujetoid).subscribe(msj =>{
+      this.renderTable();
     });
   }
 
