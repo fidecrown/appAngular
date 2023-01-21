@@ -111,28 +111,36 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="form-label">Date of Birth</label>
-            <input type="date" formControlName="fechaNacimiento" class="form-control"
-              [class.is-invalid]="fieldNotValid('fechaNacimiento')" />
-            <div *ngIf="fieldNotValid('fechaNacimiento')">
-              <small *ngIf="f['fechaNacimiento'].errors?.['required']" class="text-danger">Campo requerido</small>
-              <small *ngIf="f['fechaNacimiento'].errors?.['pattern']" class="text-danger">Debe ser una fecha válida con
-                el formato AAAA-MM-DD
-              </small>
+          <div class="row">
+            <div class="col-6">
+              <!-- CAMPO CURP -->
+              <div class="form-group">
+                <label class="form-label">Fecha Nacimiento</label>
+                <input type="date" formControlName="fechaNacimiento" class="form-control"
+                  [class.is-invalid]="fieldNotValid('fechaNacimiento')" />
+                <div *ngIf="fieldNotValid('fechaNacimiento')">
+                  <small *ngIf="f['fechaNacimiento'].errors?.['required']" class="text-danger">Campo requerido</small>
+                  <small *ngIf="f['fechaNacimiento'].errors?.['pattern']" class="text-danger">Debe ser una fecha válida
+                    con
+                    el formato AAAA-MM-DD
+                  </small>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label class="form-label">Sexo</label>
-            <select formControlName="sexo" class="form-control"
-            [class.is-invalid]="fieldNotValid('sexo')" >
-              <option value="">Seleccionar</option>
-              <option value="0">FEMENINO</option>
-              <option value="1">MASCULINO</option>
-            </select>
-            <div *ngIf="fieldNotValid('sexo')">
-              <small *ngIf="f['sexo'].errors?.['required']" class="text-danger">Campo requerido</small>
+            <div class="col-6">
+              <!-- CAMPO SEXO -->
+              <div class="form-group">
+                <label class="form-label">Sexo</label>
+                <select formControlName="sexo" class="form-control" [class.is-invalid]="fieldNotValid('sexo')">
+                  <option value="">Seleccionar</option>
+                  <option value="0">FEMENINO</option>
+                  <option value="1">MASCULINO</option>
+                </select>
+                <div *ngIf="fieldNotValid('sexo')">
+                  <small *ngIf="f['sexo'].errors?.['required']" class="text-danger">Campo requerido</small>
+                </div>
+              </div>
             </div>
           </div>
 
