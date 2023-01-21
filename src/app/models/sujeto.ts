@@ -5,8 +5,8 @@ export interface Sujeto {
   materno: string;
   rfc: string;
   curp: string;
-  fechaNacimiento?: string;
-  sexo?: number;
+  fechaNacimiento: string;
+  sexo: number;
   created_at?: string;
   update_at?: string;
 }

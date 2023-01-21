@@ -1,12 +1,3 @@
-<!-- BOTON PARA LA VENTANA MODAL -->
-<div class="d-flex justify-content-end">
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#miModal">
-    <i class="fas fa-plus-circle"></i>
-    Nuevo
-  </button>
-</div>
-<!-- FIN BOTON -->
-
 <!-- CUERPO DE LA TARJETA -->
 <div class="card card-primary card-outline">
   <div class="card-body">
@@ -20,16 +11,17 @@
       <tbody>
         <tr *ngFor="let sujeto of lstSujetos let i=index;">
           <th>{{i + 1}}</th>
-          <td>{{sujeto.nombre}}</td>
-          <td>{{sujeto.paterno}}</td>
-          <td>{{sujeto.materno}}</td>
+          <td>{{sujeto.nombre}} {{sujeto.paterno}} {{sujeto.materno}}</td>
           <td>{{sujeto.rfc}}</td>
           <td>{{sujeto.curp}}</td>
           <td>{{sujeto.fechaNacimiento}}</td>
           <td>
-            <button (click)="editRow(sujeto.sujetoid)" class="btn btn-outline-success btn-sm" data-toggle="modal"
+            <button (click)="editRow(sujeto.sujetoid)" class="btn btn-outline-info btn-sm mr-1" data-toggle="modal"
               data-target="#miModal">
               <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button (click)="deleteRow(sujeto.sujetoid)" class="btn btn-outline-danger btn-sm">
+              <i class="fas fa-trash"></i>
             </button>
           </td>
         </tr>
@@ -60,6 +52,7 @@
               <small *ngIf="f['nombre'].errors?.['required']" class="text-danger">Campo requerido</small>
             </div>
           </div>
+
           <div class="row">
             <div class="col-6">
               <!-- CAMPO PATERNO -->
@@ -84,28 +77,65 @@
               </div>
             </div>
           </div>
-          <!-- CAMPO RFC -->
-          <div class="form-group">
-            <label for="rfc">Rfc</label>
-            <input type="text" class="form-control" name="rfc" id="rfc" placeholder="Ingresa rfc" formControlName="rfc"
-              [class.is-invalid]="fieldNotValid('rfc')">
-            <div *ngIf="fieldNotValid('rfc')">
-              <small *ngIf="f['rfc'].errors?.['required']" class="text-danger">Campo requerido</small>
-              <small *ngIf="f['rfc'].errors?.['minlength']" class="text-danger">Campo minimo de 13 caracteres </small>
-              <small *ngIf="f['rfc'].errors?.['maxlength']" class="text-danger">Campo máximo de 13 caracteres </small>
+
+          <div class="row">
+            <div class="col-6">
+              <!-- CAMPO RFC -->
+              <div class="form-group">
+                <label for="rfc">Rfc</label>
+                <input type="text" class="form-control" name="rfc" id="rfc" placeholder="Ingresa rfc"
+                  formControlName="rfc" [class.is-invalid]="fieldNotValid('rfc')">
+                <div *ngIf="fieldNotValid('rfc')">
+                  <small *ngIf="f['rfc'].errors?.['required']" class="text-danger">Campo requerido</small>
+                  <small *ngIf="f['rfc'].errors?.['minlength']" class="text-danger">Campo minimo de 13 caracteres
+                  </small>
+                  <small *ngIf="f['rfc'].errors?.['maxlength']" class="text-danger">Campo máximo de 13 caracteres
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <!-- CAMPO CURP -->
+              <div class="form-group">
+                <label for="curp">Curp</label>
+                <input type="text" class="form-control" name="curp" id="curp" placeholder="Ingresa curp"
+                  formControlName="curp" [class.is-invalid]="fieldNotValid('curp')">
+                <div *ngIf="fieldNotValid('curp')">
+                  <small *ngIf="f['curp'].errors?.['required']" class="text-danger">Campo requerido</small>
+                  <small *ngIf="f['curp'].errors?.['minlength']" class="text-danger">Campo minimo de 18 caracteres
+                  </small>
+                  <small *ngIf="f['curp'].errors?.['maxlength']" class="text-danger">Campo máximo de 18 caracteres
+                  </small>
+                </div>
+              </div>
             </div>
           </div>
-          <!-- CAMPO CURP -->
+
           <div class="form-group">
-            <label for="curp">Curp</label>
-            <input type="text" class="form-control" name="curp" id="curp" placeholder="Ingresa curp"
-              formControlName="curp" [class.is-invalid]="fieldNotValid('curp')">
-            <div *ngIf="fieldNotValid('curp')">
-              <small *ngIf="f['curp'].errors?.['required']" class="text-danger">Campo requerido</small>
-              <small *ngIf="f['curp'].errors?.['minlength']" class="text-danger">Campo minimo de 18 caracteres </small>
-              <small *ngIf="f['curp'].errors?.['maxlength']" class="text-danger">Campo máximo de 18 caracteres </small>
+            <label class="form-label">Date of Birth</label>
+            <input type="date" formControlName="fechaNacimiento" class="form-control"
+              [class.is-invalid]="fieldNotValid('fechaNacimiento')" />
+            <div *ngIf="fieldNotValid('fechaNacimiento')">
+              <small *ngIf="f['fechaNacimiento'].errors?.['required']" class="text-danger">Campo requerido</small>
+              <small *ngIf="f['fechaNacimiento'].errors?.['pattern']" class="text-danger">Debe ser una fecha válida con
+                el formato AAAA-MM-DD
+              </small>
             </div>
           </div>
+
+          <div class="form-group">
+            <label class="form-label">Sexo</label>
+            <select formControlName="sexo" class="form-control"
+            [class.is-invalid]="fieldNotValid('sexo')" >
+              <option value="">Seleccionar</option>
+              <option value="0">FEMENINO</option>
+              <option value="1">MASCULINO</option>
+            </select>
+            <div *ngIf="fieldNotValid('sexo')">
+              <small *ngIf="f['sexo'].errors?.['required']" class="text-danger">Campo requerido</small>
+            </div>
+          </div>
+
           <hr>
           <div class="d-flex justify-content-end">
             <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal" id="cerrar"

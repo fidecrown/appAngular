@@ -2,9 +2,11 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@ang
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
+import Swal from 'sweetalert2'
 import { Prueba, Sujeto } from 'src/app/models/sujeto';
 import { DataBibliotecaService } from 'src/app/services/data-biblioteca.service';
 import { SujetoService } from 'src/app/services/sujeto.service';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-sujeto',
@@ -24,7 +26,7 @@ export class SujetoComponent implements OnDestroy, OnInit {
 
   lstSujetos: Sujeto[] = [];
   lstPruebas: Prueba[] = [];
-  encabezados: string[] = ['#', 'nombre', 'paterno', 'materno', 'rfc', 'curp', 'fechaNacimiento', 'Acciones'];
+  encabezados: string[] = ['#', 'Nombre Completo', 'rfc', 'curp', 'fechaNacimiento', 'Acciones'];
   encaPrueba: string[] = ['id', 'userId', 'title', 'body'];
 
   constructor(public sujetoService: SujetoService,
@@ -83,7 +85,9 @@ export class SujetoComponent implements OnDestroy, OnInit {
       paterno: ['', Validators.required],
       materno: ['', Validators.required],
       rfc: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
-      curp: ['', [Validators.required, Validators.minLength(18), Validators.maxLength(18)]]
+      curp: ['', [Validators.required, Validators.minLength(18), Validators.maxLength(18)]],
+      fechaNacimiento: ['', [Validators.required, Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]],
+      sexo: ['', Validators.required],
     });
   }
 
@@ -100,8 +104,9 @@ export class SujetoComponent implements OnDestroy, OnInit {
     this.sujeto = this.formSujeto.value;
     this.sujetoService.saveSujeto(this.sujeto).subscribe(msj => {
       this.renderTable();
-      this.cleanForm();
+      //this.cleanForm();
       document.getElementById("cerrar")?.click();
+      this.getMessageAlert('success', msj.mensaje);
     });
   }
 
@@ -115,17 +120,29 @@ export class SujetoComponent implements OnDestroy, OnInit {
     const sujetoid: number = this.formSujeto.value.sujetoid;
     this.sujetoService.updateSujeto(sujetoid, this.formSujeto.value).subscribe(msj => {
       this.renderTable();
-      //this.cleanForm();
       document.getElementById("cerrar")?.click();
+      this.getMessageAlert('info', msj.mensaje);
       //console.log(msj);
     });
   }
 
-  deleteRow():void{
-    const sujetoid: number = this.formSujeto.value.sujetoid;
-    this.sujetoService.deleteSujeto(sujetoid).subscribe(msj =>{
-      this.renderTable();
-    });
+  deleteRow(sujetoId: number): void {
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: "No podras revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminalo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.sujetoService.deleteSujeto(sujetoId).subscribe(msj => {
+          this.renderTable();
+          this.getMessageAlert('info', msj.mensaje);
+        });
+      }
+    })
   }
 
   fieldNotValid(field: string): boolean | undefined {
@@ -154,6 +171,16 @@ export class SujetoComponent implements OnDestroy, OnInit {
       this.getSujetos();
 
     });
+  }
+
+  getMessageAlert(alerta: any, title: string): void {
+    Swal.fire({
+      position: 'center',
+      icon: alerta,
+      title: title,
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
   ngOnDestroy(): void {
