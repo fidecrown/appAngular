@@ -1,0 +1,25 @@
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped hover">
+    <thead class="thead-light">
+      <tr>
+        <th *ngFor="let encabezado of encabezados">{{encabezado}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sujeto of lstSujetos let i=index;">
+        <th>{{i + 1}}</th>
+        <td>{{sujeto.nombre}} {{sujeto.paterno}} {{sujeto.materno}}</td>
+        <td>{{sujeto.rfc}}</td>
+        <td>{{sujeto.curp}}</td>
+        <td>{{sujeto.fechaNacimiento}}</td>
+        <td>
+          <button (click)="editRow(sujeto.sujetoid)" class="btn btn-outline-info btn-sm mr-1" data-toggle="modal"
+            data-target="#miModal">
+            <i class="fas fa-pencil-alt"></i>
+          </button>
+          <button (click)="deleteRow(sujeto.sujetoid)" class="btn btn-outline-danger btn-sm">
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

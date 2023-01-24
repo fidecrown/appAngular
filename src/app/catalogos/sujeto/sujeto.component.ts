@@ -1,12 +1,12 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2'
 import { Prueba, Sujeto } from 'src/app/models/sujeto';
 import { DataBibliotecaService } from 'src/app/services/data-biblioteca.service';
 import { SujetoService } from 'src/app/services/sujeto.service';
-import { ThisReceiver } from '@angular/compiler';
+import { ListComponent } from './list/list.component';
+
 
 @Component({
   selector: 'app-sujeto',
@@ -15,19 +15,15 @@ import { ThisReceiver } from '@angular/compiler';
 })
 export class SujetoComponent implements OnDestroy, OnInit {
 
-  @ViewChild(DataTableDirective, { static: false }) dtElement: any = DataTableDirective;
+  @ViewChild(ListComponent) list: ListComponent = new ListComponent();
 
   dtTrigger: Subject<any> = new Subject<any>();
   dtOptions: DataTables.Settings = {};
   sujeto!: Sujeto;
   formSujeto!: FormGroup;
-  newOrUpdate: string = '';
-  btnSaveorUpdate: string = '';
 
   lstSujetos: Sujeto[] = [];
-  lstPruebas: Prueba[] = [];
   encabezados: string[] = ['#', 'Nombre Completo', 'rfc', 'curp', 'fechaNacimiento', 'Acciones'];
-  encaPrueba: string[] = ['id', 'userId', 'title', 'body'];
 
   constructor(public sujetoService: SujetoService,
     private dataBiblioteca: DataBibliotecaService,
@@ -103,7 +99,8 @@ export class SujetoComponent implements OnDestroy, OnInit {
   addRow(): void {
     this.sujeto = this.formSujeto.value;
     this.sujetoService.saveSujeto(this.sujeto).subscribe(msj => {
-      this.renderTable();
+      this.list.onRenderTable();
+      this.getSujetos();
       //this.cleanForm();
       document.getElementById("cerrar")?.click();
       this.getMessageAlert('success', msj.mensaje);
@@ -119,7 +116,8 @@ export class SujetoComponent implements OnDestroy, OnInit {
   updateRow(): void {
     const sujetoid: number = this.formSujeto.value.sujetoid;
     this.sujetoService.updateSujeto(sujetoid, this.formSujeto.value).subscribe(msj => {
-      this.renderTable();
+      this.list.onRenderTable();
+      this.getSujetos();
       document.getElementById("cerrar")?.click();
       this.getMessageAlert('info', msj.mensaje);
       //console.log(msj);
@@ -137,10 +135,13 @@ export class SujetoComponent implements OnDestroy, OnInit {
       confirmButtonText: 'Si, Eliminalo!'
     }).then((result) => {
       if (result.isConfirmed) {
+
         this.sujetoService.deleteSujeto(sujetoId).subscribe(msj => {
-          this.renderTable();
+          this.list.onRenderTable();
+          this.getSujetos();
           this.getMessageAlert('info', msj.mensaje);
         });
+
       }
     })
   }
@@ -161,16 +162,6 @@ export class SujetoComponent implements OnDestroy, OnInit {
 
   cleanForm(): void {
     this.formSujeto.reset();
-  }
-
-  renderTable(): void {
-    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      // PRIMERO DESTRUIMOS LA TABLA
-      dtInstance.destroy();
-      // HACEMOS PETICION AL SERVIDOR PARA TRAER EL LISTADO
-      this.getSujetos();
-
-    });
   }
 
   getMessageAlert(alerta: any, title: string): void {
