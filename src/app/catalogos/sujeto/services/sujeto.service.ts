@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Prueba, Sujeto } from '../models/sujeto';
+import { Sujeto } from '../interface/sujeto';
 
 @Injectable({
   providedIn: 'root'
@@ -32,10 +32,6 @@ export class SujetoService {
 
   deleteSujeto(sujetoid: number):Observable<any>{
     return this.http.delete<any>(`${this.API_REST}/${sujetoid}`);
-  }
-
-  getPrueba(): Observable<Prueba[]> {
-    return this.http.get<Prueba[]>(this.API_PRUEBA);
   }
 
 }

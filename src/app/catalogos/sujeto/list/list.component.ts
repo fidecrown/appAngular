@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
-import { Sujeto } from '../../../models/sujeto';
+import { Sujeto } from '../interface/sujeto';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 
@@ -13,15 +13,18 @@ export class ListComponent implements OnInit {
 
   @Input() encabezados: string[] = [];
   @Input() lstSujetos: Sujeto[] = [];
-  @Input() dtOptions:DataTables.Settings = {};
   @Input() dtTrigger:Subject<any> = new Subject<any>();
 
   @Output() oneditRow: EventEmitter<number> = new EventEmitter();
-  @Output() onedeleteRow: EventEmitter<number> = new EventEmitter();
+  @Output() ondeleteRow: EventEmitter<number> = new EventEmitter();
+
+  dtOptions:DataTables.Settings = {};
 
   constructor() { }
 
   ngOnInit(): void {
+
+    this.loadSettingsTable();
   }
 
   editRow(sujetoid: number) {
@@ -29,7 +32,7 @@ export class ListComponent implements OnInit {
   }
 
   deleteRow(sujetoid: number){
-    this.onedeleteRow.emit(sujetoid);
+    this.ondeleteRow.emit(sujetoid);
   }
 
   onRenderTable(){
@@ -37,6 +40,21 @@ export class ListComponent implements OnInit {
       // DESTRUIMOS LA TABLA - LIMPIAMOS LOS DATOS
       dtInstance.destroy();
     });
+  }
+
+  loadSettingsTable(): void {
+    this.dtOptions = {
+      //pagingType: 'full_numbers',
+      pageLength: 10,
+      //info: false,
+      //searching: false,
+      //paging: false,
+      scrollY: '200px',
+      language: {
+        url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/es-MX.json'
+      },
+      order: []
+    };
   }
 
 }
