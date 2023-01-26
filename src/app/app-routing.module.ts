@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SujetoComponent } from './catalogos/sujeto/sujeto.component';
+import { SujetoComponent } from './catalogos/sujeto/page/sujeto.component';
 import { CajasComponent } from './page/cajas/cajas.component';
 import { ClientesComponent } from './page/clientes/clientes.component';
 import { CreditosComponent } from './page/creditos/creditos.component';

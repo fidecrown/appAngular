@@ -3,15 +3,14 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2'
-import { Prueba, Sujeto } from 'src/app/models/sujeto';
+import { Prueba, Sujeto } from 'src/app/catalogos/sujeto/interface/sujeto';
 import { DataBibliotecaService } from 'src/app/services/data-biblioteca.service';
-import { SujetoService } from 'src/app/services/sujeto.service';
-import { ThisReceiver } from '@angular/compiler';
+import { SujetoService } from 'src/app/catalogos/sujeto/service/sujeto.service';
 
 @Component({
   selector: 'app-sujeto',
   templateUrl: './sujeto.component.html',
-  styleUrls: ['./sujeto.component.css']
+  styleUrls: []
 })
 export class SujetoComponent implements OnDestroy, OnInit {
 

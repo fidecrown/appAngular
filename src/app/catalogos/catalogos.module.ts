@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataTablesModule } from 'angular-datatables';
 
-import { SujetoComponent } from './sujeto/sujeto.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { SujetoModule } from './sujeto/sujeto.module';
 
 
 
 
 @NgModule({
   declarations: [
-    SujetoComponent
+
   ],
   imports: [
     CommonModule,
-    DataTablesModule,
-    ReactiveFormsModule
+    SujetoModule
   ],
   exports:[
-    SujetoComponent
+
   ]
 })
 export class CatalogosModule { }
