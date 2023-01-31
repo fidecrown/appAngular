@@ -1,12 +1,10 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2'
 import { Sujeto } from 'src/app/catalogos/sujeto/interface/sujeto';
 import { DataBibliotecaService } from 'src/app/services/data-biblioteca.service';
 import { SujetoService } from 'src/app/catalogos/sujeto/services/sujeto.service';
 import { ListComponent } from './list/list.component';
-import { FormComponent } from './form/form.component';
-
 
 @Component({
   selector: 'app-sujeto',
@@ -16,6 +14,7 @@ import { FormComponent } from './form/form.component';
 export class SujetoComponent implements OnDestroy, OnInit {
 
   @ViewChild(ListComponent) list!: ListComponent;
+  @ViewChild('cerrar', { static: true }) btnCerrar! : ElementRef<HTMLButtonElement>;
 
   dtTrigger: Subject<any> = new Subject<any>();
 
@@ -72,6 +71,7 @@ export class SujetoComponent implements OnDestroy, OnInit {
   updateRow(sujeto: Sujeto): void {
     //const sujetoid: number = this.formSujeto.value.sujetoid;
     this.sujetoService.updateSujeto(sujeto.sujetoid, sujeto).subscribe(msj => {
+      this.btnCerrar.nativeElement.click();
       document.getElementById("cerrar")?.click();
       this.settings('info', msj.mensaje);
     });
@@ -98,8 +98,7 @@ export class SujetoComponent implements OnDestroy, OnInit {
   }
 
   settings(alerta: any, title: string): void {
-    this.renderTable = true;
-    //this.list.onRenderTable();
+    this.list.onRenderTable();
     this.getSujetos();
     this.getMessageAlert(alerta, title);
   }
