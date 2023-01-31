@@ -2,15 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Sujeto } from '../interface/sujeto';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SujetoService {
 
-  private API_REST: string = 'http://localhost:8080/reforma/api/v1/sujetos';
-
-  private API_PRUEBA: string = 'https://jsonplaceholder.typicode.com/posts';
+  private API_REST: string = environment.BASE_URL+ 'sujetos';
 
   constructor(private http: HttpClient) { }
 

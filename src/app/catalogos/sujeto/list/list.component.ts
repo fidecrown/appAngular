@@ -15,6 +15,16 @@ export class ListComponent implements OnInit {
   @Input() lstSujetos: Sujeto[] = [];
   @Input() dtTrigger:Subject<any> = new Subject<any>();
 
+  @Input() set renderTable(render: boolean) {
+    if (render) {
+      console.log('INICIA EL RENDER');
+      
+      this.onRenderTable();
+    }else{
+      console.log('NO INICIO EL RENDER')
+    }
+  }
+
   @Output() oneditRow: EventEmitter<number> = new EventEmitter();
   @Output() ondeleteRow: EventEmitter<number> = new EventEmitter();
 
@@ -36,10 +46,12 @@ export class ListComponent implements OnInit {
   }
 
   onRenderTable(){
+    
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
       // DESTRUIMOS LA TABLA - LIMPIAMOS LOS DATOS
       dtInstance.destroy();
     });
+    
   }
 
   loadSettingsTable(): void {

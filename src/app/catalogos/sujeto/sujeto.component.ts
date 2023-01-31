@@ -16,12 +16,14 @@ import { FormComponent } from './form/form.component';
 export class SujetoComponent implements OnDestroy, OnInit {
 
   @ViewChild(ListComponent) list!: ListComponent;
-  @ViewChild(FormComponent) form!: FormComponent;
 
   dtTrigger: Subject<any> = new Subject<any>();
 
   lstSujetos: Sujeto[] = [];
   encabezados: string[] = ['#', 'Nombre Completo', 'rfc', 'curp', 'fechaNacimiento', 'Acciones'];
+
+  sujeto!:Sujeto;
+  renderTable: boolean = false;
 
   constructor(public sujetoService: SujetoService,
     private dataBiblioteca: DataBibliotecaService,
@@ -63,7 +65,7 @@ export class SujetoComponent implements OnDestroy, OnInit {
 
   editRow(sujetoid: number) {
     this.sujetoService.getSujetoById(sujetoid).subscribe(sujeto => {
-      this.form.formSujeto.patchValue(sujeto);
+      this.sujeto = sujeto;
     });
   }
 
@@ -96,7 +98,8 @@ export class SujetoComponent implements OnDestroy, OnInit {
   }
 
   settings(alerta: any, title: string): void {
-    this.list.onRenderTable();
+    this.renderTable = true;
+    //this.list.onRenderTable();
     this.getSujetos();
     this.getMessageAlert(alerta, title);
   }

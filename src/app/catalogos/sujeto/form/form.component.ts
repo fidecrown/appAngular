@@ -8,8 +8,14 @@ import { Sujeto } from '../interface/sujeto';
 })
 export class FormComponent implements OnInit {
 
-  @Output() onAddRow:EventEmitter<Sujeto> = new EventEmitter();
-  @Output() onUpdateRow:EventEmitter<Sujeto> = new EventEmitter();
+  @Input() set sujeto(sujeto: Sujeto) {
+    if (sujeto) {
+      this.formSujeto.patchValue(sujeto);
+    }
+  }
+
+  @Output() onAddRow: EventEmitter<Sujeto> = new EventEmitter();
+  @Output() onUpdateRow: EventEmitter<Sujeto> = new EventEmitter();
 
   formSujeto!: FormGroup;
 
@@ -19,11 +25,11 @@ export class FormComponent implements OnInit {
     this.loadForm();
   }
 
-  addRow(): void{
+  addRow(): void {
     this.onAddRow.emit(this.formSujeto.value);
   }
 
-  updateRow():void{
+  updateRow(): void {
     this.onUpdateRow.emit(this.formSujeto.value);
   }
 
@@ -45,7 +51,7 @@ export class FormComponent implements OnInit {
     const control = this.formSujeto.controls;
     //console.log(control['rfc'].errors);
     return this.formSujeto.get(field)?.invalid &&
-    this.formSujeto.get(field)?.touched
+      this.formSujeto.get(field)?.touched
   }
 
   get existRowById() {

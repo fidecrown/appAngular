@@ -2,7 +2,7 @@
 <div class="card card-primary card-outline">
   <div class="card-body">
     <!--#COMIENZA EL LLENADO DE LA TABLA   -->
-    <app-list [encabezados]="encabezados" [lstSujetos]="lstSujetos" [dtTrigger]="dtTrigger"
+    <app-list [encabezados]="encabezados" [lstSujetos]="lstSujetos" [dtTrigger]="dtTrigger" [renderTable]="renderTable"
       (oneditRow)="editRow($event)" (ondeleteRow)="deleteRow($event)">
     </app-list>
     <!--#FIN DE LA TABLA   -->
@@ -11,6 +11,6 @@
 <!-- FIN TARJETA -->
 
 <!-- CUERPO DE LA VENTA MODAL -->
-<app-form (onAddRow)="addRow($event)" (onUpdateRow)="updateRow($event)">
+<app-form [sujeto]="sujeto" (onAddRow)="addRow($event)" (onUpdateRow)="updateRow($event)">
 </app-form>
 <!-- FIN VENTANA MODAL-->
