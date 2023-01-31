@@ -14,7 +14,7 @@ import { ListComponent } from './list/list.component';
 export class SujetoComponent implements OnDestroy, OnInit {
 
   @ViewChild(ListComponent) list!: ListComponent;
-  @ViewChild('cerrar', { static: true }) btnCerrar! : ElementRef<HTMLButtonElement>;
+  //@ViewChild('cerrar') btnCerrar:any;
 
   dtTrigger: Subject<any> = new Subject<any>();
 
@@ -71,7 +71,7 @@ export class SujetoComponent implements OnDestroy, OnInit {
   updateRow(sujeto: Sujeto): void {
     //const sujetoid: number = this.formSujeto.value.sujetoid;
     this.sujetoService.updateSujeto(sujeto.sujetoid, sujeto).subscribe(msj => {
-      this.btnCerrar.nativeElement.click();
+      
       document.getElementById("cerrar")?.click();
       this.settings('info', msj.mensaje);
     });
