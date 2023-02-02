@@ -1,10 +1,11 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2'
 import { Sujeto } from 'src/app/catalogos/sujeto/interface/sujeto';
 import { DataBibliotecaService } from 'src/app/services/data-biblioteca.service';
 import { SujetoService } from 'src/app/catalogos/sujeto/services/sujeto.service';
 import { ListComponent } from './list/list.component';
+import { FormComponent } from './form/form.component';
 
 @Component({
   selector: 'app-sujeto',
@@ -14,7 +15,7 @@ import { ListComponent } from './list/list.component';
 export class SujetoComponent implements OnDestroy, OnInit {
 
   @ViewChild(ListComponent) list!: ListComponent;
-  //@ViewChild('cerrar') btnCerrar:any;
+  @ViewChild(FormComponent) form!: FormComponent;
 
   dtTrigger: Subject<any> = new Subject<any>();
 
@@ -57,7 +58,7 @@ export class SujetoComponent implements OnDestroy, OnInit {
 
   addRow(sujeto: Sujeto): void {
     this.sujetoService.saveSujeto(sujeto).subscribe(msj => {
-      document.getElementById("cerrar")?.click();
+      this.form.btnCerrar.nativeElement.click();
       this.settings('success', msj.mensaje);
     });
   }
@@ -69,12 +70,12 @@ export class SujetoComponent implements OnDestroy, OnInit {
   }
 
   updateRow(sujeto: Sujeto): void {
-    //const sujetoid: number = this.formSujeto.value.sujetoid;
     this.sujetoService.updateSujeto(sujeto.sujetoid, sujeto).subscribe(msj => {
-      
-      document.getElementById("cerrar")?.click();
+      //document.getElementById("cerrar")?.click();
+      this.form.btnCerrar.nativeElement.click();
       this.settings('info', msj.mensaje);
     });
+    
   }
 
   deleteRow(sujetoId: number): void {

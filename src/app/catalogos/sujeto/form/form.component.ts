@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Sujeto } from '../interface/sujeto';
 
@@ -7,6 +7,8 @@ import { Sujeto } from '../interface/sujeto';
   templateUrl: './form.component.html'
 })
 export class FormComponent implements OnInit {
+
+  @ViewChild('cerrar',{ static: true }) btnCerrar!:ElementRef<HTMLButtonElement>;
 
   @Input() set sujeto(sujeto: Sujeto) {
     if (sujeto) {
