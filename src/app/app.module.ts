@@ -8,6 +8,7 @@ import { CatalogosModule } from './catalogos/catalogos.module';
 import { PageModule } from './page/page.module';
 
 import { AppComponent } from './app.component';
+import { ClientesModule } from './clientes/clientes.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     LayoutModule,
     CatalogosModule,
+    ClientesModule,
     PageModule
   ],
   providers: [],
