@@ -1,39 +1,302 @@
 <div class="row">
     <div class="col-12">
         <div class="card card-primary card-outline card-tabs">
-          <div class="card-header p-0 pt-1 border-bottom-0">
-            <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" id="custom-tabs-three-datGen-tab" data-toggle="pill" href="#custom-tabs-three-datGen" role="tab" aria-controls="custom-tabs-three-datGen" aria-selected="true">Datos Generales</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill" href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile" aria-selected="false">Perfil Transaccional</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill" href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages" aria-selected="false">Referencias</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="custom-tabs-three-settings-tab" data-toggle="pill" href="#custom-tabs-three-settings" role="tab" aria-controls="custom-tabs-three-settings" aria-selected="false">Documentos Digitales</a>
-              </li>
-            </ul>
-          </div>
-          <div class="card-body">
-            <div class="tab-content" id="custom-tabs-three-tabContent">
-              <div class="tab-pane fade show active" id="custom-tabs-three-datGen" role="tabpanel" aria-labelledby="custom-tabs-three-datGen-tab">
-                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada lacus ullamcorper dui molestie, sit amet congue quam finibus. Etiam ultricies nunc non magna feugiat commodo. Etiam odio magna, mollis auctor felis vitae, ullamcorper ornare ligula. Proin pellentesque tincidunt nisi, vitae ullamcorper felis aliquam id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin id orci eu lectus blandit suscipit. Phasellus porta, ante et varius ornare, sem enim sollicitudin eros, at commodo leo est vitae lacus. Etiam ut porta sem. Proin porttitor porta nisl, id tempor risus rhoncus quis. In in quam a nibh cursus pulvinar non consequat neque. Mauris lacus elit, condimentum ac condimentum at, semper vitae lectus. Cras lacinia erat eget sapien porta consectetur.
-              </div>
-              <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab">
-                 Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc euismod pellentesque diam.
-              </div>
-              <div class="tab-pane fade" id="custom-tabs-three-messages" role="tabpanel" aria-labelledby="custom-tabs-three-messages-tab">
-                 Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend ac ornare magna.
-              </div>
-              <div class="tab-pane fade" id="custom-tabs-three-settings" role="tabpanel" aria-labelledby="custom-tabs-three-settings-tab">
-                 Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis.
-              </div>
+            <div class="card-header p-0 pt-1 border-bottom-0">
+                <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="custom-tabs-three-datGen-tab" data-toggle="pill"
+                            href="#custom-tabs-three-datGen" role="tab" aria-controls="custom-tabs-three-datGen"
+                            aria-selected="true">Datos Generales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill"
+                            href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile"
+                            aria-selected="false">Perfil Transaccional</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill"
+                            href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages"
+                            aria-selected="false">Referencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-three-settings-tab" data-toggle="pill"
+                            href="#custom-tabs-three-settings" role="tab" aria-controls="custom-tabs-three-settings"
+                            aria-selected="false">Documentos Digitales</a>
+                    </li>
+                </ul>
             </div>
-          </div>
-          <!-- /.card -->
+            <div class="card-body">
+                <div class="tab-content" id="custom-tabs-three-tabContent">
+                    <div class="tab-pane fade show active" id="custom-tabs-three-datGen" role="tabpanel"
+                        aria-labelledby="custom-tabs-three-datGen-tab">
+
+                        <form autocomplete="off">
+
+                            <!-- //STUB - BLOQUE PRINCIPAL  -->
+                            <div class="row">
+                                <div class="col-6">
+                                    <!-- //NOTE - CLAVE CLIENTE -->
+                                    <div class="form-group">
+                                        <label for="materno">Clave Cliente</label>
+                                        <input type="text" class="form-control" name="materno" id="materno"
+                                            placeholder="Clave Cliente" formControlName="materno" />
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <!-- //NOTE -  NO. SOLICITUD -->
+                                    <div class="form-group">
+                                        <label for="materno">No. Solicitud</label>
+                                        <input type="text" class="form-control" name="materno" id="materno"
+                                            placeholder="No. Solicitud" formControlName="materno" Disabled />
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <!-- //NOTE -  FECHA INGRESO -->
+                                    <div class="form-group">
+                                        <label for="materno">Fecha Ingreso</label>
+                                        <input type="date" class="form-control" name="materno" id="materno"
+                                            placeholder="No. Solicitud" formControlName="materno" Disabled />
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <!-- //NOTE - FECHA SOLICITUD -->
+                                    <div class="form-group">
+                                        <label for="materno">Fecha Solicitud</label>
+                                        <input type="date" class="form-control" name="materno" id="materno"
+                                            placeholder="No. Solicitud" formControlName="materno" Disabled />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <!-- //STUB - BLOQUE DE DATOS SUJETO  -->
+                                <div class="col-sm-6">
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto">Datos Sujeto</legend>
+                                        <div class="row">
+                                            <!-- //NOTE - NOMBRES -->
+                                            <div class="col-10">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="nombre" id="nombre"
+                                                        placeholder="Ingresa Nombre(s)" formControlName="nombre" />
+                                                </div>
+                                            </div>
+                                            <!-- //NOTE - BOTON BUSCAR CLIENTE -->
+                                            <div class="col-2">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <!-- //NOTE - PATERNO -->
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="paterno" id="paterno"
+                                                        placeholder="Apellido Paterno" formControlName="paterno" />
+
+                                                </div>
+                                            </div>
+                                            <!-- //NOTE - MATERNO -->
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="materno" id="materno"
+                                                        placeholder="Apellido Materno" formControlName="materno" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <!-- //NOTE - RFC -->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="rfc" id="rfc"
+                                                        placeholder="Ingresa rfc" formControlName="rfc" />
+
+                                                </div>
+                                            </div>
+                                            <!-- //NOTE - CURP -->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+
+                                                    <input type="text" class="form-control" name="curp" id="curp"
+                                                        placeholder="Ingresa curp" formControlName="curp" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <!-- //NOTE - FECHA DE NACIMIENTO -->
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Fecha Nacimiento</label>
+                                                    <input type="date" formControlName="fechaNacimiento"
+                                                        class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <!-- //NOTE - GENERO O SEXO -->
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Género</label>
+                                                    <select formControlName="sexo" class="form-control">
+                                                        <option value="">Seleccionar</option>
+                                                        <option value="0">FEMENINO</option>
+                                                        <option value="1">MASCULINO</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <!-- //NOTE - TIPO DE CLIENTE -->
+                                            <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
+                                            <div class="col-6">
+                                                <!-- CAMPO TIPO DE CLIENTE -->
+                                                <div class="form-group">
+                                                    <!-- <label class="form-label">Tipo de Cliente</label> -->
+                                                    <select formControlName="sexo" class="form-control">
+                                                        <option value="">Seleccionar Tipo Cliente</option>
+                                                        <option value="0">Socio Menor</option>
+                                                        <option value="1">Socio Mayor</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <!-- //NOTE - TELEFONO FIJO -->
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <!-- <label class="form-label">Telefono Fijo</label> -->
+                                                    <input type="tel" formControlName="fechaNacimiento"
+                                                        class="form-control" placeholder="Telefono Fijo" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <!-- //NOTE -  CORREO ELECTRONICO -->
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <!-- <label class="form-label">Telefono Fijo</label> -->
+                                                    <input type="email" formControlName="fechaNacimiento"
+                                                        class="form-control" placeholder="correo electrónico" />
+                                                </div>
+                                            </div>
+
+                                            <!-- //NOTE - NO. CELULAR -->
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <!-- <label class="form-label">Telefono Fijo</label> -->
+                                                    <input type="tel" formControlName="fechaNacimiento"
+                                                        class="form-control" placeholder="No. celular" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+
+                                <!-- //STUB - BLOQUE DE LUGAR SUJETO  -->
+                                <div class="col-sm-6">
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto">Lugar de Orígen</legend>
+
+                                        <!-- //NOTE - ENTIDAD FEDERATIVA DE NACIMIENTO -->
+                                        <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <select formControlName="sexo" class="form-control">
+                                                    <option value="">Entidad Federativa de Nacimiento</option>
+                                                    <option value="0">AGUASCALIENTES</option>
+                                                    <option value="1">GUANAJUATO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- //NOTE - CIUDAD DE NACIMIENTO -->
+                                        <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <select formControlName="sexo" class="form-control">
+                                                    <option value="">Ciudad de Nacimiento</option>
+                                                    <option value="0">DOLORES HIDALGO</option>
+                                                    <option value="1">SAN MIGUEL DE ALLENDE</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- //NOTE - NACIONALIDAD -->
+                                        <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <select formControlName="sexo" class="form-control">
+                                                    <option value="">Nacionalidad</option>
+                                                    <option value="0">Mexicana</option>
+                                                    <option value="1">Ecuatoriana</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- //NOTE - PAIS DE NACIMIENTO -->
+                                        <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <select formControlName="sexo" class="form-control">
+                                                    <option value="">Pais de Nacimiento</option>
+                                                    <option value="0">MEXICO</option>
+                                                    <option value="1">ESTADOS UNIDOS</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                    </fieldset>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel"
+                        aria-labelledby="custom-tabs-three-profile-tab">
+                        Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut
+                        ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                        Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus
+                        ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc
+                        euismod pellentesque diam.
+                    </div>
+                    <div class="tab-pane fade" id="custom-tabs-three-messages" role="tabpanel"
+                        aria-labelledby="custom-tabs-three-messages-tab">
+                        Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue
+                        id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac
+                        tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit
+                        condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus
+                        tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet
+                        sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum
+                        gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend
+                        ac ornare magna.
+                    </div>
+                    <div class="tab-pane fade" id="custom-tabs-three-settings" role="tabpanel"
+                        aria-labelledby="custom-tabs-three-settings-tab">
+                        Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis
+                        ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate.
+                        Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec
+                        interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at
+                        consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst.
+                        Praesent imperdiet accumsan ex sit amet facilisis.
+                    </div>
+                </div>
+            </div>
+            <!-- /.card -->
         </div>
-      </div>
+    </div>
 </div>
