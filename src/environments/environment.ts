@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BASE_URL: 'http://localhost:8080/reforma/api/v1/'
+  BASE_URL: 'http://localhost:3000/'
 };
 
 /*

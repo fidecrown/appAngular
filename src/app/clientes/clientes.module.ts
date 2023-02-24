@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { SolicitudIngresoComponent } from './solicitud-ingreso/solicitud-ingreso.component';
+import { DomicilioModule } from './domicilio/domicilio.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { SolicitudIngresoComponent } from './solicitud-ingreso/solicitud-ingreso
   ],
   imports: [
     CommonModule,
-    ClientesRoutingModule
+    ClientesRoutingModule,
+    DomicilioModule
   ]
 })
 export class ClientesModule { }
