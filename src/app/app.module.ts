@@ -9,6 +9,8 @@ import { PageModule } from './page/page.module';
 
 import { AppComponent } from './app.component';
 import { ClientesModule } from './clientes/clientes.module';
+import { ComponentsModule } from './components/components.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,8 @@ import { ClientesModule } from './clientes/clientes.module';
     LayoutModule,
     CatalogosModule,
     ClientesModule,
-    PageModule
+    PageModule,
+    ComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,152 @@
-<p>domicilio works!</p>
+<fieldset>
+  <!-- //NOTE - PAIS -->
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <select formControlName="pais" class="form-control">
+          <option value="">Seleccionar Pais</option>
+          <option value="0">México</option>
+          <option value="1">España</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- //NOTE - ESTADO -->
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <select formControlName="estado" class="form-control">
+          <option value="">Seleccionar Estado</option>
+          <option value="0">Guanajuato</option>
+          <option value="1">Nuevo Leon</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- //NOTE - CIUDAD -->
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <select formControlName="ciudad" class="form-control">
+          <option value="">Seleccionar Ciudad</option>
+          <option value="0">Guanajuato</option>
+          <option value="1">Nuevo Leon</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- //NOTE - COLONIA -->
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <select formControlName="colonia" class="form-control">
+          <option value="">Seleccionar Colonia</option>
+          <option value="0">Guanajuato</option>
+          <option value="1">Nuevo Leon</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- //NOTE - NOMBRE DE LA VIALIDAD -->
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <input
+          type="text"
+          formControlName="vialidad"
+          class="form-control"
+          placeholder="Nombre de la Vialidad"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- //NOTE - NO.EXTERIOR Y NO.INTERIOR -->
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <!-- //NOTE - NO.EXTERIOR-->
+        <div class="col-6">
+          <div class="form-group">
+            <input
+              type="text"
+              formControlName="noExt"
+              class="form-control"
+              placeholder="No. Exterior"
+            />
+          </div>
+        </div>
+        <!-- //NOTE - NO.INTERIOR -->
+        <div class="col-6">
+          <div class="form-group">
+            <input
+              type="text"
+              formControlName="noInt"
+              class="form-control"
+              placeholder="No. Interior"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- //NOTE - TIEMPO DE ARRAIGO -->
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <select formControlName="cmbTiempoArraigo" class="form-control">
+          <option value="">Seleccionar Tiempo de Arraigo</option>
+          <option value="0">Guanajuato</option>
+          <option value="1">Nuevo Leon</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- //NOTE - ENTRE CALLE 1 -->
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <input
+          type="text"
+          formControlName="txtCalle1"
+          class="form-control"
+          placeholder="Entre Calle 1"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- //NOTE - ENTRE CALLE 2 -->
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <input
+          type="text"
+          formControlName="txtCalle2"
+          class="form-control"
+          placeholder="Entre Calle 2"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- //NOTE - REFERENCIA -->
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <textarea
+          class="form-control"
+          formControlName="txtReferencia"
+          rows="3"
+          placeholder="Referencia"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+</fieldset>

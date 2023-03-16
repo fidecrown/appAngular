@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { SolicitudIngresoComponent } from './solicitud-ingreso/solicitud-ingreso.component';
 import { DomicilioModule } from './domicilio/domicilio.module';
-
+import { SujetoModule } from './sujeto/sujeto.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,9 @@ import { DomicilioModule } from './domicilio/domicilio.module';
   imports: [
     CommonModule,
     ClientesRoutingModule,
-    DomicilioModule
+    DomicilioModule,
+    SujetoModule,
+    ReactiveFormsModule
   ]
 })
 export class ClientesModule { }

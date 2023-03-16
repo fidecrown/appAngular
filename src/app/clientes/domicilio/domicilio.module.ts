@@ -12,6 +12,9 @@ import { DomicilioComponent } from './domicilio/domicilio.component';
   imports: [
     CommonModule,
     DomicilioRoutingModule
+  ],
+  exports:[
+    DomicilioComponent
   ]
 })
 export class DomicilioModule { }

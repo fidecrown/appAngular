@@ -1,1193 +1,273 @@
 <div class="row">
-    <div class="col-12">
-        <div class="card card-primary card-outline card-tabs">
-            <div class="card-header p-0 pt-1 border-bottom-0">
-                <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-three-datGen-tab" data-toggle="pill"
-                            href="#custom-tabs-three-datGen" role="tab" aria-controls="custom-tabs-three-datGen"
-                            aria-selected="true">Datos Generales</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-three-domicilio-tab" data-toggle="pill"
-                            href="#custom-tabs-three-domicilio" role="tab" aria-controls="custom-tabs-three-domicilio"
-                            aria-selected="false">Domicilio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-three-perfilTransaccional-tab" data-toggle="pill"
-                            href="#custom-tabs-three-perfilTransaccional" role="tab"
-                            aria-controls="custom-tabs-three-perfilTransaccional" aria-selected="false">Perfil
-                            Transaccional</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" id="custom-tabs-three-messages-tab" data-toggle="pill"
-                            href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages"
-                            aria-selected="false">Referencias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-three-settings-tab" data-toggle="pill"
-                            href="#custom-tabs-three-settings" role="tab" aria-controls="custom-tabs-three-settings"
-                            aria-selected="false">Documentos Digitales</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-body">
-                <div class="tab-content" id="custom-tabs-three-tabContent">
-                    <div class="tab-pane fade" id="custom-tabs-three-datGen" role="tabpanel"
-                        aria-labelledby="custom-tabs-three-datGen-tab">
-                        <form autocomplete="off">
-
-                            <!-- //TODO - DATOS_GENERALES_TAB  -->
-                            <div class="row">
-                                <div class="col-6">
-                                    <!-- //NOTE - CLAVE CLIENTE -->
-                                    <div class="form-group">
-                                        <label for="materno">Clave Cliente</label>
-                                        <input type="text" class="form-control" name="materno" id="materno"
-                                            placeholder="Clave Cliente" formControlName="materno" />
-                                    </div>
-                                </div>
-
-                                <div class="col-6">
-                                    <!-- //NOTE -  NO. SOLICITUD -->
-                                    <div class="form-group">
-                                        <label for="materno">No. Solicitud</label>
-                                        <input type="text" class="form-control" name="materno" id="materno"
-                                            placeholder="No. Solicitud" formControlName="materno" Disabled />
-                                    </div>
-                                </div>
-
-                                <div class="col-6">
-                                    <!-- //NOTE -  FECHA INGRESO -->
-                                    <div class="form-group">
-                                        <label for="materno">Fecha Ingreso</label>
-                                        <input type="date" class="form-control" name="materno" id="materno"
-                                            placeholder="No. Solicitud" formControlName="materno" Disabled />
-                                    </div>
-                                </div>
-
-                                <div class="col-6">
-                                    <!-- //NOTE - FECHA SOLICITUD -->
-                                    <div class="form-group">
-                                        <label for="materno">Fecha Solicitud</label>
-                                        <input type="date" class="form-control" name="materno" id="materno"
-                                            placeholder="No. Solicitud" formControlName="materno" Disabled />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <!-- //STUB - DATOS SUJETO  -->
-                                <div class="col-sm-6">
-                                    <fieldset class="border p-2">
-                                        <legend class="w-auto">Datos Sujeto</legend>
-                                        <div class="row">
-                                            <!-- //NOTE - NOMBRES -->
-                                            <div class="col-10">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="nombre" id="nombre"
-                                                        placeholder="Ingresa Nombre(s)" formControlName="nombre" />
-                                                </div>
-                                            </div>
-                                            <!-- //NOTE - BOTON BUSCAR CLIENTE -->
-                                            <div class="col-2">
-                                                <button type="submit" class="btn btn-primary">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <!-- //NOTE - PATERNO -->
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="paterno" id="paterno"
-                                                        placeholder="Apellido Paterno" formControlName="paterno" />
-                                                </div>
-                                            </div>
-                                            <!-- //NOTE - MATERNO -->
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="materno" id="materno"
-                                                        placeholder="Apellido Materno" formControlName="materno" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <!-- //NOTE - RFC -->
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="rfc" id="rfc"
-                                                        placeholder="Ingresa rfc" formControlName="rfc" />
-                                                </div>
-                                            </div>
-                                            <!-- //NOTE - CURP -->
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="curp" id="curp"
-                                                        placeholder="Ingresa curp" formControlName="curp" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <!-- //NOTE - FECHA DE NACIMIENTO -->
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label class="form-label">Fecha Nacimiento</label>
-                                                    <input type="date" formControlName="fechaNacimiento"
-                                                        class="form-control" />
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - GENERO O SEXO -->
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label class="form-label">Género</label>
-                                                    <select formControlName="sexo" class="form-control">
-                                                        <option value="">Seleccionar</option>
-                                                        <option value="0">FEMENINO</option>
-                                                        <option value="1">MASCULINO</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <!-- //NOTE - TIPO DE CLIENTE -->
-                                            <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
-                                            <div class="col-6">
-                                                <!-- CAMPO TIPO DE CLIENTE -->
-                                                <div class="form-group">
-                                                    <!-- <label class="form-label">Tipo de Cliente</label> -->
-                                                    <select formControlName="sexo" class="form-control">
-                                                        <option value="">Seleccionar Tipo Cliente</option>
-                                                        <option value="0">Socio Menor</option>
-                                                        <option value="1">Socio Mayor</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - TELEFONO FIJO -->
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <!-- <label class="form-label">Telefono Fijo</label> -->
-                                                    <input type="tel" formControlName="fechaNacimiento"
-                                                        class="form-control" placeholder="Telefono Fijo" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <!-- //NOTE -  CORREO ELECTRONICO -->
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <!-- <label class="form-label">Telefono Fijo</label> -->
-                                                    <input type="email" formControlName="fechaNacimiento"
-                                                        class="form-control" placeholder="correo electrónico" />
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - NO. CELULAR -->
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <!-- <label class="form-label">Telefono Fijo</label> -->
-                                                    <input type="tel" formControlName="fechaNacimiento"
-                                                        class="form-control" placeholder="No. celular" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
-
-                                <!-- //STUB - LUGAR SUJETO  -->
-                                <div class="col-sm-6">
-                                    <fieldset class="border p-2">
-                                        <legend class="w-auto">Lugar de Orígen</legend>
-
-                                        <!-- //NOTE - ENTIDAD FEDERATIVA DE NACIMIENTO -->
-                                        <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <select formControlName="sexo" class="form-control">
-                                                    <option value="">
-                                                        Entidad Federativa de Nacimiento
-                                                    </option>
-                                                    <option value="0">AGUASCALIENTES</option>
-                                                    <option value="1">GUANAJUATO</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <!-- //NOTE - CIUDAD DE NACIMIENTO -->
-                                        <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <select formControlName="sexo" class="form-control">
-                                                    <option value="">Ciudad de Nacimiento</option>
-                                                    <option value="0">DOLORES HIDALGO</option>
-                                                    <option value="1">SAN MIGUEL DE ALLENDE</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <!-- //NOTE - NACIONALIDAD -->
-                                        <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <select formControlName="sexo" class="form-control">
-                                                    <option value="">Nacionalidad</option>
-                                                    <option value="0">Mexicana</option>
-                                                    <option value="1">Ecuatoriana</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <!-- //NOTE - PAIS DE NACIMIENTO -->
-                                        <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <select formControlName="sexo" class="form-control">
-                                                    <option value="">Pais de Nacimiento</option>
-                                                    <option value="0">MEXICO</option>
-                                                    <option value="1">ESTADOS UNIDOS</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- //TODO - DOMICILIO_TAB -->
-                    <div class="tab-pane fade" id="custom-tabs-three-domicilio" role="tabpanel"
-                        aria-labelledby="custom-tabs-three-domicilio-tab">
-
-                        <!-- //NOTE - PAIS -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <select formControlName="pais" class="form-control">
-                                        <option value="">Seleccionar Pais</option>
-                                        <option value="0">México</option>
-                                        <option value="1">España</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- //NOTE - ESTADO -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <select formControlName="estado" class="form-control">
-                                        <option value="">Seleccionar Estado</option>
-                                        <option value="0">Guanajuato</option>
-                                        <option value="1">Nuevo Leon</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- //NOTE - CIUDAD -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <select formControlName="ciudad" class="form-control">
-                                        <option value="">Seleccionar Ciudad</option>
-                                        <option value="0">Guanajuato</option>
-                                        <option value="1">Nuevo Leon</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- //NOTE - COLONIA -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <select formControlName="colonia" class="form-control">
-                                        <option value="">Seleccionar Colonia</option>
-                                        <option value="0">Guanajuato</option>
-                                        <option value="1">Nuevo Leon</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- //NOTE - NOMBRE DE LA VIALIDAD -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" formControlName="vialidad" class="form-control"
-                                        placeholder="Nombre de la Vialidad" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- //NOTE - NO.EXTERIOR Y NO.INTERIOR -->
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="row">
-                                    <!-- //NOTE - NO.EXTERIOR-->
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <input type="text" formControlName="noExt" class="form-control"
-                                                placeholder="No. Exterior" />
-                                        </div>
-                                    </div>
-                                    <!-- //NOTE - NO.INTERIOR -->
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <input type="text" formControlName="noInt" class="form-control"
-                                                placeholder="No. Interior" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- //NOTE - TIEMPO DE ARRAIGO -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <select formControlName="cmbTiempoArraigo" class="form-control">
-                                        <option value="">Seleccionar Tiempo de Arraigo</option>
-                                        <option value="0">Guanajuato</option>
-                                        <option value="1">Nuevo Leon</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- //NOTE - ENTRE CALLE 1 -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" formControlName="txtCalle1" class="form-control"
-                                        placeholder="Entre Calle 1" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- //NOTE - ENTRE CALLE 2 -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" formControlName="txtCalle2" class="form-control"
-                                        placeholder="Entre Calle 2" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- //NOTE - REFERENCIA -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <textarea class="form-control" formControlName="txtReferencia" rows="3"
-                                        placeholder="Referencia"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <!-- //TODO - PERFIL-TRANSACCIONAL_TAB -->
-                    <div class="tab-pane fade" id="custom-tabs-three-perfilTransaccional" role="tabpanel"
-                        aria-labelledby="custom-tabs-three-perfilTransaccional-tab">
-
-                        <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="custom-tabs-three-informacion-tab" data-toggle="pill"
-                                    href="#custom-tabs-three-informacion" role="tab"
-                                    aria-controls="custom-tabs-three-informacion" aria-selected="true">Información</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="custom-tabs-three-domLaboral-tab" data-toggle="pill"
-                                    href="#custom-tabs-three-domLaboral" role="tab"
-                                    aria-controls="custom-tabs-three-domLaboral" aria-selected="false">Domicilio</a>
-                            </li>
-                        </ul>
-
-                        <div class="tab-content mt-4" id="custom-tabs-three-tabContent">
-
-                            <!-- //TODO - INFORMACION-PERFIL-TRANSACCIONAL_TAB -->
-                            <div class="tab-pane fade show active" id="custom-tabs-three-informacion" role="tabpanel"
-                                aria-labelledby="custom-tabs-three-informacion-tab">
-
-                                <div class="row">
-
-                                    <!-- //NOTE - ESTADO CIVIL -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbEdoCivil" class="form-control">
-                                                <option value="">Seleccionar Estado Civil</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - REGIMEN -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbRegimen" class="form-control">
-                                                <option value="">Seleccionar Régimen</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-                                <div class="row">
-                                    <!-- //NOTE - TIPO DE VIVIENDA -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbTipoVivienda" class="form-control">
-                                                <option value="">Seleccionar Tipo de Vivienda</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - NIVEL DE ESTUDIOS -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbNivelEstudios" class="form-control">
-                                                <option value="">Seleccionar Nivel de Estudios</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <!-- //NOTE - PERIORICIDAD DE INGRESOS -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbPerioIngresos" class="form-control">
-                                                <option value="">Seleccionar Perioricidad de Ingresos</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - PERIORICIDAD DE MOVIMIENTOS -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbPerioMovimientos" class="form-control">
-                                                <option value="">Seleccionar Perioricidad de Movimientos</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <!-- //NOTE - INGRESOS -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" formControlName="txtIngresos" class="form-control"
-                                                placeholder="Ingresos" />
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - EGRESOS -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" formControlName="txtEgresos" class="form-control"
-                                                placeholder="Egresos" />
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <!-- //NOTE - MONTO APROXIMADO A DEPOSITAR -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" formControlName="txtMontoDepositar" class="form-control"
-                                                placeholder="Monto Aprox. a Depositar" />
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - MOVIMIENTOS POR MES -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" formControlName="txtMoVPorMes" class="form-control"
-                                                placeholder="Movimientos por Mes" />
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <!-- //NOTE - MONTO APROXIMADO A RETIRAR -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" formControlName="txtMontoRetirar" class="form-control"
-                                                placeholder="Monto Aprox. a Retirar" />
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - NO. DEPENDIENTES ECONOMICOS -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" formControlName="txtNoDependientes" class="form-control"
-                                                placeholder="No. Dependientes Economicos" />
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <!-- //NOTE - FINALIDAD DE LA CUENTA -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbFinCuenta" class="form-control">
-                                                <option value="">Seleccionar Finalidad de la Cuenta</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - Comprobacion de Ingresos -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbFinCuenta" class="form-control">
-                                                <option value="">Seleccionar Comprobación de Ingresos</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <!-- //NOTE - PORQUE MEDIO ENTERO -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbMedioEntero" class="form-control">
-                                                <option value="">Seleccionar Medio Entero</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - TIENES CUENTAS ? -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <textarea class="form-control" formControlName="cmbMedioEntero" rows="3"
-                                                placeholder="¿En donde tiene las cuentas ?"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <!-- //NOTE - NOMBRES -->
-                                    <div class="col-10">
-                                        <div class="form-group">
-                                            <textarea class="form-control" formControlName="cmbMedioEntero" rows="3"
-                                                placeholder="Ocupacion"></textarea>
-                                        </div>
-                                    </div>
-                                    <!-- //NOTE - BOTON BUSCAR CLIENTE -->
-                                    <div class="col-2">
-                                        <button type="submit" class="btn btn-primary">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- //TODO - DOMICILIO LABORAL-PERFIL-TRANSACCIONAL_TAB -->
-                            <div class="tab-pane fade" id="custom-tabs-three-domLaboral" role="tabpanel"
-                                aria-labelledby="custom-tabs-three-domLaboral-tab">
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <fieldset class="border p-2">
-                                            <legend class="w-auto">Datos Laborales</legend>
-
-                                            <div class="row">
-                                                <!-- //NOTE - RAZON SOCIAL DE LA EMPRESA -->
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <input type="text" formControlName="txtMontoRetirar"
-                                                            class="form-control"
-                                                            placeholder="Razón Social de la Empresa" />
-                                                    </div>
-                                                </div>
-
-                                                <!-- //NOTE - NOMBRE JEFE DIRECTO -->
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <input type="text" formControlName="txtMontoRetirar"
-                                                            class="form-control"
-                                                            placeholder="Nombre del Jefe Directo" />
-                                                    </div>
-                                                </div>
-
-                                                <!-- //NOTE - RFC DE LA EMPRESA -->
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <input type="text" formControlName="txtMontoRetirar"
-                                                            class="form-control" placeholder="RFC de la Empresa" />
-                                                    </div>
-                                                </div>
-
-                                                <!-- //NOTE - FECHA DE INICIO LABORAL -->
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label class="form-label">Fecha Inicio Laboral</label>
-                                                        <input type="date" formControlName="txtMontoRetirar"
-                                                            class="form-control" placeholder="RFC de la Empresa" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </fieldset>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <fieldset class="border p-2">
-                                            <legend class="w-auto">Domicilio Laboral</legend>
-                                            <!-- //NOTE - PAIS -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <select formControlName="pais" class="form-control">
-                                                            <option value="">Seleccionar Pais</option>
-                                                            <option value="0">México</option>
-                                                            <option value="1">España</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - ESTADO -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <select formControlName="estado" class="form-control">
-                                                            <option value="">Seleccionar Estado</option>
-                                                            <option value="0">Guanajuato</option>
-                                                            <option value="1">Nuevo Leon</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - CIUDAD -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <select formControlName="ciudad" class="form-control">
-                                                            <option value="">Seleccionar Ciudad</option>
-                                                            <option value="0">Guanajuato</option>
-                                                            <option value="1">Nuevo Leon</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - COLONIA -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <select formControlName="colonia" class="form-control">
-                                                            <option value="">Seleccionar Colonia</option>
-                                                            <option value="0">Guanajuato</option>
-                                                            <option value="1">Nuevo Leon</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - NOMBRE DE LA VIALIDAD -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <input type="text" formControlName="vialidad"
-                                                            class="form-control" placeholder="Nombre de la Vialidad" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - NO.EXTERIOR Y NO.INTERIOR -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="row">
-                                                        <!-- //NOTE - NO.EXTERIOR-->
-                                                        <div class="col-6">
-                                                            <div class="form-group">
-                                                                <input type="text" formControlName="noExt"
-                                                                    class="form-control" placeholder="No. Exterior" />
-                                                            </div>
-                                                        </div>
-                                                        <!-- //NOTE - NO.INTERIOR -->
-                                                        <div class="col-6">
-                                                            <div class="form-group">
-                                                                <input type="text" formControlName="noInt"
-                                                                    class="form-control" placeholder="No. Interior" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - TIEMPO DE ARRAIGO -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <select formControlName="cmbTiempoArraigo" class="form-control">
-                                                            <option value="">Seleccionar Tiempo de Arraigo</option>
-                                                            <option value="0">Guanajuato</option>
-                                                            <option value="1">Nuevo Leon</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - ENTRE CALLE 1 -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <input type="text" formControlName="txtCalle1"
-                                                            class="form-control" placeholder="Entre Calle 1" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - ENTRE CALLE 2 -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <input type="text" formControlName="txtCalle2"
-                                                            class="form-control" placeholder="Entre Calle 2" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - REFERENCIA -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <textarea class="form-control" formControlName="txtReferencia"
-                                                            rows="3" placeholder="Referencia"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- //TODO - REFERENCIAS_TAB -->
-                    <div class="tab-pane fade show active" id="custom-tabs-three-messages" role="tabpanel"
-                        aria-labelledby="custom-tabs-three-messages-tab">
-                        
-                        <!-- //NOTE - TIPO DE REFERENCIA -->
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <select formControlName="pais" class="form-control">
-                                        <option value="">Seleccionar Tipo de Referencia</option>
-                                        <option value="0">México</option>
-                                        <option value="1">España</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- //TODO - TAB INTERNO-REFERENCIAS_TAB -->
-                        <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="custom-tabs-three-refDatGral-tab" data-toggle="pill"
-                                    href="#custom-tabs-three-refDatGral" role="tab"
-                                    aria-controls="custom-tabs-three-refDatGral" aria-selected="true">Datos Generales</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="custom-tabs-three-refDomicilio-tab" data-toggle="pill"
-                                    href="#custom-tabs-three-refDomicilio" role="tab"
-                                    aria-controls="custom-tabs-three-refDomicilio" aria-selected="false">Domicilio</a>
-                            </li>
-                        </ul>
-
-
-                        <div class="tab-content mt-4" id="custom-tabs-three-tabContent">
-
-                            <!-- //TODO - DATOS GENERALES-REFERENCIAS_TAB -->
-                            <div class="tab-pane fade show active" id="custom-tabs-three-refDatGral" role="tabpanel"
-                                aria-labelledby="custom-tabs-three-refDatGral-tab">
-
-                                <div class="row">
-
-                                    <!-- //NOTE - ESTADO CIVIL -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbEdoCivil" class="form-control">
-                                                <option value="">Seleccionar Estado Civil</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - REGIMEN -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbRegimen" class="form-control">
-                                                <option value="">Seleccionar Régimen</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-                                <div class="row">
-                                    <!-- //NOTE - TIPO DE VIVIENDA -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbTipoVivienda" class="form-control">
-                                                <option value="">Seleccionar Tipo de Vivienda</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - NIVEL DE ESTUDIOS -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbNivelEstudios" class="form-control">
-                                                <option value="">Seleccionar Nivel de Estudios</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <!-- //NOTE - PERIORICIDAD DE INGRESOS -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbPerioIngresos" class="form-control">
-                                                <option value="">Seleccionar Perioricidad de Ingresos</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - PERIORICIDAD DE MOVIMIENTOS -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbPerioMovimientos" class="form-control">
-                                                <option value="">Seleccionar Perioricidad de Movimientos</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <!-- //NOTE - INGRESOS -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" formControlName="txtIngresos" class="form-control"
-                                                placeholder="Ingresos" />
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - EGRESOS -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" formControlName="txtEgresos" class="form-control"
-                                                placeholder="Egresos" />
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <!-- //NOTE - MONTO APROXIMADO A DEPOSITAR -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" formControlName="txtMontoDepositar" class="form-control"
-                                                placeholder="Monto Aprox. a Depositar" />
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - MOVIMIENTOS POR MES -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" formControlName="txtMoVPorMes" class="form-control"
-                                                placeholder="Movimientos por Mes" />
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <!-- //NOTE - MONTO APROXIMADO A RETIRAR -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" formControlName="txtMontoRetirar" class="form-control"
-                                                placeholder="Monto Aprox. a Retirar" />
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - NO. DEPENDIENTES ECONOMICOS -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" formControlName="txtNoDependientes" class="form-control"
-                                                placeholder="No. Dependientes Economicos" />
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <!-- //NOTE - FINALIDAD DE LA CUENTA -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbFinCuenta" class="form-control">
-                                                <option value="">Seleccionar Finalidad de la Cuenta</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - Comprobacion de Ingresos -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbFinCuenta" class="form-control">
-                                                <option value="">Seleccionar Comprobación de Ingresos</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <!-- //NOTE - PORQUE MEDIO ENTERO -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select formControlName="cmbMedioEntero" class="form-control">
-                                                <option value="">Seleccionar Medio Entero</option>
-                                                <option value="0">México</option>
-                                                <option value="1">España</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- //NOTE - TIENES CUENTAS ? -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <textarea class="form-control" formControlName="cmbMedioEntero" rows="3"
-                                                placeholder="¿En donde tiene las cuentas ?"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <!-- //NOTE - NOMBRES -->
-                                    <div class="col-10">
-                                        <div class="form-group">
-                                            <textarea class="form-control" formControlName="cmbMedioEntero" rows="3"
-                                                placeholder="Ocupacion"></textarea>
-                                        </div>
-                                    </div>
-                                    <!-- //NOTE - BOTON BUSCAR CLIENTE -->
-                                    <div class="col-2">
-                                        <button type="submit" class="btn btn-primary">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- //TODO - DOMICILIO-REFERENCIAS_TAB -->
-                            <div class="tab-pane fade" id="custom-tabs-three-refDomicilio" role="tabpanel"
-                                aria-labelledby="custom-tabs-three-refDomicilio-tab">
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <fieldset class="border p-2">
-                                            
-                                            <!-- //NOTE - PAIS -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <select formControlName="pais" class="form-control">
-                                                            <option value="">Seleccionar Pais</option>
-                                                            <option value="0">México</option>
-                                                            <option value="1">España</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - ESTADO -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <select formControlName="estado" class="form-control">
-                                                            <option value="">Seleccionar Estado</option>
-                                                            <option value="0">Guanajuato</option>
-                                                            <option value="1">Nuevo Leon</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - CIUDAD -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <select formControlName="ciudad" class="form-control">
-                                                            <option value="">Seleccionar Ciudad</option>
-                                                            <option value="0">Guanajuato</option>
-                                                            <option value="1">Nuevo Leon</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - COLONIA -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <select formControlName="colonia" class="form-control">
-                                                            <option value="">Seleccionar Colonia</option>
-                                                            <option value="0">Guanajuato</option>
-                                                            <option value="1">Nuevo Leon</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - NOMBRE DE LA VIALIDAD -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <input type="text" formControlName="vialidad"
-                                                            class="form-control" placeholder="Nombre de la Vialidad" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - NO.EXTERIOR Y NO.INTERIOR -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="row">
-                                                        <!-- //NOTE - NO.EXTERIOR-->
-                                                        <div class="col-6">
-                                                            <div class="form-group">
-                                                                <input type="text" formControlName="noExt"
-                                                                    class="form-control" placeholder="No. Exterior" />
-                                                            </div>
-                                                        </div>
-                                                        <!-- //NOTE - NO.INTERIOR -->
-                                                        <div class="col-6">
-                                                            <div class="form-group">
-                                                                <input type="text" formControlName="noInt"
-                                                                    class="form-control" placeholder="No. Interior" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - TIEMPO DE ARRAIGO -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <select formControlName="cmbTiempoArraigo" class="form-control">
-                                                            <option value="">Seleccionar Tiempo de Arraigo</option>
-                                                            <option value="0">Guanajuato</option>
-                                                            <option value="1">Nuevo Leon</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - ENTRE CALLE 1 -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <input type="text" formControlName="txtCalle1"
-                                                            class="form-control" placeholder="Entre Calle 1" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - ENTRE CALLE 2 -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <input type="text" formControlName="txtCalle2"
-                                                            class="form-control" placeholder="Entre Calle 2" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- //NOTE - REFERENCIA -->
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <textarea class="form-control" formControlName="txtReferencia"
-                                                            rows="3" placeholder="Referencia"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <div class="tab-pane fade" id="custom-tabs-three-settings" role="tabpanel"
-                        aria-labelledby="custom-tabs-three-settings-tab">
-                        EN CONSTRUCCION ....
-                    </div>
+  <div class="col-12">
+    <div class="card card-primary card-outline card-tabs">
+      <div class="card-header p-0 pt-1 border-bottom-0">
+        <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="custom-tabs-three-datGen-tab"
+              data-toggle="pill"
+              href="#custom-tabs-three-datGen"
+              role="tab"
+              aria-controls="custom-tabs-three-datGen"
+              aria-selected="true"
+              >Datos Generales</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="custom-tabs-three-domicilio-tab"
+              data-toggle="pill"
+              href="#custom-tabs-three-domicilio"
+              role="tab"
+              aria-controls="custom-tabs-three-domicilio"
+              aria-selected="false"
+              >Domicilio</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="custom-tabs-three-perfilTransaccional-tab"
+              data-toggle="pill"
+              href="#custom-tabs-three-perfilTransaccional"
+              role="tab"
+              aria-controls="custom-tabs-three-perfilTransaccional"
+              aria-selected="false"
+              >Perfil Transaccional</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              id="custom-tabs-three-messages-tab"
+              data-toggle="pill"
+              href="#custom-tabs-three-messages"
+              role="tab"
+              aria-controls="custom-tabs-three-messages"
+              aria-selected="false"
+              >Referencias</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="custom-tabs-three-settings-tab"
+              data-toggle="pill"
+              href="#custom-tabs-three-settings"
+              role="tab"
+              aria-controls="custom-tabs-three-settings"
+              aria-selected="false"
+              >Documentos Digitales</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <form
+          [formGroup]="altaSolClienteForm"
+          (ngSubmit)="onSubmit()"
+          autocomplete="off"
+        >
+          <div class="tab-content" id="custom-tabs-three-tabContent">
+            <div
+              class="tab-pane fade"
+              id="custom-tabs-three-datGen"
+              role="tabpanel"
+              aria-labelledby="custom-tabs-three-datGen-tab"
+            >
+              <!-- //TODO - DATOS_GENERALES_TAB  -->
+              <div class="row">
+                <div class="col-6">
+                  <!-- //NOTE - CLAVE CLIENTE -->
+                  <div class="form-group">
+                    <label for="materno">Clave Cliente</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="materno"
+                      id="materno"
+                      placeholder="Clave Cliente"
+                    />
+                  </div>
                 </div>
+
+                <div class="col-6">
+                  <!-- //NOTE -  NO. SOLICITUD -->
+                  <div class="form-group">
+                    <label for="materno">No. Solicitud</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="materno"
+                      id="materno"
+                      placeholder="No. Solicitud"
+                      Disabled
+                    />
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <!-- //NOTE -  FECHA INGRESO -->
+                  <div class="form-group">
+                    <label for="materno">Fecha Ingreso</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      name="materno"
+                      id="materno"
+                      placeholder="No. Solicitud"
+                      Disabled
+                    />
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <!-- //NOTE - FECHA SOLICITUD -->
+                  <div class="form-group">
+                    <label for="materno">Fecha Solicitud</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      name="materno"
+                      id="materno"
+                      placeholder="No. Solicitud"
+                      Disabled
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- //STUB - DATOS SUJETO  -->
+                <div class="col-sm-6">
+                  <fieldset class="border p-2">
+                    <legend class="w-auto">Datos Sujeto</legend>
+
+                    <app-sujeto [altaSolClienteForm]="altaSolClienteForm"></app-sujeto>
+                  </fieldset>
+
+                  <div class="row">
+                    <!-- //NOTE - TIPO DE CLIENTE -->
+                    <div class="col-6">
+                      <div class="form-group">
+                        <!-- <label class="form-label">Tipo de Cliente</label> -->
+                        <select
+                          class="form-control"
+                          formControlName="catalogoclienteid"
+                        >
+                          <option value="">Seleccionar Tipo Cliente</option>
+                          <option value="0">Socio Menor</option>
+                          <option value="1">Socio Mayor</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- //NOTE - TELEFONO FIJO -->
+                    <div class="col-6">
+                      <div class="form-group">
+                        <!-- <label class="form-label">Telefono Fijo</label> -->
+                        <input
+                          type="tel"
+                          class="form-control"
+                          placeholder="Telefono Fijo"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <!-- //NOTE -  CORREO ELECTRONICO -->
+                    <div class="col-6">
+                      <div class="form-group">
+                        <!-- <label class="form-label">Telefono Fijo</label> -->
+                        <input
+                          type="email"
+                          class="form-control"
+                          placeholder="correo electrónico"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- //NOTE - NO. CELULAR -->
+                    <div class="col-6" [formGroup]="perfil_clienteForm">
+                      <div class="form-group">
+                        <input
+                          type="tel"
+                          class="form-control"
+                          placeholder="No. celular"
+                          formControlName="telefonocelular"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- //STUB - LUGAR SUJETO  -->
+                <div class="col-sm-6">
+                  <fieldset class="border p-2">
+                    <legend class="w-auto">Lugar de Orígen</legend>
+
+                    <!-- //NOTE - ENTIDAD FEDERATIVA DE NACIMIENTO -->
+                    <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
+                    <div class="col">
+                      <div class="form-group">
+                        <select class="form-control">
+                          <option value="">
+                            Entidad Federativa de Nacimiento
+                          </option>
+                          <option value="0">AGUASCALIENTES</option>
+                          <option value="1">GUANAJUATO</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- //NOTE - CIUDAD DE NACIMIENTO -->
+                    <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
+                    <div class="col">
+                      <div class="form-group">
+                        <select class="form-control">
+                          <option value="">Ciudad de Nacimiento</option>
+                          <option value="0">DOLORES HIDALGO</option>
+                          <option value="1">SAN MIGUEL DE ALLENDE</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- //NOTE - NACIONALIDAD -->
+                    <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
+                    <div class="col">
+                      <div class="form-group">
+                        <select class="form-control">
+                          <option value="">Nacionalidad</option>
+                          <option value="0">Mexicana</option>
+                          <option value="1">Ecuatoriana</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- //NOTE - PAIS DE NACIMIENTO -->
+                    <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
+                    <div class="col">
+                      <div class="form-group">
+                        <select class="form-control">
+                          <option value="">Pais de Nacimiento</option>
+                          <option value="0">MEXICO</option>
+                          <option value="1">ESTADOS UNIDOS</option>
+                        </select>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
             </div>
-            <!-- /.card -->
-        </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+      </div>
+      <!-- /.card -->
     </div>
+  </div>
 </div>
