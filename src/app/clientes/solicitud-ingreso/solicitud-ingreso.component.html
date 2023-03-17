@@ -72,13 +72,13 @@
           autocomplete="off"
         >
           <div class="tab-content" id="custom-tabs-three-tabContent">
+            <!-- //TODO - DATOS GENERALES-TAB  -->
             <div
               class="tab-pane fade"
               id="custom-tabs-three-datGen"
               role="tabpanel"
               aria-labelledby="custom-tabs-three-datGen-tab"
             >
-              <!-- //TODO - DATOS_GENERALES_TAB  -->
               <div class="row">
                 <div class="col-6">
                   <!-- //NOTE - CLAVE CLIENTE -->
@@ -141,17 +141,19 @@
               </div>
 
               <div class="row">
-                <!-- //STUB - DATOS SUJETO  -->
+                <!-- //TODO - DATOS SUJETO-TAB DATOS GENERALES  -->
                 <div class="col-sm-6">
                   <fieldset class="border p-2">
                     <legend class="w-auto">Datos Sujeto</legend>
 
-                    <app-sujeto [altaSolClienteForm]="altaSolClienteForm"></app-sujeto>
+                    <app-sujeto
+                      [altaSolClienteForm]="altaSolClienteForm"
+                    ></app-sujeto>
                   </fieldset>
 
                   <div class="row">
                     <!-- //NOTE - TIPO DE CLIENTE -->
-                    <div class="col-6">
+                    <div class="col-6" [formGroup]="solIngresoForm">
                       <div class="form-group">
                         <!-- <label class="form-label">Tipo de Cliente</label> -->
                         <select
@@ -168,7 +170,6 @@
                     <!-- //NOTE - TELEFONO FIJO -->
                     <div class="col-6">
                       <div class="form-group">
-                        <!-- <label class="form-label">Telefono Fijo</label> -->
                         <input
                           type="tel"
                           class="form-control"
@@ -180,13 +181,13 @@
 
                   <div class="row">
                     <!-- //NOTE -  CORREO ELECTRONICO -->
-                    <div class="col-6">
+                    <div class="col-6" [formGroup]="solIngresoForm">
                       <div class="form-group">
-                        <!-- <label class="form-label">Telefono Fijo</label> -->
                         <input
                           type="email"
                           class="form-control"
                           placeholder="correo electrónico"
+                          formControlName="correoelectronico"
                         />
                       </div>
                     </div>
@@ -226,9 +227,9 @@
 
                     <!-- //NOTE - CIUDAD DE NACIMIENTO -->
                     <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
-                    <div class="col">
+                    <div class="col" [formGroup]="perfil_clienteForm">
                       <div class="form-group">
-                        <select class="form-control">
+                        <select class="form-control" formControlName="ciudadid">
                           <option value="">Ciudad de Nacimiento</option>
                           <option value="0">DOLORES HIDALGO</option>
                           <option value="1">SAN MIGUEL DE ALLENDE</option>
@@ -238,9 +239,12 @@
 
                     <!-- //NOTE - NACIONALIDAD -->
                     <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
-                    <div class="col">
+                    <div class="col" [formGroup]="solIngresoForm">
                       <div class="form-group">
-                        <select class="form-control">
+                        <select
+                          class="form-control"
+                          formControlName="nacionalidadid"
+                        >
                           <option value="">Nacionalidad</option>
                           <option value="0">Mexicana</option>
                           <option value="1">Ecuatoriana</option>
@@ -263,7 +267,26 @@
                 </div>
               </div>
             </div>
+
+            <!-- //TODO - DOMICILIO-TAB -->
+            <div
+              class="tab-pane fade"
+              id="custom-tabs-three-domicilio"
+              role="tabpanel"
+              aria-labelledby="custom-tabs-three-domicilio-tab"
+            >
+              <div class="row">
+                <div class="col-6">
+                  <app-domicilio
+                    [altaSolClienteForm]="altaSolClienteForm"
+                  ></app-domicilio>
+                </div>
+              </div>
+            </div>
+
+
           </div>
+
           <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
       </div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-domicilio',
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DomicilioComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
+
+  //DECLARACION DE VARIABLES LOCALES
+  @Input() altaSolClienteForm!: FormGroup;
+  domicilioForm!: FormGroup;
 
   ngOnInit(): void {
+    this.loadDomicilioForm();
+  }
+
+  loadDomicilioForm(): void {
+    this.domicilioForm = this.fb.group({
+      calle: [''],
+      numero: [''],
+      interior: [''],
+      //telefono: "4181570065",
+      entre_calle_1: [''],
+      entre_calle_2: [''],
+      referencia: [''],
+      coloniaid: [''],
+      tiempoarraigo: [''],
+      nacionalidadid: ['']
+    });
+
+    this.altaSolClienteForm.addControl('domicilio', this.domicilioForm);
   }
 
 }

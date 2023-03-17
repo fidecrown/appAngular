@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataBibliotecaService } from '../../services/data-biblioteca.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-solicitud-ingreso',
@@ -13,19 +13,28 @@ export class SolicitudIngresoComponent implements OnInit {
     private datbService: DataBibliotecaService,
     private fb: FormBuilder) { }
 
+  //DECLARACION DE VARIABES LOCALES
   altaSolClienteForm!: FormGroup;
   solIngresoForm!: FormGroup;
   perfil_clienteForm!: FormGroup;
 
   ngOnInit(): void {
     this.emitDescriptionModule();
+    this.loadAltaClienteForm();
     this.loadSolIngresoForm();
+    this.loadPcForm();
   }
 
-  loadSolIngresoForm(): void {
+  loadAltaClienteForm(): void {
     this.altaSolClienteForm = this.fb.group({
+      //telefono: []
+    });
+  }
+
+  loadSolIngresoForm():void{
+    this.solIngresoForm = this.fb.group({
       fechasolicitud: "2023/02/18",
-      correoelectronico: "corf1985@gmail.com",
+      correoelectronico: [''],
       periorisidadmovimientos: "SIEMPRE",
       finalidad_cuenta: 1,
       medioentero: 1,
@@ -35,10 +44,11 @@ export class SolicitudIngresoComponent implements OnInit {
       dondetienecuentas: "CAJA POPULAR MEXICANA",
       lastserie: "US",
       montoaproximadoretiro: 580,
-      nacionalidadid: 1,
-      catalogoclienteid: []
+      nacionalidadid: [''],
+      catalogoclienteid: ['']
     });
-    this.loadPcForm();
+
+    this.altaSolClienteForm.addControl('solicitud_ingreso', this.solIngresoForm);
   }
 
   loadPcForm() {
@@ -65,7 +75,7 @@ export class SolicitudIngresoComponent implements OnInit {
       egresosreales: 0,
       estado: false,
       actividadeconomicapreponderante: "NINGUNA",
-      ciudadid: 1,
+      ciudadid: [''],
       ocupacionid: 1
     });
 

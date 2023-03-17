@@ -17,7 +17,6 @@ export class SujetoComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadSujetoForm();
-    console.log('CARGO EL FORM SUJETO')
   }
 
   loadSujetoForm(): void {
@@ -34,7 +33,7 @@ export class SujetoComponent implements OnInit {
 
     this.altaSolClienteForm.addControl('sujeto', this.sujetoForm);
   }
-  
+
 }
 
 /*
