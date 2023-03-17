@@ -17,12 +17,20 @@ export class SolicitudIngresoComponent implements OnInit {
   altaSolClienteForm!: FormGroup;
   solIngresoForm!: FormGroup;
   perfil_clienteForm!: FormGroup;
+  datosLaboralesForm!: FormGroup;
+  trabajaenForm!: FormGroup;
+  relacionesForm!: FormGroup;
+  sinClienteForm!: FormGroup;
+  relacionForm!: FormGroup;
 
   ngOnInit(): void {
     this.emitDescriptionModule();
     this.loadAltaClienteForm();
     this.loadSolIngresoForm();
     this.loadPcForm();
+    this.loadDatosLaboralesForm();
+    this.loadRelacionesForm();
+    this.loadRelacionForm();
   }
 
   loadAltaClienteForm(): void {
@@ -31,19 +39,19 @@ export class SolicitudIngresoComponent implements OnInit {
     });
   }
 
-  loadSolIngresoForm():void{
+  loadSolIngresoForm(): void {
     this.solIngresoForm = this.fb.group({
       fechasolicitud: "2023/02/18",
       correoelectronico: [''],
-      periorisidadmovimientos: "SIEMPRE",
+      periorisidadmovimientos: [''],
       finalidad_cuenta: 1,
-      medioentero: 1,
-      comprobaciondeingresos: 1,
-      montoaproximadoahorro: 1000,
-      tienecuentas: 1,
-      dondetienecuentas: "CAJA POPULAR MEXICANA",
+      medioentero: [''],
+      comprobaciondeingresos: [''],
+      montoaproximadoahorro: [],
+      //tienecuentas: [''],
+      dondetienecuentas: [''],
       lastserie: "US",
-      montoaproximadoretiro: 580,
+      montoaproximadoretiro: [],
       nacionalidadid: [''],
       catalogoclienteid: ['']
     });
@@ -53,23 +61,23 @@ export class SolicitudIngresoComponent implements OnInit {
 
   loadPcForm() {
     this.perfil_clienteForm = this.fb.group({
-      nivelestudios: 1,
-      regimen: 1,
-      estadocivil: 1,
+      nivelestudios: [''],
+      regimen: [''],
+      estadocivil: [''],
       telefonocelular: [''],
-      tipovivienda: 1,
+      tipovivienda: [''],
       tiempoarraigo: "2 ANOS",
-      perioricidadingresos: 2,
-      ingresos: 10250,
+      perioricidadingresos: [''],
+      ingresos: [],
       otrosingresos: 500,
-      gastos: 3860,
+      gastos: [],
       medioentero: 1,
-      finalidadcuenta: 1,
-      nodependienteseconomicos: 2,
+      finalidadcuenta: [''],
+      nodependienteseconomicos: [],
       ingresosconyuge: 4000,
       otrosgastos: 2540,
       otrosabonos: 0,
-      nomovimientos: 4,
+      nomovimientos: [],
       nomovimientosreales: 0,
       ingresosreales: 0,
       egresosreales: 0,
@@ -80,6 +88,61 @@ export class SolicitudIngresoComponent implements OnInit {
     });
 
     this.altaSolClienteForm.addControl('perfil_cliente', this.perfil_clienteForm);
+  }
+
+  loadRelacionForm() {
+    this.relacionForm = this.fb.group({
+      parentesco: [''],
+      porcentaje: [],
+      estadocivilid: [''],
+      sexo: [''],
+      correoelectronico: [''],
+      telefonocelular: [''],
+      esconyuge: [''],
+      ciudadid: [''],
+      nacionalidadid: [''],
+      regimen: [''],
+      ocupacionid: 1
+    });
+
+    this.relacionesForm.addControl('relacion', this.relacionForm);
+  }
+
+  loadDatosLaboralesForm(): void {
+    this.datosLaboralesForm = this.fb.group({});
+
+    this.loadTrabajaEnForm();
+
+    this.altaSolClienteForm.addControl('datosLaborales', this.datosLaboralesForm);
+
+  }
+
+  loadTrabajaEnForm(): void {
+    this.trabajaenForm = this.fb.group({
+      fechainicio: []
+    });
+
+    this.datosLaboralesForm.addControl('trabajaen', this.trabajaenForm);
+
+  }
+
+  loadRelacionesForm(): void {
+    this.relacionesForm = this.fb.group({
+    });
+
+    this.loadSinClienteForm();
+
+    this.altaSolClienteForm.addControl('relaciones', this.relacionesForm);
+
+  }
+
+  loadSinClienteForm(): void {
+    this.sinClienteForm = this.fb.group({
+
+    });
+
+    this.relacionesForm.addControl('sin_cliente', this.sinClienteForm);
+
   }
 
   onSubmit(): void {

@@ -6,6 +6,7 @@ import { SolicitudIngresoComponent } from './solicitud-ingreso/solicitud-ingreso
 import { DomicilioModule } from './domicilio/domicilio.module';
 import { SujetoModule } from './sujeto/sujeto.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EmpresaTrabajaModule } from './empresa-trabaja/empresa-trabaja.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ClientesRoutingModule,
     DomicilioModule,
     SujetoModule,
+    EmpresaTrabajaModule,
     ReactiveFormsModule
   ]
 })

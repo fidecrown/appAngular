@@ -140,8 +140,8 @@
                 </div>
               </div>
 
+              <!-- //TODO - DATOS SUJETO-TAB DATOS GENERALES  -->
               <div class="row">
-                <!-- //TODO - DATOS SUJETO-TAB DATOS GENERALES  -->
                 <div class="col-sm-6">
                   <fieldset class="border p-2">
                     <legend class="w-auto">Datos Sujeto</legend>
@@ -149,61 +149,50 @@
                     <app-sujeto
                       [altaSolClienteForm]="altaSolClienteForm"
                     ></app-sujeto>
+
+                    <div class="row">
+                      <!-- //NOTE - TIPO DE CLIENTE -->
+                      <div class="col" [formGroup]="solIngresoForm">
+                        <div class="form-group">
+                          <!-- <label class="form-label">Tipo de Cliente</label> -->
+                          <select
+                            class="form-control"
+                            formControlName="catalogoclienteid"
+                          >
+                            <option value="">Seleccionar Tipo Cliente</option>
+                            <option value="0">Socio Menor</option>
+                            <option value="1">Socio Mayor</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <!-- //NOTE -  CORREO ELECTRONICO -->
+                      <div class="col-6" [formGroup]="solIngresoForm">
+                        <div class="form-group">
+                          <input
+                            type="email"
+                            class="form-control"
+                            placeholder="correo electrónico"
+                            formControlName="correoelectronico"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- //NOTE - NO. CELULAR -->
+                      <div class="col-6" [formGroup]="perfil_clienteForm">
+                        <div class="form-group">
+                          <input
+                            type="tel"
+                            class="form-control"
+                            placeholder="No. celular"
+                            formControlName="telefonocelular"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </fieldset>
-
-                  <div class="row">
-                    <!-- //NOTE - TIPO DE CLIENTE -->
-                    <div class="col-6" [formGroup]="solIngresoForm">
-                      <div class="form-group">
-                        <!-- <label class="form-label">Tipo de Cliente</label> -->
-                        <select
-                          class="form-control"
-                          formControlName="catalogoclienteid"
-                        >
-                          <option value="">Seleccionar Tipo Cliente</option>
-                          <option value="0">Socio Menor</option>
-                          <option value="1">Socio Mayor</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <!-- //NOTE - TELEFONO FIJO -->
-                    <div class="col-6">
-                      <div class="form-group">
-                        <input
-                          type="tel"
-                          class="form-control"
-                          placeholder="Telefono Fijo"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <!-- //NOTE -  CORREO ELECTRONICO -->
-                    <div class="col-6" [formGroup]="solIngresoForm">
-                      <div class="form-group">
-                        <input
-                          type="email"
-                          class="form-control"
-                          placeholder="correo electrónico"
-                          formControlName="correoelectronico"
-                        />
-                      </div>
-                    </div>
-
-                    <!-- //NOTE - NO. CELULAR -->
-                    <div class="col-6" [formGroup]="perfil_clienteForm">
-                      <div class="form-group">
-                        <input
-                          type="tel"
-                          class="form-control"
-                          placeholder="No. celular"
-                          formControlName="telefonocelular"
-                        />
-                      </div>
-                    </div>
-                  </div>
                 </div>
 
                 <!-- //STUB - LUGAR SUJETO  -->
@@ -212,7 +201,6 @@
                     <legend class="w-auto">Lugar de Orígen</legend>
 
                     <!-- //NOTE - ENTIDAD FEDERATIVA DE NACIMIENTO -->
-                    <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
                     <div class="col">
                       <div class="form-group">
                         <select class="form-control">
@@ -226,7 +214,6 @@
                     </div>
 
                     <!-- //NOTE - CIUDAD DE NACIMIENTO -->
-                    <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
                     <div class="col" [formGroup]="perfil_clienteForm">
                       <div class="form-group">
                         <select class="form-control" formControlName="ciudadid">
@@ -238,7 +225,6 @@
                     </div>
 
                     <!-- //NOTE - NACIONALIDAD -->
-                    <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
                     <div class="col" [formGroup]="solIngresoForm">
                       <div class="form-group">
                         <select
@@ -253,7 +239,6 @@
                     </div>
 
                     <!-- //NOTE - PAIS DE NACIMIENTO -->
-                    <!-- //FIXME - TENEMOS QUE TRAER ESTE DATO DESDE LA BASE DE DATOS -->
                     <div class="col">
                       <div class="form-group">
                         <select class="form-control">
@@ -284,7 +269,628 @@
               </div>
             </div>
 
+            <!-- //TODO - PERFIL-TRANSACCIONAL_TAB -->
+            <div
+              class="tab-pane fade"
+              id="custom-tabs-three-perfilTransaccional"
+              role="tabpanel"
+              aria-labelledby="custom-tabs-three-perfilTransaccional-tab"
+            >
+              <ul
+                class="nav nav-tabs"
+                id="custom-tabs-three-tab"
+                role="tablist"
+              >
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    id="custom-tabs-three-informacion-tab"
+                    data-toggle="pill"
+                    href="#custom-tabs-three-informacion"
+                    role="tab"
+                    aria-controls="custom-tabs-three-informacion"
+                    aria-selected="true"
+                    >Información</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="custom-tabs-three-domLaboral-tab"
+                    data-toggle="pill"
+                    href="#custom-tabs-three-domLaboral"
+                    role="tab"
+                    aria-controls="custom-tabs-three-domLaboral"
+                    aria-selected="false"
+                    >Domicilio</a
+                  >
+                </li>
+              </ul>
 
+              <div class="tab-content mt-4" id="custom-tabs-three-tabContent">
+                <!-- //TODO - INFORMACION-PERFIL-TRANSACCIONAL_TAB -->
+                <div
+                  class="tab-pane fade show active"
+                  id="custom-tabs-three-informacion"
+                  role="tabpanel"
+                  aria-labelledby="custom-tabs-three-informacion-tab"
+                >
+                  <div class="row">
+                    <!-- //NOTE - ESTADO CIVIL -->
+                    <div class="col-md-6" [formGroup]="perfil_clienteForm">
+                      <div class="form-group">
+                        <select
+                          class="form-control"
+                          formControlName="estadocivil"
+                        >
+                          <option value="">Seleccionar Estado Civil</option>
+                          <option value="0">México</option>
+                          <option value="1">España</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- //NOTE - REGIMEN -->
+                    <div class="col-md-6" [formGroup]="perfil_clienteForm">
+                      <div class="form-group">
+                        <select formControlName="regimen" class="form-control">
+                          <option value="">Seleccionar Régimen</option>
+                          <option value="0">México</option>
+                          <option value="1">España</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <!-- //NOTE - TIPO DE VIVIENDA -->
+                    <div class="col-md-6" [formGroup]="perfil_clienteForm">
+                      <div class="form-group">
+                        <select
+                          formControlName="tipovivienda"
+                          class="form-control"
+                        >
+                          <option value="">Seleccionar Tipo de Vivienda</option>
+                          <option value="0">México</option>
+                          <option value="1">España</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- //NOTE - NIVEL DE ESTUDIOS -->
+                    <div class="col-md-6" [formGroup]="perfil_clienteForm">
+                      <div class="form-group">
+                        <select
+                          formControlName="nivelestudios"
+                          class="form-control"
+                        >
+                          <option value="">
+                            Seleccionar Nivel de Estudios
+                          </option>
+                          <option value="0">México</option>
+                          <option value="1">España</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <!-- //NOTE - PERIORICIDAD DE INGRESOS -->
+                    <div class="col-md-6" [formGroup]="perfil_clienteForm">
+                      <div class="form-group">
+                        <select
+                          formControlName="perioricidadingresos"
+                          class="form-control"
+                        >
+                          <option value="">
+                            Seleccionar Perioricidad de Ingresos
+                          </option>
+                          <option value="0">México</option>
+                          <option value="1">España</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- //NOTE - PERIORICIDAD DE MOVIMIENTOS -->
+                    <div class="col-md-6" [formGroup]="solIngresoForm">
+                      <div class="form-group">
+                        <select
+                          formControlName="periorisidadmovimientos"
+                          class="form-control"
+                        >
+                          <option value="">
+                            Seleccionar Perioricidad de Movimientos
+                          </option>
+                          <option value="0">México</option>
+                          <option value="1">España</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <!-- //NOTE - INGRESOS -->
+                    <div class="col-md-6" [formGroup]="perfil_clienteForm">
+                      <div class="form-group">
+                        <input
+                          type="number"
+                          formControlName="ingresos"
+                          class="form-control"
+                          placeholder="Ingresos"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- //NOTE - EGRESOS -->
+                    <div class="col-md-6" [formGroup]="perfil_clienteForm">
+                      <div class="form-group">
+                        <input
+                          type="number"
+                          formControlName="gastos"
+                          class="form-control"
+                          placeholder="Egresos"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <!-- //NOTE - MONTO APROXIMADO A DEPOSITAR -->
+                    <div class="col-md-6" [formGroup]="solIngresoForm">
+                      <div class="form-group">
+                        <input
+                          type="number"
+                          formControlName="montoaproximadoahorro"
+                          class="form-control"
+                          placeholder="Monto Aprox. a Depositar"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- //NOTE - MOVIMIENTOS POR MES -->
+                    <div class="col-md-6" [formGroup]="perfil_clienteForm">
+                      <div class="form-group">
+                        <input
+                          type="number"
+                          formControlName="nomovimientos"
+                          class="form-control"
+                          placeholder="Movimientos por Mes"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <!-- //NOTE - MONTO APROXIMADO A RETIRAR -->
+                    <div class="col-md-6" [formGroup]="solIngresoForm">
+                      <div class="form-group">
+                        <input
+                          type="number"
+                          formControlName="montoaproximadoretiro"
+                          class="form-control"
+                          placeholder="Monto Aprox. a Retirar"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- //NOTE - NO. DEPENDIENTES ECONOMICOS -->
+                    <div class="col-md-6" [formGroup]="perfil_clienteForm">
+                      <div class="form-group">
+                        <input
+                          type="number"
+                          formControlName="nodependienteseconomicos"
+                          class="form-control"
+                          placeholder="No. Dependientes Economicos"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <!-- //NOTE - FINALIDAD DE LA CUENTA -->
+                    <div class="col-md-6" [formGroup]="perfil_clienteForm">
+                      <div class="form-group">
+                        <select
+                          formControlName="finalidadcuenta"
+                          class="form-control"
+                        >
+                          <option value="">
+                            Seleccionar Finalidad de la Cuenta
+                          </option>
+                          <option value="0">México</option>
+                          <option value="1">España</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- //NOTE - Comprobacion de Ingresos -->
+                    <div class="col-md-6" [formGroup]="solIngresoForm">
+                      <div class="form-group">
+                        <select
+                          formControlName="comprobaciondeingresos"
+                          class="form-control"
+                        >
+                          <option value="">
+                            Seleccionar Comprobación de Ingresos
+                          </option>
+                          <option value="0">México</option>
+                          <option value="1">España</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <!-- //NOTE - PORQUE MEDIO ENTERO -->
+                    <div class="col-md-6" [formGroup]="solIngresoForm">
+                      <div class="form-group">
+                        <select
+                          formControlName="medioentero"
+                          class="form-control"
+                        >
+                          <option value="">Seleccionar Medio Entero</option>
+                          <option value="0">México</option>
+                          <option value="1">España</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- //NOTE - TIENES CUENTAS ? -->
+                    <div class="col-md-6" [formGroup]="solIngresoForm">
+                      <div class="form-group">
+                        <textarea
+                          class="form-control"
+                          formControlName="dondetienecuentas"
+                          rows="3"
+                          placeholder="¿En donde tiene las cuentas ?"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <!-- //NOTE - NOMBRES -->
+                    <div class="col-10">
+                      <div class="form-group">
+                        <textarea
+                          class="form-control"
+                          rows="3"
+                          placeholder="Ocupacion"
+                        ></textarea>
+                      </div>
+                    </div>
+                    <!-- //NOTE - BOTON BUSCAR CLIENTE -->
+                    <div class="col-2">
+                      <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- //TODO - DOMICILIO LABORAL-PERFIL-TRANSACCIONAL-TAB -->
+                <div
+                  class="tab-pane fade"
+                  id="custom-tabs-three-domLaboral"
+                  role="tabpanel"
+                  aria-labelledby="custom-tabs-three-domLaboral-tab"
+                >
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <fieldset class="border p-2">
+                        <legend class="w-auto">Datos Laborales</legend>
+
+                        <!-- //TODO - DATOS LABORALES-PERFIL TRANSACCIONAL-TAB -->
+                        <div class="row">
+                          <div class="col-12">
+                            <app-empresa-trabaja
+                              [datosLaboralesForm]="datosLaboralesForm"
+                            ></app-empresa-trabaja>
+                          </div>
+
+                          <!-- //NOTE - FECHA DE INICIO LABORAL -->
+                          <div class="col-12" [formGroup]="trabajaenForm">
+                            <div class="form-group">
+                              <label class="form-label"
+                                >Fecha Inicio Laboral</label
+                              >
+                              <input
+                                type="date"
+                                class="form-control"
+                                placeholder="RFC de la Empresa"
+                                formControlName="fechainicio"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <fieldset class="border p-2">
+                        <legend class="w-auto">Domicilio Laboral</legend>
+
+                        <app-domicilio
+                          [altaSolClienteForm]="datosLaboralesForm"
+                        ></app-domicilio>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- //TODO - REFERENCIAS_TAB -->
+            <div
+              class="tab-pane fade show active"
+              id="custom-tabs-three-messages"
+              role="tabpanel"
+              aria-labelledby="custom-tabs-three-messages-tab"
+            >
+              <!-- //NOTE - TIPO DE REFERENCIA -->
+              <div class="row">
+                <div class="col-6" [formGroup]="relacionForm">
+                  <div class="form-group">
+                    <select class="form-control" formControlName="esconyuge">
+                      <option value="">Seleccionar Tipo de Referencia</option>
+                      <option value="0">México</option>
+                      <option value="1">España</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- //TODO - TAB INTERNO-REFERENCIAS_TAB -->
+              <ul
+                class="nav nav-tabs"
+                id="custom-tabs-three-tab"
+                role="tablist"
+              >
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    id="custom-tabs-three-refDatGral-tab"
+                    data-toggle="pill"
+                    href="#custom-tabs-three-refDatGral"
+                    role="tab"
+                    aria-controls="custom-tabs-three-refDatGral"
+                    aria-selected="true"
+                    >Datos Generales</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="custom-tabs-three-refDomicilio-tab"
+                    data-toggle="pill"
+                    href="#custom-tabs-three-refDomicilio"
+                    role="tab"
+                    aria-controls="custom-tabs-three-refDomicilio"
+                    aria-selected="false"
+                    >Domicilio</a
+                  >
+                </li>
+              </ul>
+
+              <div class="tab-content mt-4" id="custom-tabs-three-tabContent">
+                <!-- //TODO - DATOS GENERALES-REFERENCIAS_TAB -->
+                <div
+                  class="tab-pane fade show active"
+                  id="custom-tabs-three-refDatGral"
+                  role="tabpanel"
+                  aria-labelledby="custom-tabs-three-refDatGral-tab"
+                >
+                  <!-- //TODO - DATOS SUJETO-TAB DATOS GENERALES  -->
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <fieldset class="border p-2">
+                        <legend class="w-auto">Datos Sujeto</legend>
+
+                        <app-sujeto
+                          [altaSolClienteForm]="sinClienteForm"
+                        ></app-sujeto>
+
+                        <div class="row">
+                          <!-- //NOTE -  CORREO ELECTRONICO -->
+                          <div class="col-6" [formGroup]="relacionForm">
+                            <div class="form-group">
+                              <input
+                                type="email"
+                                class="form-control"
+                                placeholder="correo electrónico"
+                                formControlName="correoelectronico"
+                              />
+                            </div>
+                          </div>
+
+                          <!-- //NOTE - NO. CELULAR -->
+                          <div class="col-6" [formGroup]="relacionForm">
+                            <div class="form-group">
+                              <input
+                                type="tel"
+                                class="form-control"
+                                placeholder="No. celular"
+                                formControlName="telefonocelular"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+
+                    <!-- //STUB - LUGAR SUJETO  -->
+                    <div class="col-sm-6" [formGroup]="relacionForm">
+                      <fieldset class="border p-2">
+                        <legend class="w-auto">Lugar de Orígen</legend>
+
+                        <!-- //NOTE - ENTIDAD FEDERATIVA DE NACIMIENTO -->
+                        <div class="col">
+                          <div class="form-group">
+                            <select class="form-control">
+                              <option value="">
+                                Entidad Federativa de Nacimiento
+                              </option>
+                              <option value="0">AGUASCALIENTES</option>
+                              <option value="1">GUANAJUATO</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <!-- //NOTE - CIUDAD DE NACIMIENTO -->
+                        <div class="col">
+                          <div class="form-group">
+                            <select
+                              class="form-control"
+                              formControlName="ciudadid"
+                            >
+                              <option value="">Ciudad de Nacimiento</option>
+                              <option value="0">DOLORES HIDALGO</option>
+                              <option value="1">SAN MIGUEL DE ALLENDE</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <!-- //NOTE - NACIONALIDAD -->
+                        <div class="col">
+                          <div class="form-group">
+                            <select
+                              class="form-control"
+                              formControlName="nacionalidadid"
+                            >
+                              <option value="">Nacionalidad</option>
+                              <option value="0">Mexicana</option>
+                              <option value="1">Ecuatoriana</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <!-- //NOTE - PAIS DE NACIMIENTO -->
+                        <div class="col">
+                          <div class="form-group">
+                            <select class="form-control">
+                              <option value="">Pais de Nacimiento</option>
+                              <option value="0">MEXICO</option>
+                              <option value="1">ESTADOS UNIDOS</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-12">
+                          <div class="row">
+                            <!-- //NOTE -  PARENTESCO -->
+                            <div class="col-6">
+                              <div class="form-group">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Parentesco"
+                                  formControlName="parentesco"
+                                />
+                              </div>
+                            </div>
+
+                            <!-- //NOTE - PORCENTAJE -->
+                            <div class="col-6">
+                              <div class="form-group">
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  placeholder="Porcentaje"
+                                  formControlName="porcentaje"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-12">
+                          <div class="row">
+                            <!-- //NOTE -  SEXO -->
+                            <div class="col-6">
+                              <div class="form-group">
+                                <select
+                                  class="form-control"
+                                  formControlName="sexo"
+                                >
+                                  <option value="">Seleccionar Género</option>
+                                  <option value="0">FEMENINO</option>
+                                  <option value="1">MASCULINO</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <!-- //NOTE - ESTADO CIVIL -->
+                            <div class="col-6">
+                              <div class="form-group">
+                                <select
+                                  class="form-control"
+                                  formControlName="estadocivilid"
+                                >
+                                  <option value="">
+                                    Seleccionar Estado Civil
+                                  </option>
+                                  <option value="0">CASADO(A)</option>
+                                  <option value="1">SOLTERO</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-12">
+                          <!-- //NOTE - REGIMEN -->
+                          <div class="form-group">
+                            <select
+                              class="form-control"
+                              formControlName="regimen"
+                            >
+                              <option value="">Seleccionar Régimen</option>
+                              <option value="0">Bienes Mancomunados</option>
+                              <option value="1">Bienes Separados</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-12">
+                          <div class="row">
+                            <!-- //NOTE - NOMBRES -->
+                            <div class="col-10">
+                              <div class="form-group">
+                                <textarea
+                                  class="form-control"
+                                  rows="3"
+                                  placeholder="Ocupacion"
+                                ></textarea>
+                              </div>
+                            </div>
+                            <!-- //NOTE - BOTON BUSCAR CLIENTE -->
+                            <div class="col-2">
+                              <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- //TODO - DOMICILIO-REFERENCIAS_TAB -->
+                <div
+                  class="tab-pane fade"
+                  id="custom-tabs-three-refDomicilio"
+                  role="tabpanel"
+                  aria-labelledby="custom-tabs-three-refDomicilio-tab"
+                >
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <app-domicilio [altaSolClienteForm]="sinClienteForm"></app-domicilio>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <button type="submit" class="btn btn-primary">Guardar</button>

@@ -1,0 +1,37 @@
+<fieldset [formGroup]="empresaTrabajaForm">
+  <!-- //NOTE - RAZON SOCIAL DE LA EMPRESA -->
+  <div class="col-12">
+    <div class="form-group">
+      <input
+        type="text"
+        formControlName="nombre"
+        class="form-control"
+        placeholder="Razón Social de la Empresa"
+      />
+    </div>
+  </div>
+
+  <!-- //NOTE - NOMBRE JEFE DIRECTO -->
+  <div class="col-12">
+    <div class="form-group">
+      <input
+        type="text"
+        formControlName="nombrejefedirecto"
+        class="form-control"
+        placeholder="Nombre del Jefe Directo"
+      />
+    </div>
+  </div>
+
+  <!-- //NOTE - RFC DE LA EMPRESA -->
+  <div class="col-12">
+    <div class="form-group">
+      <input
+        type="text"
+        formControlName="rfc"
+        class="form-control"
+        placeholder="RFC de la Empresa"
+      />
+    </div>
+  </div>
+</fieldset>
