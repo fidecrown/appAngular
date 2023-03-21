@@ -1,6 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { DataBibliotecaService } from '../../services/data-biblioteca.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+
+import { switchMap, tap } from 'rxjs';
+
+import { Cliente } from '../../interfaces/clientes/catalogos/cliente.interface';
+import { Estado } from 'src/app/interfaces/clientes/catalogos/estado.interface';
+import { Nacionalidad } from '../../interfaces/clientes/catalogos/nacionalidad.interface';
+import { Ciudad } from '../../interfaces/clientes/catalogos/ciudad.interface';
+
+import { ClienteService } from 'src/app/services/moduloClientes/catalogos/cliente.service';
+import { EstadoService } from 'src/app/services/moduloClientes/catalogos/estado.service';
+import { CiudadService } from 'src/app/services/moduloClientes/catalogos/ciudad.service';
+import { NacionalidadService } from '../../services/moduloClientes/catalogos/nacionalidad.service';
 
 @Component({
   selector: 'app-solicitud-ingreso',
@@ -11,9 +24,15 @@ export class SolicitudIngresoComponent implements OnInit {
 
   constructor(
     private datbService: DataBibliotecaService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private catClienteService: ClienteService,
+    private catEstadoService: EstadoService,
+    private catCiudadService: CiudadService,
+    private catNacionalidadService: NacionalidadService,
+    private datePipe: DatePipe
+  ) { }
 
-  //DECLARACION DE VARIABES LOCALES
+  //DECLARACION DE VARIABES LOCALES FORMULARIOS
   altaSolClienteForm!: FormGroup;
   solIngresoForm!: FormGroup;
   perfil_clienteForm!: FormGroup;
@@ -23,7 +42,23 @@ export class SolicitudIngresoComponent implements OnInit {
   sinClienteForm!: FormGroup;
   relacionForm!: FormGroup;
 
+  selectedEstado: number = 0;
+
+  lstCatClientes: Cliente[] = [];
+  lstCatEstados: Estado[] = [];
+  lstCiudadesxPais: Ciudad[] = [];
+  lstCatNacionalidades: Nacionalidad[] = [];
+  lstCatPaises: Nacionalidad[] = [];
+
   ngOnInit(): void {
+    this.loadFormmAll();
+
+    this.loadSelectedCatalogos();
+
+    this.chageOnSelecteds();
+  }
+
+  loadFormmAll(): void {
     this.emitDescriptionModule();
     this.loadAltaClienteForm();
     this.loadSolIngresoForm();
@@ -35,13 +70,15 @@ export class SolicitudIngresoComponent implements OnInit {
 
   loadAltaClienteForm(): void {
     this.altaSolClienteForm = this.fb.group({
-      //telefono: []
+      estadoid: [0],
+      fechaingreso: [this.datePipe.transform(new Date(), 'yyyy-MM-dd')],
+      paisNac: [0]
     });
   }
 
   loadSolIngresoForm(): void {
     this.solIngresoForm = this.fb.group({
-      fechasolicitud: "2023/02/18",
+      fechasolicitud: [this.datePipe.transform(new Date(), 'yyyy-MM-dd')],
       correoelectronico: [''],
       periorisidadmovimientos: [''],
       finalidad_cuenta: 1,
@@ -52,8 +89,8 @@ export class SolicitudIngresoComponent implements OnInit {
       dondetienecuentas: [''],
       lastserie: "US",
       montoaproximadoretiro: [],
-      nacionalidadid: [''],
-      catalogoclienteid: ['']
+      nacionalidadid: [0],
+      catalogoclienteid: [0]
     });
 
     this.altaSolClienteForm.addControl('solicitud_ingreso', this.solIngresoForm);
@@ -83,7 +120,7 @@ export class SolicitudIngresoComponent implements OnInit {
       egresosreales: 0,
       estado: false,
       actividadeconomicapreponderante: "NINGUNA",
-      ciudadid: [''],
+      ciudadid: [0],
       ocupacionid: 1
     });
 
@@ -151,6 +188,52 @@ export class SolicitudIngresoComponent implements OnInit {
 
   emitDescriptionModule(): void {
     this.datbService.descripModulo$.emit('Solicitud de Ingreso');
+  }
+
+  loadSelectedCatalogos(): void {
+    
+    this.catClienteService.getCatalogoClientes().subscribe((datos: Cliente[]) => {
+      this.lstCatClientes = datos;
+    });
+
+    this.catEstadoService.getCatalogoEstados().subscribe((datos: Estado[]) => {
+      this.lstCatEstados = datos;
+    });
+
+    this.catNacionalidadService.getCatalogoNacionalidades().subscribe((datos: Nacionalidad[]) => {
+      this.lstCatNacionalidades = datos;
+      this.lstCatPaises = datos;
+    });
+
+  }
+
+  chageOnSelecteds(): void {
+
+    this.perfil_clienteForm.get('ciudadid')?.disable();
+    this.altaSolClienteForm.get('paisNac')?.disable();
+
+    this.altaSolClienteForm.get('estadoid')?.valueChanges
+      .pipe(
+        tap((estadoid: number) => {
+
+          if (estadoid != 0) {
+            this.perfil_clienteForm.get('ciudadid')?.enable();
+          } else {
+            this.perfil_clienteForm.get('ciudadid')?.disable();
+          }
+
+          this.perfil_clienteForm.get('ciudadid')?.reset(0);
+        }),
+        switchMap(estadoid => this.catCiudadService.getCatCiudadesxEstadoId(estadoid))
+      )
+      .subscribe(ciudades => {
+        this.lstCiudadesxPais = ciudades
+      });
+
+      this.solIngresoForm.get('nacionalidadid')?.valueChanges
+      .subscribe((nacionalidadid:number) => {
+        this.altaSolClienteForm.get('paisNac')?.setValue(nacionalidadid);
+      })
   }
 
 }

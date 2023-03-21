@@ -28,7 +28,7 @@ export class SujetoComponent implements OnInit {
       rfc: [''],
       curp: [''],
       fechaNacimiento: [''],
-      sexo: [''],
+      sexo: [0],
     });
 
     this.altaSolClienteForm.addControl('sujeto', this.sujetoForm);

@@ -5,7 +5,7 @@
         <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
           <li class="nav-item">
             <a
-              class="nav-link"
+              class="nav-link active"
               id="custom-tabs-three-datGen-tab"
               data-toggle="pill"
               href="#custom-tabs-three-datGen"
@@ -41,7 +41,7 @@
           </li>
           <li class="nav-item">
             <a
-              class="nav-link active"
+              class="nav-link"
               id="custom-tabs-three-messages-tab"
               data-toggle="pill"
               href="#custom-tabs-three-messages"
@@ -74,7 +74,7 @@
           <div class="tab-content" id="custom-tabs-three-tabContent">
             <!-- //TODO - DATOS GENERALES-TAB  -->
             <div
-              class="tab-pane fade"
+              class="tab-pane fade show active"
               id="custom-tabs-three-datGen"
               role="tabpanel"
               aria-labelledby="custom-tabs-three-datGen-tab"
@@ -112,28 +112,24 @@
                 <div class="col-6">
                   <!-- //NOTE -  FECHA INGRESO -->
                   <div class="form-group">
-                    <label for="materno">Fecha Ingreso</label>
+                    <label for="form-label">Fecha Ingreso</label>
                     <input
                       type="date"
                       class="form-control"
-                      name="materno"
-                      id="materno"
-                      placeholder="No. Solicitud"
+                      formControlName="fechaingreso"
                       Disabled
                     />
                   </div>
                 </div>
 
-                <div class="col-6">
+                <div class="col-6" [formGroup]="solIngresoForm">
                   <!-- //NOTE - FECHA SOLICITUD -->
                   <div class="form-group">
-                    <label for="materno">Fecha Solicitud</label>
+                    <label class="form-label">Fecha Solicitud</label>
                     <input
                       type="date"
                       class="form-control"
-                      name="materno"
-                      id="materno"
-                      placeholder="No. Solicitud"
+                      formControlName="fechasolicitud"
                       Disabled
                     />
                   </div>
@@ -159,9 +155,13 @@
                             class="form-control"
                             formControlName="catalogoclienteid"
                           >
-                            <option value="">Seleccionar Tipo Cliente</option>
-                            <option value="0">Socio Menor</option>
-                            <option value="1">Socio Mayor</option>
+                            <option value="0">Seleccionar Tipo Cliente</option>
+                            <option
+                              *ngFor="let cliente of lstCatClientes"
+                              [value]="cliente.catalogoclienteid"
+                            >
+                              {{ cliente.descripcion }}
+                            </option>
                           </select>
                         </div>
                       </div>
@@ -203,12 +203,16 @@
                     <!-- //NOTE - ENTIDAD FEDERATIVA DE NACIMIENTO -->
                     <div class="col">
                       <div class="form-group">
-                        <select class="form-control">
-                          <option value="">
-                            Entidad Federativa de Nacimiento
+                        <select class="form-control" formControlName="estadoid">
+                          <option value="0">
+                            Seleccionar Entidad Federativa de Nacimiento
                           </option>
-                          <option value="0">AGUASCALIENTES</option>
-                          <option value="1">GUANAJUATO</option>
+                          <option
+                            *ngFor="let estado of lstCatEstados"
+                            [value]="estado.estadoid"
+                          >
+                            {{ estado.nombreestado }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -217,9 +221,13 @@
                     <div class="col" [formGroup]="perfil_clienteForm">
                       <div class="form-group">
                         <select class="form-control" formControlName="ciudadid">
-                          <option value="">Ciudad de Nacimiento</option>
-                          <option value="0">DOLORES HIDALGO</option>
-                          <option value="1">SAN MIGUEL DE ALLENDE</option>
+                          <option value="0">Seleccionar Ciudad de Nacimiento</option>
+                          <option
+                            *ngFor="let ciudad of lstCiudadesxPais"
+                            [value]="ciudad.ciudadid"
+                          >
+                            {{ ciudad.nombre }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -231,9 +239,13 @@
                           class="form-control"
                           formControlName="nacionalidadid"
                         >
-                          <option value="">Nacionalidad</option>
-                          <option value="0">Mexicana</option>
-                          <option value="1">Ecuatoriana</option>
+                          <option value= 0>Seleccionar Nacionalidad</option>
+                          <option
+                            *ngFor="let nacionalidad of lstCatNacionalidades"
+                            [value]="nacionalidad.nacionalidadid"
+                          >
+                            {{ nacionalidad.nacionalidad }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -241,10 +253,14 @@
                     <!-- //NOTE - PAIS DE NACIMIENTO -->
                     <div class="col">
                       <div class="form-group">
-                        <select class="form-control">
-                          <option value="">Pais de Nacimiento</option>
-                          <option value="0">MEXICO</option>
-                          <option value="1">ESTADOS UNIDOS</option>
+                        <select class="form-control" formControlName="paisNac">
+                          <option value= 0>Seleccionar Pais de Nacimiento</option>
+                          <option
+                            *ngFor="let pais of lstCatPaises"
+                            [value]="pais.nacionalidadid"
+                          >
+                            {{ pais.pais }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -622,7 +638,7 @@
 
             <!-- //TODO - REFERENCIAS_TAB -->
             <div
-              class="tab-pane fade show active"
+              class="tab-pane fade"
               id="custom-tabs-three-messages"
               role="tabpanel"
               aria-labelledby="custom-tabs-three-messages-tab"
@@ -885,11 +901,22 @@
                 >
                   <div class="row">
                     <div class="col-sm-6">
-                      <app-domicilio [altaSolClienteForm]="sinClienteForm"></app-domicilio>
+                      <app-domicilio
+                        [altaSolClienteForm]="sinClienteForm"
+                      ></app-domicilio>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div
+              class="tab-pane fade"
+              id="custom-tabs-three-settings"
+              role="tabpanel"
+              aria-labelledby="custom-tabs-three-settings-tab"
+            >
+              EN CONSTRUCCION ....
             </div>
           </div>
 
