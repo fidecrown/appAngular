@@ -221,7 +221,9 @@
                     <div class="col" [formGroup]="perfil_clienteForm">
                       <div class="form-group">
                         <select class="form-control" formControlName="ciudadid">
-                          <option value="0">Seleccionar Ciudad de Nacimiento</option>
+                          <option value="0">
+                            Seleccionar Ciudad de Nacimiento
+                          </option>
                           <option
                             *ngFor="let ciudad of lstCiudadesxPais"
                             [value]="ciudad.ciudadid"
@@ -239,7 +241,7 @@
                           class="form-control"
                           formControlName="nacionalidadid"
                         >
-                          <option value= 0>Seleccionar Nacionalidad</option>
+                          <option value="0">Seleccionar Nacionalidad</option>
                           <option
                             *ngFor="let nacionalidad of lstCatNacionalidades"
                             [value]="nacionalidad.nacionalidadid"
@@ -254,7 +256,9 @@
                     <div class="col">
                       <div class="form-group">
                         <select class="form-control" formControlName="paisNac">
-                          <option value= 0>Seleccionar Pais de Nacimiento</option>
+                          <option value="0">
+                            Seleccionar Pais de Nacimiento
+                          </option>
                           <option
                             *ngFor="let pais of lstCatPaises"
                             [value]="pais.nacionalidadid"
@@ -339,9 +343,13 @@
                           class="form-control"
                           formControlName="estadocivil"
                         >
-                          <option value="">Seleccionar Estado Civil</option>
-                          <option value="0">México</option>
-                          <option value="1">España</option>
+                          <option value= 0 >Seleccionar Estado Civil</option>
+                          <option
+                            *ngFor="let edoCivil of lstCatEdoCivil"
+                            [value]="edoCivil.edocivilid"
+                          >
+                            {{ edoCivil.descripcion }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -366,9 +374,13 @@
                           formControlName="tipovivienda"
                           class="form-control"
                         >
-                          <option value="">Seleccionar Tipo de Vivienda</option>
-                          <option value="0">México</option>
-                          <option value="1">España</option>
+                          <option value=0>Seleccionar Tipo de Vivienda</option>
+                          <option
+                            *ngFor="let vivienda of lstVivienda"
+                            [value]="vivienda.tipviviendaid"
+                          >
+                            {{ vivienda.descripcion }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -401,8 +413,12 @@
                           <option value="">
                             Seleccionar Perioricidad de Ingresos
                           </option>
-                          <option value="0">México</option>
-                          <option value="1">España</option>
+                          <option
+                            *ngFor="let p of lstPerioricidadIngresos"
+                            [value]="p.peringresoid"
+                          >
+                            {{ p.descripcion }}
+                          </option>
                         </select>
                       </div>
                     </div>

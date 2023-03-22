@@ -9,11 +9,17 @@ import { Cliente } from '../../interfaces/clientes/catalogos/cliente.interface';
 import { Estado } from 'src/app/interfaces/clientes/catalogos/estado.interface';
 import { Nacionalidad } from '../../interfaces/clientes/catalogos/nacionalidad.interface';
 import { Ciudad } from '../../interfaces/clientes/catalogos/ciudad.interface';
+import { EstadoCivil } from '../../interfaces/clientes/catalogos/estado-civil.interface';
 
 import { ClienteService } from 'src/app/services/moduloClientes/catalogos/cliente.service';
 import { EstadoService } from 'src/app/services/moduloClientes/catalogos/estado.service';
 import { CiudadService } from 'src/app/services/moduloClientes/catalogos/ciudad.service';
 import { NacionalidadService } from '../../services/moduloClientes/catalogos/nacionalidad.service';
+import { EstadoCivilService } from 'src/app/services/moduloClientes/catalogos/estado-civil.service';
+import { TipoVivienda } from 'src/app/interfaces/clientes/catalogos/tipo-vivienda.interface';
+import { TipoViviendaService } from 'src/app/services/moduloClientes/catalogos/tipo-vivienda.service';
+import { PerioricidadIngresoService } from 'src/app/services/moduloClientes/catalogos/perioricidad-ingreso.service';
+import { PerioricidadIngresos } from 'src/app/interfaces/clientes/catalogos/perioricidad-ingresos.interface';
 
 @Component({
   selector: 'app-solicitud-ingreso',
@@ -29,6 +35,9 @@ export class SolicitudIngresoComponent implements OnInit {
     private catEstadoService: EstadoService,
     private catCiudadService: CiudadService,
     private catNacionalidadService: NacionalidadService,
+    private catEdoCivilService: EstadoCivilService,
+    private catTViviendaService: TipoViviendaService,
+    private catPerioIngresosService: PerioricidadIngresoService,
     private datePipe: DatePipe
   ) { }
 
@@ -49,6 +58,9 @@ export class SolicitudIngresoComponent implements OnInit {
   lstCiudadesxPais: Ciudad[] = [];
   lstCatNacionalidades: Nacionalidad[] = [];
   lstCatPaises: Nacionalidad[] = [];
+  lstCatEdoCivil: EstadoCivil[] = [];
+  lstVivienda: TipoVivienda[] = [];
+  lstPerioricidadIngresos: PerioricidadIngresos[] = [];
 
   ngOnInit(): void {
     this.loadFormmAll();
@@ -100,9 +112,9 @@ export class SolicitudIngresoComponent implements OnInit {
     this.perfil_clienteForm = this.fb.group({
       nivelestudios: [''],
       regimen: [''],
-      estadocivil: [''],
+      estadocivil: [0],
       telefonocelular: [''],
-      tipovivienda: [''],
+      tipovivienda: [0],
       tiempoarraigo: "2 ANOS",
       perioricidadingresos: [''],
       ingresos: [],
@@ -131,7 +143,7 @@ export class SolicitudIngresoComponent implements OnInit {
     this.relacionForm = this.fb.group({
       parentesco: [''],
       porcentaje: [],
-      estadocivilid: [''],
+      estadocivilid: [0],
       sexo: [''],
       correoelectronico: [''],
       telefonocelular: [''],
@@ -191,7 +203,7 @@ export class SolicitudIngresoComponent implements OnInit {
   }
 
   loadSelectedCatalogos(): void {
-    
+
     this.catClienteService.getCatalogoClientes().subscribe((datos: Cliente[]) => {
       this.lstCatClientes = datos;
     });
@@ -204,6 +216,11 @@ export class SolicitudIngresoComponent implements OnInit {
       this.lstCatNacionalidades = datos;
       this.lstCatPaises = datos;
     });
+
+    this.lstCatEdoCivil = this.catEdoCivilService.CatEdoCivil;
+    this.lstVivienda = this.catTViviendaService.CatTipoVivienda;
+    this.lstPerioricidadIngresos = this.catPerioIngresosService.CatPeriodoIngresos;
+
 
   }
 

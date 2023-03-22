@@ -14,12 +14,16 @@
 
   <!-- //NOTE - ESTADO -->
   <div class="row">
-    <div class="col-12">
+    <div class="col-12" [formGroup]="temporalForm">
       <div class="form-group">
-        <select class="form-control">
-          <option value="">Seleccionar Estado</option>
-          <option value="0">Guanajuato</option>
-          <option value="1">Nuevo Leon</option>
+        <select class="form-control" formControlName="estadoid">
+          <option value=0>Seleccionar Estado</option>
+          <option
+            *ngFor="let estado of lstCatEstados"
+            [value]="estado.estadoid"
+          >
+            {{ estado.nombreestado }}
+          </option>
         </select>
       </div>
     </div>
@@ -27,12 +31,16 @@
 
   <!-- //NOTE - CIUDAD -->
   <div class="row">
-    <div class="col-12">
+    <div class="col-12" [formGroup]="temporalForm">
       <div class="form-group">
-        <select class="form-control">
-          <option value="">Seleccionar Ciudad</option>
-          <option value="0">Guanajuato</option>
-          <option value="1">Nuevo Leon</option>
+        <select class="form-control" formControlName="ciudadid" >
+          <option value=0>Seleccionar Ciudad</option>
+          <option
+            *ngFor="let ciudad of lstCiudadesxPais"
+            [value]="ciudad.ciudadid"
+          >
+            {{ ciudad.nombre }}
+          </option>
         </select>
       </div>
     </div>
@@ -43,9 +51,13 @@
     <div class="col-12">
       <div class="form-group">
         <select class="form-control" formControlName="coloniaid">
-          <option value="">Seleccionar Colonia</option>
-          <option value="0">Guanajuato</option>
-          <option value="1">Nuevo Leon</option>
+          <option value= 0>Seleccionar Colonia</option>
+          <option
+            *ngFor="let colonia of lstColoniasxCiudad"
+            [value]="colonia.coloniaid"
+          >
+            {{ colonia.nombrecolonia }}
+          </option>
         </select>
       </div>
     </div>
@@ -103,7 +115,6 @@
             />
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -113,9 +124,13 @@
     <div class="col-12">
       <div class="form-group">
         <select formControlName="tiempoarraigo" class="form-control">
-          <option value="">Seleccionar Tiempo de Arraigo</option>
-          <option value="0">Guanajuato</option>
-          <option value="1">Nuevo Leon</option>
+          <option value=0>Seleccionar Tiempo de Arraigo</option>
+          <option
+            *ngFor="let tiemArraigo of lstTiempoArraigo"
+            [value]="tiemArraigo.tiempoarraigoid"
+          >
+            {{ tiemArraigo.descripcion }}
+          </option>
         </select>
       </div>
     </div>
