@@ -10,7 +10,13 @@
           id="nombre"
           placeholder="Ingresa Nombre(s)"
           formControlName="nombre"
+          [class.is-invalid]="fieldNotValid('nombre')"
         />
+        <div *ngIf="fieldNotValid('nombre')">
+          <small *ngIf="f['nombre'].errors?.['required']" class="text-danger"
+            >Campo requerido</small
+          >
+        </div>
       </div>
     </div>
     <!-- //NOTE - BOTON BUSCAR CLIENTE -->
@@ -32,7 +38,13 @@
           id="paterno"
           placeholder="Apellido Paterno"
           formControlName="paterno"
+          [class.is-invalid]="fieldNotValid('paterno')"
         />
+        <div *ngIf="fieldNotValid('paterno')">
+          <small *ngIf="f['paterno'].errors?.['required']" class="text-danger"
+            >Campo requerido</small
+          >
+        </div>
       </div>
     </div>
     <!-- //NOTE - MATERNO -->
@@ -45,7 +57,13 @@
           id="materno"
           placeholder="Apellido Materno"
           formControlName="materno"
+          [class.is-invalid]="fieldNotValid('materno')"
         />
+        <div *ngIf="fieldNotValid('materno')">
+          <small *ngIf="f['materno'].errors?.['required']" class="text-danger"
+            >Campo requerido</small
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -61,7 +79,19 @@
           id="rfc"
           placeholder="Ingresa rfc"
           formControlName="rfc"
+          [class.is-invalid]="fieldNotValid('rfc')"
         />
+        <div *ngIf="fieldNotValid('rfc')">
+          <small *ngIf="f['rfc'].errors?.['required']" class="text-danger"
+            >Campo requerido</small
+          >
+          <small *ngIf="f['rfc'].errors?.['minlength']" class="text-danger"
+            >Campo minimo de 13 caracteres
+          </small>
+          <small *ngIf="f['rfc'].errors?.['maxlength']" class="text-danger"
+            >Campo máximo de 13 caracteres
+          </small>
+        </div>
       </div>
     </div>
     <!-- //NOTE - CURP -->
@@ -74,7 +104,19 @@
           id="curp"
           placeholder="Ingresa curp"
           formControlName="curp"
+          [class.is-invalid]="fieldNotValid('curp')"
         />
+        <div *ngIf="fieldNotValid('curp')">
+          <small *ngIf="f['curp'].errors?.['required']" class="text-danger"
+            >Campo requerido</small
+          >
+          <small *ngIf="f['curp'].errors?.['minlength']" class="text-danger"
+            >Campo minimo de 18 caracteres
+          </small>
+          <small *ngIf="f['curp'].errors?.['maxlength']" class="text-danger"
+            >Campo máximo de 18 caracteres
+          </small>
+        </div>
       </div>
     </div>
   </div>
@@ -88,7 +130,20 @@
           type="date"
           formControlName="fechaNacimiento"
           class="form-control"
+          [class.is-invalid]="fieldNotValid('fechaNacimiento')"
         />
+        <div *ngIf="fieldNotValid('fechaNacimiento')">
+          <small
+            *ngIf="f['fechaNacimiento'].errors?.['required']"
+            class="text-danger"
+            >Campo requerido</small
+          >
+          <small
+            *ngIf="f['fechaNacimiento'].errors?.['pattern']"
+            class="text-danger"
+            >Debe ser una fecha válida con el formato AAAA-MM-DD
+          </small>
+        </div>
       </div>
     </div>
 
@@ -96,11 +151,20 @@
     <div class="col-6">
       <div class="form-group">
         <label class="form-label">Género</label>
-        <select formControlName="sexo" class="form-control">
-          <option value="0">Seleccionar</option>
-          <option value="1">FEMENINO</option>
-          <option value="2">MASCULINO</option>
+        <select
+          formControlName="sexo"
+          class="form-control"
+          [class.is-invalid]="fieldNotValid('sexo')"
+        >
+          <option value= "">Seleccionar</option>
+          <option value= 1>FEMENINO</option>
+          <option value= 2>MASCULINO</option>
         </select>
+        <div *ngIf="fieldNotValid('sexo')">
+          <small *ngIf="f['sexo'].errors?.['required']" class="text-danger"
+            >Campo requerido</small
+          >
+        </div>
       </div>
     </div>
   </div>

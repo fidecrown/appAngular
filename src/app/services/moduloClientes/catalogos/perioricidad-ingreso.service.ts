@@ -9,9 +9,9 @@ export class PerioricidadIngresoService {
   constructor() { }
 
   private _data: PerioricidadIngresos[] = [
-    { peringresoid: 3, descripcion: 'MENSUAL' },
+    { peringresoid: 1, descripcion: 'MENSUAL' },
     { peringresoid: 2, descripcion: 'SEMANAL' },
-    { peringresoid: 4, descripcion: 'QUINCENAL' },
+    { peringresoid: 3, descripcion: 'QUINCENAL' },
   ]
 
   get CatPeriodoIngresos(): PerioricidadIngresos[] {

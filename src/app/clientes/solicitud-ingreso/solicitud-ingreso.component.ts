@@ -10,16 +10,28 @@ import { Estado } from 'src/app/interfaces/clientes/catalogos/estado.interface';
 import { Nacionalidad } from '../../interfaces/clientes/catalogos/nacionalidad.interface';
 import { Ciudad } from '../../interfaces/clientes/catalogos/ciudad.interface';
 import { EstadoCivil } from '../../interfaces/clientes/catalogos/estado-civil.interface';
+import { TipoVivienda } from 'src/app/interfaces/clientes/catalogos/tipo-vivienda.interface';
+import { PerioricidadIngresos } from 'src/app/interfaces/clientes/catalogos/perioricidad-ingresos.interface';
+import { Finalidad } from 'src/app/interfaces/clientes/catalogos/finalidad.interface';
 
 import { ClienteService } from 'src/app/services/moduloClientes/catalogos/cliente.service';
 import { EstadoService } from 'src/app/services/moduloClientes/catalogos/estado.service';
 import { CiudadService } from 'src/app/services/moduloClientes/catalogos/ciudad.service';
 import { NacionalidadService } from '../../services/moduloClientes/catalogos/nacionalidad.service';
 import { EstadoCivilService } from 'src/app/services/moduloClientes/catalogos/estado-civil.service';
-import { TipoVivienda } from 'src/app/interfaces/clientes/catalogos/tipo-vivienda.interface';
 import { TipoViviendaService } from 'src/app/services/moduloClientes/catalogos/tipo-vivienda.service';
 import { PerioricidadIngresoService } from 'src/app/services/moduloClientes/catalogos/perioricidad-ingreso.service';
-import { PerioricidadIngresos } from 'src/app/interfaces/clientes/catalogos/perioricidad-ingresos.interface';
+import { FinalidadService } from 'src/app/services/moduloClientes/catalogos/finalidad.service';
+import { MedioEnteroService } from '../../services/moduloClientes/catalogos/medio-entero.service';
+import { MedioEntero } from 'src/app/interfaces/clientes/catalogos/medio-entero.interface';
+import { RegimenService } from '../../services/moduloClientes/catalogos/regimen.service';
+import { Regimen } from 'src/app/interfaces/clientes/catalogos/regimen.interface';
+import { NivelEstudiosService } from '../../services/moduloClientes/catalogos/nivel-estudios.service';
+import { Estudios } from 'src/app/interfaces/clientes/catalogos/estudios.interface';
+import { PeriodoMovimientos } from 'src/app/interfaces/clientes/catalogos/periodo-movimientos.interface';
+import { PeriodoMovimientosService } from '../../services/moduloClientes/catalogos/periodo-movimientos.service';
+import { ReferenciaService } from '../../services/moduloClientes/catalogos/referencia.service';
+import { Referencia } from '../../interfaces/clientes/catalogos/referencia.interface';
 
 @Component({
   selector: 'app-solicitud-ingreso',
@@ -38,10 +50,16 @@ export class SolicitudIngresoComponent implements OnInit {
     private catEdoCivilService: EstadoCivilService,
     private catTViviendaService: TipoViviendaService,
     private catPerioIngresosService: PerioricidadIngresoService,
+    private catFinalidadService: FinalidadService,
+    private catMedioService: MedioEnteroService,
+    private catRegimenService: RegimenService,
+    private catEstudiosService: NivelEstudiosService,
+    private catMovimientosService: PeriodoMovimientosService,
+    private catReferenciaService: ReferenciaService,
     private datePipe: DatePipe
   ) { }
 
-  //DECLARACION DE VARIABES LOCALES FORMULARIOS
+  //#DECLARACION DE VARIABES LOCALES PARA CARGAR LOS FORMULARIOS
   altaSolClienteForm!: FormGroup;
   solIngresoForm!: FormGroup;
   perfil_clienteForm!: FormGroup;
@@ -51,16 +69,21 @@ export class SolicitudIngresoComponent implements OnInit {
   sinClienteForm!: FormGroup;
   relacionForm!: FormGroup;
 
-  selectedEstado: number = 0;
-
+  //#VARIABLES PARA LLENAR LOS SELECTORES DEL HTML
   lstCatClientes: Cliente[] = [];
   lstCatEstados: Estado[] = [];
   lstCiudadesxPais: Ciudad[] = [];
   lstCatNacionalidades: Nacionalidad[] = [];
   lstCatPaises: Nacionalidad[] = [];
   lstCatEdoCivil: EstadoCivil[] = [];
-  lstVivienda: TipoVivienda[] = [];
-  lstPerioricidadIngresos: PerioricidadIngresos[] = [];
+  lstCatVivienda: TipoVivienda[] = [];
+  lstCatPerioricidadIngresos: PerioricidadIngresos[] = [];
+  lstCatFinalidad: Finalidad[] = [];
+  lstCatMedio: MedioEntero[] = [];
+  lstCatRegimen: Regimen[] = [];
+  lstCatEstudios: Estudios[] = [];
+  lstCatMovimientos: PeriodoMovimientos[] = [];
+  lstReferencias: Referencia[] = [];
 
   ngOnInit(): void {
     this.loadFormmAll();
@@ -91,18 +114,18 @@ export class SolicitudIngresoComponent implements OnInit {
   loadSolIngresoForm(): void {
     this.solIngresoForm = this.fb.group({
       fechasolicitud: [this.datePipe.transform(new Date(), 'yyyy-MM-dd')],
-      correoelectronico: [''],
-      periorisidadmovimientos: [''],
+      correoelectronico: ['',[Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$')]],
+      periorisidadmovimientos: [0],
       finalidad_cuenta: 1,
-      medioentero: [''],
-      comprobaciondeingresos: [''],
+      medioentero: [0],
+      comprobaciondeingresos: [0],
       montoaproximadoahorro: [],
       //tienecuentas: [''],
       dondetienecuentas: [''],
       lastserie: "US",
       montoaproximadoretiro: [],
       nacionalidadid: [0],
-      catalogoclienteid: [0]
+      catalogoclienteid: ['',Validators.required]
     });
 
     this.altaSolClienteForm.addControl('solicitud_ingreso', this.solIngresoForm);
@@ -110,8 +133,8 @@ export class SolicitudIngresoComponent implements OnInit {
 
   loadPcForm() {
     this.perfil_clienteForm = this.fb.group({
-      nivelestudios: [''],
-      regimen: [''],
+      nivelestudios: [0],
+      regimen: [0],
       estadocivil: [0],
       telefonocelular: [''],
       tipovivienda: [0],
@@ -121,7 +144,7 @@ export class SolicitudIngresoComponent implements OnInit {
       otrosingresos: 500,
       gastos: [],
       medioentero: 1,
-      finalidadcuenta: [''],
+      finalidadcuenta: [0],
       nodependienteseconomicos: [],
       ingresosconyuge: 4000,
       otrosgastos: 2540,
@@ -147,10 +170,10 @@ export class SolicitudIngresoComponent implements OnInit {
       sexo: [''],
       correoelectronico: [''],
       telefonocelular: [''],
-      esconyuge: [''],
-      ciudadid: [''],
-      nacionalidadid: [''],
-      regimen: [''],
+      esconyuge: [0],
+      ciudadid: [0],
+      nacionalidadid: [0],
+      regimen: [0],
       ocupacionid: 1
     });
 
@@ -218,9 +241,14 @@ export class SolicitudIngresoComponent implements OnInit {
     });
 
     this.lstCatEdoCivil = this.catEdoCivilService.CatEdoCivil;
-    this.lstVivienda = this.catTViviendaService.CatTipoVivienda;
-    this.lstPerioricidadIngresos = this.catPerioIngresosService.CatPeriodoIngresos;
-
+    this.lstCatVivienda = this.catTViviendaService.CatTipoVivienda;
+    this.lstCatPerioricidadIngresos = this.catPerioIngresosService.CatPeriodoIngresos;
+    this.lstCatFinalidad = this.catFinalidadService.CatFinalidad;
+    this.lstCatMedio = this.catMedioService.CatMedioEntero;
+    this.lstCatRegimen = this.catRegimenService.CatRegimen;
+    this.lstCatEstudios = this.catEstudiosService.CatEstudios;
+    this.lstCatMovimientos = this.catMovimientosService.CatPeriodoMovimientos;
+    this.lstReferencias = this.catReferenciaService.CatReferencia;
 
   }
 
@@ -229,6 +257,7 @@ export class SolicitudIngresoComponent implements OnInit {
     this.perfil_clienteForm.get('ciudadid')?.disable();
     this.altaSolClienteForm.get('paisNac')?.disable();
 
+    //#CUANDO CAMBIA LA SELECCION DEL ESTADO
     this.altaSolClienteForm.get('estadoid')?.valueChanges
       .pipe(
         tap((estadoid: number) => {
@@ -247,10 +276,31 @@ export class SolicitudIngresoComponent implements OnInit {
         this.lstCiudadesxPais = ciudades
       });
 
-      this.solIngresoForm.get('nacionalidadid')?.valueChanges
-      .subscribe((nacionalidadid:number) => {
+    this.solIngresoForm.get('nacionalidadid')?.valueChanges
+      .subscribe((nacionalidadid: number) => {
         this.altaSolClienteForm.get('paisNac')?.setValue(nacionalidadid);
       })
   }
 
+  fieldNotValid(form : FormGroup ,field: string): boolean | undefined {
+    return form.get(field)?.invalid &&
+      form.get(field)?.touched
+  }
+
+  getCtrl(form : FormGroup) { 
+    return form.controls; 
+  }
+
 }
+
+/*
+
+[class.is-invalid]="fieldNotValid(solIngresoForm,'catalogoclienteid')"
+
+<div *ngIf="fieldNotValid(solIngresoForm, 'catalogoclienteid')">
+                            <small *ngIf="getCtrl(solIngresoForm)['catalogoclienteid'].errors?.['required']" class="text-danger"
+                              >Campo requerido</small
+                            >
+                          </div>
+
+*/

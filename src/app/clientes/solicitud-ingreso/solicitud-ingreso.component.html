@@ -154,8 +154,11 @@
                           <select
                             class="form-control"
                             formControlName="catalogoclienteid"
+                            [class.is-invalid]="
+                              fieldNotValid(solIngresoForm, 'catalogoclienteid')
+                            "
                           >
-                            <option value="0">Seleccionar Tipo Cliente</option>
+                            <option value="">Seleccionar Tipo Cliente</option>
                             <option
                               *ngFor="let cliente of lstCatClientes"
                               [value]="cliente.catalogoclienteid"
@@ -163,6 +166,17 @@
                               {{ cliente.descripcion }}
                             </option>
                           </select>
+                          <div
+                            *ngIf="
+                              fieldNotValid(solIngresoForm, 'catalogoclienteid')
+                            "
+                          >
+                            <small
+                              *ngIf="getCtrl(solIngresoForm)['catalogoclienteid'].errors?.['required']"
+                              class="text-danger"
+                              >Campo requerido</small
+                            >
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -176,11 +190,31 @@
                             class="form-control"
                             placeholder="correo electrónico"
                             formControlName="correoelectronico"
+                            [class.is-invalid]="
+                              fieldNotValid(solIngresoForm, 'correoelectronico')
+                            "
                           />
+                          <div
+                            *ngIf="
+                              fieldNotValid(solIngresoForm, 'correoelectronico')
+                            "
+                          >
+                            <small
+                              *ngIf="getCtrl(solIngresoForm)['correoelectronico'].errors?.['required']"
+                              class="text-danger"
+                              >Campo requerido</small
+                            >
+                            <small
+                              *ngIf="getCtrl(solIngresoForm)['correoelectronico'].errors?.['pattern']"
+                              class="text-danger"
+                              >El email no es válido</small
+                            >
+                          </div>
                         </div>
                       </div>
 
                       <!-- //NOTE - NO. CELULAR -->
+                      
                       <div class="col-6" [formGroup]="perfil_clienteForm">
                         <div class="form-group">
                           <input
@@ -343,7 +377,7 @@
                           class="form-control"
                           formControlName="estadocivil"
                         >
-                          <option value= 0 >Seleccionar Estado Civil</option>
+                          <option value="0">Seleccionar Estado Civil</option>
                           <option
                             *ngFor="let edoCivil of lstCatEdoCivil"
                             [value]="edoCivil.edocivilid"
@@ -358,9 +392,13 @@
                     <div class="col-md-6" [formGroup]="perfil_clienteForm">
                       <div class="form-group">
                         <select formControlName="regimen" class="form-control">
-                          <option value="">Seleccionar Régimen</option>
-                          <option value="0">México</option>
-                          <option value="1">España</option>
+                          <option value="0">Seleccionar Régimen</option>
+                          <option
+                            *ngFor="let regimen of lstCatRegimen"
+                            [value]="regimen.regimenid"
+                          >
+                            {{ regimen.descripcion }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -374,9 +412,11 @@
                           formControlName="tipovivienda"
                           class="form-control"
                         >
-                          <option value=0>Seleccionar Tipo de Vivienda</option>
+                          <option value="0">
+                            Seleccionar Tipo de Vivienda
+                          </option>
                           <option
-                            *ngFor="let vivienda of lstVivienda"
+                            *ngFor="let vivienda of lstCatVivienda"
                             [value]="vivienda.tipviviendaid"
                           >
                             {{ vivienda.descripcion }}
@@ -392,11 +432,15 @@
                           formControlName="nivelestudios"
                           class="form-control"
                         >
-                          <option value="">
+                          <option value="0">
                             Seleccionar Nivel de Estudios
                           </option>
-                          <option value="0">México</option>
-                          <option value="1">España</option>
+                          <option
+                            *ngFor="let estudio of lstCatEstudios"
+                            [value]="estudio.estudioid"
+                          >
+                            {{ estudio.descripcion }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -414,7 +458,7 @@
                             Seleccionar Perioricidad de Ingresos
                           </option>
                           <option
-                            *ngFor="let p of lstPerioricidadIngresos"
+                            *ngFor="let p of lstCatPerioricidadIngresos"
                             [value]="p.peringresoid"
                           >
                             {{ p.descripcion }}
@@ -430,11 +474,15 @@
                           formControlName="periorisidadmovimientos"
                           class="form-control"
                         >
-                          <option value="">
+                          <option value="0">
                             Seleccionar Perioricidad de Movimientos
                           </option>
-                          <option value="0">México</option>
-                          <option value="1">España</option>
+                          <option
+                            *ngFor="let mov of lstCatMovimientos"
+                            [value]="mov.movimientoid"
+                          >
+                            {{ mov.descripcion }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -526,11 +574,15 @@
                           formControlName="finalidadcuenta"
                           class="form-control"
                         >
-                          <option value="">
+                          <option value="0">
                             Seleccionar Finalidad de la Cuenta
                           </option>
-                          <option value="0">México</option>
-                          <option value="1">España</option>
+                          <option
+                            *ngFor="let finalidad of lstCatFinalidad"
+                            [value]="finalidad.finalidadid"
+                          >
+                            {{ finalidad.descripcion }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -542,11 +594,11 @@
                           formControlName="comprobaciondeingresos"
                           class="form-control"
                         >
-                          <option value="">
+                          <option value="0">
                             Seleccionar Comprobación de Ingresos
                           </option>
-                          <option value="0">México</option>
-                          <option value="1">España</option>
+                          <option value="1">SI</option>
+                          <option value="2">NO</option>
                         </select>
                       </div>
                     </div>
@@ -560,9 +612,13 @@
                           formControlName="medioentero"
                           class="form-control"
                         >
-                          <option value="">Seleccionar Medio Entero</option>
-                          <option value="0">México</option>
-                          <option value="1">España</option>
+                          <option value="0">Seleccionar Medio Entero</option>
+                          <option
+                            *ngFor="let medio of lstCatMedio"
+                            [value]="medio.medioenteroid"
+                          >
+                            {{ medio.descripcion }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -664,9 +720,13 @@
                 <div class="col-6" [formGroup]="relacionForm">
                   <div class="form-group">
                     <select class="form-control" formControlName="esconyuge">
-                      <option value="">Seleccionar Tipo de Referencia</option>
-                      <option value="0">México</option>
-                      <option value="1">España</option>
+                      <option value="0">Seleccionar Tipo de Referencia</option>
+                      <option
+                        *ngFor="let ref of lstReferencias"
+                        [value]="ref.referenciaid"
+                      >
+                        {{ ref.descripcion }}
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -852,33 +912,41 @@
                             </div>
 
                             <!-- //NOTE - ESTADO CIVIL -->
-                            <div class="col-6">
+                            <div class="col-6" [formGroup]="relacionForm">
                               <div class="form-group">
                                 <select
                                   class="form-control"
                                   formControlName="estadocivilid"
                                 >
-                                  <option value="">
+                                  <option value="0">
                                     Seleccionar Estado Civil
                                   </option>
-                                  <option value="0">CASADO(A)</option>
-                                  <option value="1">SOLTERO</option>
+                                  <option
+                                    *ngFor="let edoCivil of lstCatEdoCivil"
+                                    [value]="edoCivil.edocivilid"
+                                  >
+                                    {{ edoCivil.descripcion }}
+                                  </option>
                                 </select>
                               </div>
                             </div>
                           </div>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-12" [formGroup]="relacionForm">
                           <!-- //NOTE - REGIMEN -->
                           <div class="form-group">
                             <select
                               class="form-control"
                               formControlName="regimen"
                             >
-                              <option value="">Seleccionar Régimen</option>
-                              <option value="0">Bienes Mancomunados</option>
-                              <option value="1">Bienes Separados</option>
+                              <option value="0">Seleccionar Régimen</option>
+                              <option
+                                *ngFor="let regimen of lstCatRegimen"
+                                [value]="regimen.regimenid"
+                              >
+                                {{ regimen.descripcion }}
+                              </option>
                             </select>
                           </div>
                         </div>
@@ -936,7 +1004,13 @@
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button
+            type="submit"
+            class="btn btn-primary mt-3"
+            [disabled]="altaSolClienteForm.invalid"
+          >
+            Guardar
+          </button>
         </form>
       </div>
       <!-- /.card -->
