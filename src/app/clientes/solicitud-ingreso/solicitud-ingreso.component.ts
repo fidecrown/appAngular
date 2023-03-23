@@ -105,7 +105,7 @@ export class SolicitudIngresoComponent implements OnInit {
 
   loadAltaClienteForm(): void {
     this.altaSolClienteForm = this.fb.group({
-      estadoid: [0],
+      estadoid: ['', Validators.required],
       fechaingreso: [this.datePipe.transform(new Date(), 'yyyy-MM-dd')],
       paisNac: [0]
     });
@@ -114,18 +114,18 @@ export class SolicitudIngresoComponent implements OnInit {
   loadSolIngresoForm(): void {
     this.solIngresoForm = this.fb.group({
       fechasolicitud: [this.datePipe.transform(new Date(), 'yyyy-MM-dd')],
-      correoelectronico: ['',[Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$')]],
-      periorisidadmovimientos: [0],
+      correoelectronico: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$')]],
+      periorisidadmovimientos: ['', Validators.required],
       finalidad_cuenta: 1,
-      medioentero: [0],
-      comprobaciondeingresos: [0],
-      montoaproximadoahorro: [],
+      medioentero: ['', Validators.required],
+      comprobaciondeingresos: ['', Validators.required],
+      montoaproximadoahorro: ['', [Validators.required, Validators.maxLength(10)]],
       //tienecuentas: [''],
       dondetienecuentas: [''],
       lastserie: "US",
-      montoaproximadoretiro: [],
-      nacionalidadid: [0],
-      catalogoclienteid: ['',Validators.required]
+      montoaproximadoretiro: ['', [Validators.required, Validators.maxLength(3)]],
+      nacionalidadid: ['', Validators.required],
+      catalogoclienteid: ['', Validators.required]
     });
 
     this.altaSolClienteForm.addControl('solicitud_ingreso', this.solIngresoForm);
@@ -133,29 +133,29 @@ export class SolicitudIngresoComponent implements OnInit {
 
   loadPcForm() {
     this.perfil_clienteForm = this.fb.group({
-      nivelestudios: [0],
-      regimen: [0],
-      estadocivil: [0],
-      telefonocelular: [''],
-      tipovivienda: [0],
+      nivelestudios: ['', Validators.required],
+      regimen: ['', Validators.required],
+      estadocivil: ['', Validators.required],
+      telefonocelular: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), this.onlyNumbersValidator]],
+      tipovivienda: ['', Validators.required],
       tiempoarraigo: "2 ANOS",
-      perioricidadingresos: [''],
-      ingresos: [],
+      perioricidadingresos: ['', Validators.required],
+      ingresos: ['', [Validators.required, Validators.maxLength(10)]],
       otrosingresos: 500,
-      gastos: [],
+      gastos: ['', [Validators.required, Validators.maxLength(10)]],
       medioentero: 1,
-      finalidadcuenta: [0],
-      nodependienteseconomicos: [],
+      finalidadcuenta: ['', Validators.required],
+      nodependienteseconomicos: ['', [Validators.required, Validators.maxLength(2)]],
       ingresosconyuge: 4000,
       otrosgastos: 2540,
       otrosabonos: 0,
-      nomovimientos: [],
+      nomovimientos: ['', [Validators.required, Validators.maxLength(3)]],
       nomovimientosreales: 0,
       ingresosreales: 0,
       egresosreales: 0,
       estado: false,
       actividadeconomicapreponderante: "NINGUNA",
-      ciudadid: [0],
+      ciudadid: ['', Validators.required],
       ocupacionid: 1
     });
 
@@ -164,17 +164,19 @@ export class SolicitudIngresoComponent implements OnInit {
 
   loadRelacionForm() {
     this.relacionForm = this.fb.group({
-      parentesco: [''],
-      porcentaje: [],
-      estadocivilid: [0],
-      sexo: [''],
-      correoelectronico: [''],
-      telefonocelular: [''],
-      esconyuge: [0],
-      ciudadid: [0],
-      nacionalidadid: [0],
-      regimen: [0],
-      ocupacionid: 1
+      parentesco: ['', Validators.required],
+      porcentaje: ['', [Validators.required, Validators.maxLength(3)]],
+      estadocivilid: ['', Validators.required],
+      sexo: ['', Validators.required],
+      correoelectronico: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$')]],
+      telefonocelular: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), this.onlyNumbersValidator]],
+      esconyuge: ['', Validators.required],
+      ciudadid: ['', Validators.required],
+      nacionalidadid: ['', Validators.required],
+      regimen: ['', Validators.required],
+      ocupacionid: 1,
+      estadoid: ['', Validators.required],
+      paisNac: [0]
     });
 
     this.relacionesForm.addControl('relacion', this.relacionForm);
@@ -191,7 +193,7 @@ export class SolicitudIngresoComponent implements OnInit {
 
   loadTrabajaEnForm(): void {
     this.trabajaenForm = this.fb.group({
-      fechainicio: []
+      fechainicio: ['', [Validators.required, Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]]
     });
 
     this.datosLaboralesForm.addControl('trabajaen', this.trabajaenForm);
@@ -268,7 +270,7 @@ export class SolicitudIngresoComponent implements OnInit {
             this.perfil_clienteForm.get('ciudadid')?.disable();
           }
 
-          this.perfil_clienteForm.get('ciudadid')?.reset(0);
+          this.perfil_clienteForm.get('ciudadid')?.reset('');
         }),
         switchMap(estadoid => this.catCiudadService.getCatCiudadesxEstadoId(estadoid))
       )
@@ -282,25 +284,30 @@ export class SolicitudIngresoComponent implements OnInit {
       })
   }
 
-  fieldNotValid(form : FormGroup ,field: string): boolean | undefined {
+  fieldNotValid(form: FormGroup, field: string): boolean | undefined {
     return form.get(field)?.invalid &&
       form.get(field)?.touched
   }
 
-  getCtrl(form : FormGroup) { 
-    return form.controls; 
+  getCtrl(form: FormGroup) {
+    return form.controls;
+  }
+
+  onlyNumbersValidator(control: FormControl): { [key: string]: any } | null {
+    const valid = /^\d+$/.test(control.value);
+    return valid ? null : { onlyNumbers: true };
   }
 
 }
 
 /*
 
-[class.is-invalid]="fieldNotValid(solIngresoForm,'catalogoclienteid')"
+[class.is-invalid]="fieldNotValid(perfil_clienteForm,'catalogoclienteid')"
 
-<div *ngIf="fieldNotValid(solIngresoForm, 'catalogoclienteid')">
-                            <small *ngIf="getCtrl(solIngresoForm)['catalogoclienteid'].errors?.['required']" class="text-danger"
-                              >Campo requerido</small
-                            >
+<div *ngIf="fieldNotValid(perfil_clienteForm, 'catalogoclienteid')">
+                            <small *ngIf="getCtrl(perfil_clienteForm)['catalogoclienteid'].errors?.['required']" class="text-danger"
+                              >Campo requerido
+                            </small>
                           </div>
 
 */

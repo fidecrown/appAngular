@@ -4,10 +4,17 @@
     <div class="form-group">
       <input
         type="text"
-        formControlName="nombre"
         class="form-control"
         placeholder="Razón Social de la Empresa"
+        formControlName="nombre"
+        [class.is-invalid]="fieldNotValid('nombre')"
       />
+
+      <div *ngIf="fieldNotValid('nombre')">
+        <small *ngIf="f['nombre'].errors?.['required']" class="text-danger">
+          Campo requerido
+        </small>
+      </div>
     </div>
   </div>
 
@@ -16,10 +23,17 @@
     <div class="form-group">
       <input
         type="text"
-        formControlName="nombrejefedirecto"
         class="form-control"
         placeholder="Nombre del Jefe Directo"
+        formControlName="nombrejefedirecto"
+        [class.is-invalid]="fieldNotValid('nombrejefedirecto')"
       />
+
+      <div *ngIf="fieldNotValid('nombrejefedirecto')">
+        <small *ngIf="f['nombrejefedirecto'].errors?.['required']" class="text-danger">
+          Campo requerido
+        </small>
+      </div>
     </div>
   </div>
 
@@ -28,10 +42,19 @@
     <div class="form-group">
       <input
         type="text"
-        formControlName="rfc"
         class="form-control"
         placeholder="RFC de la Empresa"
+        formControlName="rfc"
+        [class.is-invalid]="fieldNotValid('rfc')"
       />
+
+      <div *ngIf="fieldNotValid('rfc')">
+        <small *ngIf="f['rfc'].errors?.['required']" class="text-danger">Campo requerido</small>
+        <small *ngIf="f['rfc'].errors?.['minlength']" class="text-danger">Campo minimo de 13 caracteres
+        </small>
+        <small *ngIf="f['rfc'].errors?.['maxlength']" class="text-danger">Campo máximo de 13 caracteres
+        </small>
+      </div>
     </div>
   </div>
 </fieldset>

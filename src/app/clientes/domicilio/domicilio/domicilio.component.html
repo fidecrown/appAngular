@@ -1,6 +1,7 @@
 <fieldset [formGroup]="domicilioForm">
   <!-- //NOTE - PAIS -->
-  <div class="row">
+
+  <!-- <div class="row">
     <div class="col-12">
       <div class="form-group">
         <select formControlName="nacionalidadid" class="form-control">
@@ -10,21 +11,23 @@
         </select>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- //NOTE - ESTADO -->
   <div class="row">
     <div class="col-12" [formGroup]="temporalForm">
       <div class="form-group">
-        <select class="form-control" formControlName="estadoid">
-          <option value=0>Seleccionar Estado</option>
-          <option
-            *ngFor="let estado of lstCatEstados"
-            [value]="estado.estadoid"
-          >
+        <select class="form-control" formControlName="estadoid"
+          [class.is-invalid]="fieldNotValid(temporalForm, 'estadoid')">
+          <option value="">Seleccionar Estado</option>
+          <option *ngFor="let estado of lstCatEstados" [value]="estado.estadoid">
             {{ estado.nombreestado }}
           </option>
         </select>
+        <div *ngIf="fieldNotValid(temporalForm, 'estadoid')">
+          <small *ngIf="getCtrl(temporalForm)['estadoid'].errors?.['required']" class="text-danger">Campo requerido
+          </small>
+        </div>
       </div>
     </div>
   </div>
@@ -33,15 +36,17 @@
   <div class="row">
     <div class="col-12" [formGroup]="temporalForm">
       <div class="form-group">
-        <select class="form-control" formControlName="ciudadid" >
-          <option value=0>Seleccionar Ciudad</option>
-          <option
-            *ngFor="let ciudad of lstCiudadesxPais"
-            [value]="ciudad.ciudadid"
-          >
+        <select class="form-control" formControlName="ciudadid"
+          [class.is-invalid]="fieldNotValid(temporalForm,'ciudadid')">
+          <option value="">Seleccionar Ciudad</option>
+          <option *ngFor="let ciudad of lstCiudadesxPais" [value]="ciudad.ciudadid">
             {{ ciudad.nombre }}
           </option>
         </select>
+        <div *ngIf="fieldNotValid(temporalForm,'ciudadid')">
+          <small *ngIf="getCtrl(temporalForm)['ciudadid'].errors?.['required']" class="text-danger">Campo requerido
+          </small>
+        </div>
       </div>
     </div>
   </div>
@@ -50,15 +55,17 @@
   <div class="row">
     <div class="col-12">
       <div class="form-group">
-        <select class="form-control" formControlName="coloniaid">
-          <option value= 0>Seleccionar Colonia</option>
-          <option
-            *ngFor="let colonia of lstColoniasxCiudad"
-            [value]="colonia.coloniaid"
-          >
+        <select class="form-control" formControlName="coloniaid"
+          [class.is-invalid]="fieldNotValid(domicilioForm,'coloniaid')">
+          <option value="">Seleccionar Colonia</option>
+          <option *ngFor="let colonia of lstColoniasxCiudad" [value]="colonia.coloniaid">
             {{ colonia.nombrecolonia }}
           </option>
         </select>
+        <div *ngIf="fieldNotValid(domicilioForm,'coloniaid')">
+          <small *ngIf="getCtrl(domicilioForm)['coloniaid'].errors?.['required']" class="text-danger">Campo requerido
+          </small>
+        </div>
       </div>
     </div>
   </div>
@@ -67,12 +74,12 @@
   <div class="row">
     <div class="col-12">
       <div class="form-group">
-        <input
-          type="text"
-          formControlName="calle"
-          class="form-control"
-          placeholder="Nombre de la Vialidad"
-        />
+        <input type="text" formControlName="calle" class="form-control" placeholder="Nombre de la Vialidad"
+          [class.is-invalid]="fieldNotValid(domicilioForm,'calle')" />
+        <div *ngIf="fieldNotValid(domicilioForm,'calle')">
+          <small *ngIf="getCtrl(domicilioForm)['calle'].errors?.['required']" class="text-danger">Campo requerido
+          </small>
+        </div>
       </div>
     </div>
   </div>
@@ -84,35 +91,34 @@
         <!-- //NOTE - NO.EXTERIOR-->
         <div class="col-3">
           <div class="form-group">
-            <input
-              type="text"
-              formControlName="numero"
-              class="form-control"
-              placeholder="No. Exterior"
-            />
+            <input type="text" formControlName="numero" class="form-control" placeholder="No. Exterior" />
           </div>
         </div>
         <!-- //NOTE - NO.INTERIOR -->
         <div class="col-3">
           <div class="form-group">
-            <input
-              type="text"
-              formControlName="interior"
-              class="form-control"
-              placeholder="No. Interior"
-            />
+            <input type="text" formControlName="interior" class="form-control" placeholder="No. Interior" />
           </div>
         </div>
 
         <!-- //NOTE - TELEFONO FIJO -->
         <div class="col">
           <div class="form-group">
-            <input
-              type="tel"
-              class="form-control"
-              placeholder="Telefono Fijo"
-              formControlName="telefono"
-            />
+            <input type="tel" class="form-control" placeholder="Telefono Fijo" formControlName="telefono"
+              [class.is-invalid]="fieldNotValid(domicilioForm,'telefono')" />
+            <div *ngIf="fieldNotValid(domicilioForm,'telefono')">
+              <small *ngIf="getCtrl(domicilioForm)['telefono'].errors?.['required']" class="text-danger">Campo requerido
+              </small>
+              <small *ngIf="getCtrl(domicilioForm)['telefono'].errors?.['onlyNumbers']"
+                class="text-danger">Por favor ingrese solo números
+              </small>
+              <small *ngIf="getCtrl(domicilioForm)['telefono'].errors?.['minlength']" class="text-danger">
+                Campo minimo de 10 caracteres
+              </small>
+              <small *ngIf="getCtrl(domicilioForm)['telefono'].errors?.['maxlength']"
+                class="text-danger">Campo máximo de 10 caracteres
+              </small>
+            </div>
           </div>
         </div>
       </div>
@@ -123,15 +129,20 @@
   <div class="row">
     <div class="col-12">
       <div class="form-group">
-        <select formControlName="tiempoarraigo" class="form-control">
-          <option value=0>Seleccionar Tiempo de Arraigo</option>
-          <option
-            *ngFor="let tiemArraigo of lstTiempoArraigo"
-            [value]="tiemArraigo.tiempoarraigoid"
-          >
+        <select formControlName="tiempoarraigo" class="form-control"
+        [class.is-invalid]="fieldNotValid(domicilioForm,'tiempoarraigo')">
+          <option value="">Seleccionar Tiempo de Arraigo</option>
+          <option *ngFor="let tiemArraigo of lstTiempoArraigo" [value]="tiemArraigo.tiempoarraigoid">
             {{ tiemArraigo.descripcion }}
           </option>
         </select>
+        <div *ngIf="fieldNotValid(domicilioForm,'tiempoarraigo')">
+          <small
+            *ngIf="getCtrl(domicilioForm)['tiempoarraigo'].errors?.['required']"
+            class="text-danger"
+            >Campo requerido
+          </small>
+        </div>
       </div>
     </div>
   </div>
@@ -140,12 +151,14 @@
   <div class="row">
     <div class="col-12">
       <div class="form-group">
-        <input
-          type="text"
-          formControlName="entre_calle_1"
-          class="form-control"
-          placeholder="Entre Calle 1"
-        />
+        <input type="text" formControlName="entre_calle_1" class="form-control" placeholder="Entre Calle 1" [class.is-invalid]="fieldNotValid(domicilioForm,'entre_calle_1')"/>
+        <div *ngIf="fieldNotValid(domicilioForm,'entre_calle_1')">
+          <small
+            *ngIf="getCtrl(domicilioForm)['entre_calle_1'].errors?.['required']"
+            class="text-danger"
+            >Campo requerido
+          </small>
+        </div>
       </div>
     </div>
   </div>
@@ -154,12 +167,14 @@
   <div class="row">
     <div class="col-12">
       <div class="form-group">
-        <input
-          type="text"
-          formControlName="entre_calle_2"
-          class="form-control"
-          placeholder="Entre Calle 2"
-        />
+        <input type="text" formControlName="entre_calle_2" class="form-control" placeholder="Entre Calle 2" [class.is-invalid]="fieldNotValid(domicilioForm,'entre_calle_2')"/>
+        <div *ngIf="fieldNotValid(domicilioForm,'entre_calle_2')">
+          <small
+            *ngIf="getCtrl(domicilioForm)['entre_calle_2'].errors?.['required']"
+            class="text-danger"
+            >Campo requerido
+          </small>
+        </div>
       </div>
     </div>
   </div>
@@ -168,12 +183,7 @@
   <div class="row">
     <div class="col-12">
       <div class="form-group">
-        <textarea
-          class="form-control"
-          formControlName="referencia"
-          rows="3"
-          placeholder="Referencia"
-        ></textarea>
+        <textarea class="form-control" formControlName="referencia" rows="3" placeholder="Referencia"></textarea>
       </div>
     </div>
   </div>

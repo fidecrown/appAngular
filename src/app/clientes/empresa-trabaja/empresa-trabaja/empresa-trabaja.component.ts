@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-empresa-trabaja',
@@ -21,12 +21,19 @@ export class EmpresaTrabajaComponent implements OnInit {
 
   loadEmpresaTrabajaForm(): void {
     this.empresaTrabajaForm = this.fb.group({
-      nombre: [''], 
-      rfc: [''], 
-      nombrejefedirecto: ['']
+      nombre: ['', Validators.required], 
+      rfc: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]], 
+      nombrejefedirecto: ['', Validators.required]
     });
 
     this.datosLaboralesForm.addControl('empresa_trabaja', this.empresaTrabajaForm);
   }
+
+  fieldNotValid(field: string): boolean | undefined {
+    return this.empresaTrabajaForm.get(field)?.invalid &&
+      this.empresaTrabajaForm.get(field)?.touched
+  }
+
+  get f() { return this.empresaTrabajaForm.controls; }
 
 }

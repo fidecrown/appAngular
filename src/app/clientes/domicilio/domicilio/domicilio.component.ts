@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Estado } from 'src/app/interfaces/clientes/catalogos/estado.interface';
 import { Ciudad } from '../../../interfaces/clientes/catalogos/ciudad.interface';
 import { EstadoService } from '../../../services/moduloClientes/catalogos/estado.service';
@@ -44,23 +44,23 @@ export class DomicilioComponent implements OnInit {
 
   loadTemporalForm(): void{
     this.temporalForm = this.fb.group({
-      estadoid : [0],
-      ciudadid : [0]
+      estadoid : ['', Validators.required],
+      ciudadid : ['', Validators.required]
     });
   }
 
   loadDomicilioForm(): void {
     this.domicilioForm = this.fb.group({
-      calle: [''],
-      numero: [''],
-      interior: [''],
-      telefono: [''],
-      entre_calle_1: [''],
-      entre_calle_2: [''],
-      referencia: [''],
-      coloniaid: [0],
-      tiempoarraigo: [0],
-      nacionalidadid: ['']
+      calle: ['', [Validators.required]],
+      numero: ['', [Validators.required]],
+      interior: ['', [Validators.required]],
+      telefono: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), this.onlyNumbersValidator]],
+      entre_calle_1: ['', [Validators.required]],
+      entre_calle_2: ['', [Validators.required]],
+      referencia: ['', [Validators.required]],
+      coloniaid: ['', Validators.required],
+      tiempoarraigo: ['', Validators.required],
+      nacionalidadid: ['', [Validators.required]]
     });
 
     this.altaSolClienteForm.addControl('domicilio', this.domicilioForm);
@@ -91,7 +91,7 @@ export class DomicilioComponent implements OnInit {
             this.temporalForm.get('ciudadid')?.disable();
           }
 
-          this.temporalForm.get('ciudadid')?.reset(0);
+          this.temporalForm.get('ciudadid')?.reset('');
         }),
         switchMap(estadoid => this.catCiudadService.getCatCiudadesxEstadoId(estadoid))
       )
@@ -110,7 +110,7 @@ export class DomicilioComponent implements OnInit {
             this.domicilioForm.get('coloniaid')?.disable();
           }
 
-          this.domicilioForm.get('coloniaid')?.reset(0);
+          this.domicilioForm.get('coloniaid')?.reset('');
         }),
         switchMap(ciudadid => this.catColoniaService.getCatColoniasxCiudadId(ciudadid))
       )
@@ -120,5 +120,20 @@ export class DomicilioComponent implements OnInit {
 
 
   }
+
+  fieldNotValid(form: FormGroup, field: string): boolean | undefined {
+    return form.get(field)?.invalid &&
+      form.get(field)?.touched
+  }
+
+  getCtrl(form: FormGroup) {
+    return form.controls;
+  }
+
+  onlyNumbersValidator(control: FormControl): { [key: string]: any } | null {
+    const valid = /^\d+$/.test(control.value);
+    return valid ? null : { onlyNumbers: true };
+  }
+
 
 }
