@@ -54,7 +54,7 @@
                   </div>
                 </div>
 
-                <div class="col-6">
+                <div class="col-6"  [formGroup]="clienteForm">
                   <!-- //NOTE -  FECHA INGRESO -->
                   <div class="form-group">
                     <label for="form-label">Fecha Ingreso</label>
@@ -1087,12 +1087,18 @@
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary mt-3" [disabled]="altaSolClienteForm.invalid">
+          <!-- [disabled]="altaSolClienteForm.invalid" -->
+          <button type="submit" class="btn btn-primary mt-3">
             Guardar
           </button>
         </form>
       </div>
       <!-- /.card -->
     </div>
+
+
+      <pre>
+        {{altaSolClienteForm.value | json}}
+      </pre>
   </div>
 </div>

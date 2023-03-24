@@ -1,14 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { switchMap, tap } from 'rxjs';
+
+//#SECCION DE INTERFACES
 import { Estado } from 'src/app/interfaces/clientes/catalogos/estado.interface';
 import { Ciudad } from '../../../interfaces/clientes/catalogos/ciudad.interface';
-import { EstadoService } from '../../../services/moduloClientes/catalogos/estado.service';
-import { switchMap, tap } from 'rxjs';
-import { CiudadService } from '../../../services/moduloClientes/catalogos/ciudad.service';
 import { Colonia } from 'src/app/interfaces/clientes/catalogos/colonia.interface';
+import { TiempoArraigo } from 'src/app/interfaces/clientes/catalogos/tiempo-arraigo.interface';
+
+//#SECCION INYECCION DE SERVICIOS
+import { EstadoService } from '../../../services/moduloClientes/catalogos/estado.service';
+import { CiudadService } from '../../../services/moduloClientes/catalogos/ciudad.service';
 import { ColoniaService } from 'src/app/services/moduloClientes/catalogos/colonia.service';
 import { TiempoArraigoService } from '../../../services/moduloClientes/catalogos/tiempo-arraigo.service';
-import { TiempoArraigo } from 'src/app/interfaces/clientes/catalogos/tiempo-arraigo.interface';
 
 @Component({
   selector: 'app-domicilio',
@@ -28,12 +32,13 @@ export class DomicilioComponent implements OnInit {
   //DECLARACION DE VARIABLES LOCALES
   @Input() altaSolClienteForm!: FormGroup;
   domicilioForm!: FormGroup;
-  temporalForm!: FormGroup;
+  temporalForm!:  FormGroup;
 
-  lstCatEstados: Estado[] = [];
-  lstCiudadesxPais: Ciudad[] = [];
+  //#DECLARACION DE VARIABLES PARA LOS CAMPOS SELECT
+  lstCatEstados:      Estado[] = [];
+  lstCiudadesxPais:   Ciudad[] = [];
   lstColoniasxCiudad: Colonia[] = [];
-  lstTiempoArraigo: TiempoArraigo[] = [];
+  lstTiempoArraigo:   TiempoArraigo[] = [];
 
   ngOnInit(): void {
     this.loadTemporalForm();
@@ -42,14 +47,14 @@ export class DomicilioComponent implements OnInit {
     this.chageOnSelecteds();
   }
 
-  loadTemporalForm(): void{
+  private loadTemporalForm(): void{
     this.temporalForm = this.fb.group({
       estadoid : ['', Validators.required],
-      ciudadid : ['', Validators.required]
+      ciudadid : [0, Validators.required]
     });
   }
 
-  loadDomicilioForm(): void {
+  private loadDomicilioForm(): void {
     this.domicilioForm = this.fb.group({
       calle: ['', [Validators.required]],
       numero: ['', [Validators.required]],
@@ -58,7 +63,7 @@ export class DomicilioComponent implements OnInit {
       entre_calle_1: ['', [Validators.required]],
       entre_calle_2: ['', [Validators.required]],
       referencia: ['', [Validators.required]],
-      coloniaid: ['', Validators.required],
+      coloniaid: [parseInt('0', 10), Validators.required],
       tiempoarraigo: ['', Validators.required],
       nacionalidadid: ['', [Validators.required]]
     });
@@ -66,7 +71,7 @@ export class DomicilioComponent implements OnInit {
     this.altaSolClienteForm.addControl('domicilio', this.domicilioForm);
   }
 
-  loadSelectedEstados(): void {
+  private loadSelectedEstados(): void {
 
     this.catEstadoService.getCatalogoEstados().subscribe((datos: Estado[]) => {
       this.lstCatEstados = datos;
@@ -76,7 +81,7 @@ export class DomicilioComponent implements OnInit {
 
   }
 
-  chageOnSelecteds(): void {
+  private chageOnSelecteds(): void {
 
     this.temporalForm.get('ciudadid')?.disable();
     this.domicilioForm.get('coloniaid')?.disable();
@@ -91,13 +96,17 @@ export class DomicilioComponent implements OnInit {
             this.temporalForm.get('ciudadid')?.disable();
           }
 
-          this.temporalForm.get('ciudadid')?.reset('');
+          this.temporalForm.get('ciudadid')?.reset(0);
         }),
         switchMap(estadoid => this.catCiudadService.getCatCiudadesxEstadoId(estadoid))
       )
       .subscribe(ciudades => {
         this.lstCiudadesxPais = ciudades
-      });
+      },error => {
+        // Manejar el error obtenido
+        console.error(error);
+      }
+      );
 
 
       this.temporalForm.get('ciudadid')?.valueChanges
@@ -110,7 +119,7 @@ export class DomicilioComponent implements OnInit {
             this.domicilioForm.get('coloniaid')?.disable();
           }
 
-          this.domicilioForm.get('coloniaid')?.reset('');
+          this.domicilioForm.get('coloniaid')?.reset(0);
         }),
         switchMap(ciudadid => this.catColoniaService.getCatColoniasxCiudadId(ciudadid))
       )
@@ -130,7 +139,7 @@ export class DomicilioComponent implements OnInit {
     return form.controls;
   }
 
-  onlyNumbersValidator(control: FormControl): { [key: string]: any } | null {
+  private onlyNumbersValidator(control: FormControl): { [key: string]: any } | null {
     const valid = /^\d+$/.test(control.value);
     return valid ? null : { onlyNumbers: true };
   }

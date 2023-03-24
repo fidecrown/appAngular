@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DataBibliotecaService } from '../../services/data-biblioteca.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-
 import { switchMap, tap } from 'rxjs';
 
+
+//#SECCION DE INTERFACES
 import { Cliente } from '../../interfaces/clientes/catalogos/cliente.interface';
 import { Estado } from 'src/app/interfaces/clientes/catalogos/estado.interface';
 import { Nacionalidad } from '../../interfaces/clientes/catalogos/nacionalidad.interface';
@@ -13,25 +14,26 @@ import { EstadoCivil } from '../../interfaces/clientes/catalogos/estado-civil.in
 import { TipoVivienda } from 'src/app/interfaces/clientes/catalogos/tipo-vivienda.interface';
 import { PerioricidadIngresos } from 'src/app/interfaces/clientes/catalogos/perioricidad-ingresos.interface';
 import { Finalidad } from 'src/app/interfaces/clientes/catalogos/finalidad.interface';
+import { MedioEntero } from 'src/app/interfaces/clientes/catalogos/medio-entero.interface';
+import { Regimen } from 'src/app/interfaces/clientes/catalogos/regimen.interface';
+import { Estudios } from 'src/app/interfaces/clientes/catalogos/estudios.interface';
+import { Referencia } from '../../interfaces/clientes/catalogos/referencia.interface';
+import { PeriodoMovimientos } from 'src/app/interfaces/clientes/catalogos/periodo-movimientos.interface';
 
+//#SECCION INYECCION DE SERVICIOS
 import { ClienteService } from 'src/app/services/moduloClientes/catalogos/cliente.service';
 import { EstadoService } from 'src/app/services/moduloClientes/catalogos/estado.service';
 import { CiudadService } from 'src/app/services/moduloClientes/catalogos/ciudad.service';
 import { NacionalidadService } from '../../services/moduloClientes/catalogos/nacionalidad.service';
 import { EstadoCivilService } from 'src/app/services/moduloClientes/catalogos/estado-civil.service';
 import { TipoViviendaService } from 'src/app/services/moduloClientes/catalogos/tipo-vivienda.service';
-import { PerioricidadIngresoService } from 'src/app/services/moduloClientes/catalogos/perioricidad-ingreso.service';
 import { FinalidadService } from 'src/app/services/moduloClientes/catalogos/finalidad.service';
 import { MedioEnteroService } from '../../services/moduloClientes/catalogos/medio-entero.service';
-import { MedioEntero } from 'src/app/interfaces/clientes/catalogos/medio-entero.interface';
 import { RegimenService } from '../../services/moduloClientes/catalogos/regimen.service';
-import { Regimen } from 'src/app/interfaces/clientes/catalogos/regimen.interface';
 import { NivelEstudiosService } from '../../services/moduloClientes/catalogos/nivel-estudios.service';
-import { Estudios } from 'src/app/interfaces/clientes/catalogos/estudios.interface';
-import { PeriodoMovimientos } from 'src/app/interfaces/clientes/catalogos/periodo-movimientos.interface';
-import { PeriodoMovimientosService } from '../../services/moduloClientes/catalogos/periodo-movimientos.service';
 import { ReferenciaService } from '../../services/moduloClientes/catalogos/referencia.service';
-import { Referencia } from '../../interfaces/clientes/catalogos/referencia.interface';
+import { PeriodoMovimientosService } from '../../services/moduloClientes/catalogos/periodo-movimientos.service';
+import { PerioricidadIngresoService } from 'src/app/services/moduloClientes/catalogos/perioricidad-ingreso.service';
 
 @Component({
   selector: 'app-solicitud-ingreso',
@@ -60,58 +62,57 @@ export class SolicitudIngresoComponent implements OnInit {
   ) { }
 
   //#DECLARACION DE VARIABES LOCALES PARA CARGAR LOS FORMULARIOS
-  altaSolClienteForm!: FormGroup;
-  solIngresoForm!: FormGroup;
-  perfil_clienteForm!: FormGroup;
-  datosLaboralesForm!: FormGroup;
-  trabajaenForm!: FormGroup;
-  relacionesForm!: FormGroup;
-  sinClienteForm!: FormGroup;
-  relacionForm!: FormGroup;
+  altaSolClienteForm!:  FormGroup;
+  solIngresoForm!:      FormGroup;
+  perfil_clienteForm!:  FormGroup;
+  datosLaboralesForm!:  FormGroup;
+  trabajaenForm!:       FormGroup;
+  relacionesForm!:      FormGroup;
+  sinClienteForm!:      FormGroup;
+  relacionForm!:        FormGroup;
+  clienteForm!:         FormGroup;
 
   //#VARIABLES PARA LLENAR LOS SELECTORES DEL HTML
-  lstCatClientes: Cliente[] = [];
-  lstCatEstados: Estado[] = [];
-  lstCiudadesxPais: Ciudad[] = [];
-  lstCatNacionalidades: Nacionalidad[] = [];
-  lstCatPaises: Nacionalidad[] = [];
-  lstCatEdoCivil: EstadoCivil[] = [];
-  lstCatVivienda: TipoVivienda[] = [];
-  lstCatPerioricidadIngresos: PerioricidadIngresos[] = [];
-  lstCatFinalidad: Finalidad[] = [];
-  lstCatMedio: MedioEntero[] = [];
-  lstCatRegimen: Regimen[] = [];
-  lstCatEstudios: Estudios[] = [];
-  lstCatMovimientos: PeriodoMovimientos[] = [];
-  lstReferencias: Referencia[] = [];
+  lstCatClientes:               Cliente[] = [];
+  lstCatEstados:                Estado[] = [];
+  lstCiudadesxPais:             Ciudad[] = [];
+  lstCatNacionalidades:         Nacionalidad[] = [];
+  lstCatPaises:                 Nacionalidad[] = [];
+  lstCatEdoCivil:               EstadoCivil[] = [];
+  lstCatVivienda:               TipoVivienda[] = [];
+  lstCatPerioricidadIngresos:   PerioricidadIngresos[] = [];
+  lstCatFinalidad:              Finalidad[] = [];
+  lstCatMedio:                  MedioEntero[] = [];
+  lstCatRegimen:                Regimen[] = [];
+  lstCatEstudios:               Estudios[] = [];
+  lstCatMovimientos:            PeriodoMovimientos[] = [];
+  lstReferencias:               Referencia[] = [];
 
   ngOnInit(): void {
     this.loadFormmAll();
-
     this.loadSelectedCatalogos();
-
     this.chageOnSelecteds();
   }
 
-  loadFormmAll(): void {
+  private loadFormmAll(): void {
     this.emitDescriptionModule();
     this.loadAltaClienteForm();
     this.loadSolIngresoForm();
     this.loadPcForm();
+    this.loadClienteForm();
     this.loadDatosLaboralesForm();
     this.loadRelacionesForm();
     this.loadRelacionForm();
   }
 
-  loadAltaClienteForm(): void {
+  private loadAltaClienteForm(): void {
     this.altaSolClienteForm = this.fb.group({
       estadoid: ['', Validators.required],
-      fechaingreso: [this.datePipe.transform(new Date(), 'yyyy-MM-dd')],
       paisNac: [0]
     });
   }
 
-  loadSolIngresoForm(): void {
+  private loadSolIngresoForm(): void {
     this.solIngresoForm = this.fb.group({
       fechasolicitud: [this.datePipe.transform(new Date(), 'yyyy-MM-dd')],
       correoelectronico: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$')]],
@@ -131,7 +132,7 @@ export class SolicitudIngresoComponent implements OnInit {
     this.altaSolClienteForm.addControl('solicitud_ingreso', this.solIngresoForm);
   }
 
-  loadPcForm() {
+  private loadPcForm() {
     this.perfil_clienteForm = this.fb.group({
       nivelestudios: ['', Validators.required],
       regimen: ['', Validators.required],
@@ -162,7 +163,15 @@ export class SolicitudIngresoComponent implements OnInit {
     this.altaSolClienteForm.addControl('perfil_cliente', this.perfil_clienteForm);
   }
 
-  loadRelacionForm() {
+  private loadClienteForm(): void {
+    this.clienteForm = this.fb.group({
+      fechaingreso: [this.datePipe.transform(new Date(), 'yyyy-MM-dd')],
+      estatus: 1
+    });
+    this.altaSolClienteForm.addControl('cliente', this.clienteForm);
+  }
+
+  private loadRelacionForm() {
     this.relacionForm = this.fb.group({
       parentesco: ['', Validators.required],
       porcentaje: ['', [Validators.required, Validators.maxLength(3)]],
@@ -182,7 +191,7 @@ export class SolicitudIngresoComponent implements OnInit {
     this.relacionesForm.addControl('relacion', this.relacionForm);
   }
 
-  loadDatosLaboralesForm(): void {
+  private loadDatosLaboralesForm(): void {
     this.datosLaboralesForm = this.fb.group({});
 
     this.loadTrabajaEnForm();
@@ -191,7 +200,7 @@ export class SolicitudIngresoComponent implements OnInit {
 
   }
 
-  loadTrabajaEnForm(): void {
+  private loadTrabajaEnForm(): void {
     this.trabajaenForm = this.fb.group({
       fechainicio: ['', [Validators.required, Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]]
     });
@@ -200,7 +209,7 @@ export class SolicitudIngresoComponent implements OnInit {
 
   }
 
-  loadRelacionesForm(): void {
+  private loadRelacionesForm(): void {
     this.relacionesForm = this.fb.group({
     });
 
@@ -210,7 +219,7 @@ export class SolicitudIngresoComponent implements OnInit {
 
   }
 
-  loadSinClienteForm(): void {
+  private loadSinClienteForm(): void {
     this.sinClienteForm = this.fb.group({
 
     });
@@ -299,15 +308,3 @@ export class SolicitudIngresoComponent implements OnInit {
   }
 
 }
-
-/*
-
-[class.is-invalid]="fieldNotValid(perfil_clienteForm,'catalogoclienteid')"
-
-<div *ngIf="fieldNotValid(perfil_clienteForm, 'catalogoclienteid')">
-                            <small *ngIf="getCtrl(perfil_clienteForm)['catalogoclienteid'].errors?.['required']" class="text-danger"
-                              >Campo requerido
-                            </small>
-                          </div>
-
-*/

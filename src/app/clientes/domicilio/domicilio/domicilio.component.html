@@ -38,7 +38,7 @@
       <div class="form-group">
         <select class="form-control" formControlName="ciudadid"
           [class.is-invalid]="fieldNotValid(temporalForm,'ciudadid')">
-          <option value="">Seleccionar Ciudad</option>
+          <option value=0>Seleccionar Ciudad</option>
           <option *ngFor="let ciudad of lstCiudadesxPais" [value]="ciudad.ciudadid">
             {{ ciudad.nombre }}
           </option>
@@ -57,8 +57,8 @@
       <div class="form-group">
         <select class="form-control" formControlName="coloniaid"
           [class.is-invalid]="fieldNotValid(domicilioForm,'coloniaid')">
-          <option value="">Seleccionar Colonia</option>
-          <option *ngFor="let colonia of lstColoniasxCiudad" [value]="colonia.coloniaid">
+          <option value=0>Seleccionar Colonia</option>
+          <option *ngFor="let colonia of lstColoniasxCiudad" [value]=colonia.coloniaid>
             {{ colonia.nombrecolonia }}
           </option>
         </select>
