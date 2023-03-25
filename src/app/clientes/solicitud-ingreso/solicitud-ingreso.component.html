@@ -31,7 +31,7 @@
         </ul>
       </div>
       <div class="card-body">
-        <form [formGroup]="altaSolClienteForm" (ngSubmit)="onSubmit()" autocomplete="off">
+        <form [formGroup]="altaSolClienteForm" autocomplete="off">
           <div class="tab-content" id="custom-tabs-three-tabContent">
             <!-- //TODO - DATOS GENERALES-TAB  -->
             <div class="tab-pane fade show active" id="custom-tabs-three-datGen" role="tabpanel"
@@ -875,19 +875,19 @@
                         <!-- //NOTE - NACIONALIDAD -->
                         <div class="col">
                           <div class="form-group">
-                            <select 
-                              class="form-control" 
-                              formControlName="nacionalidadid" 
+                            <select
+                              class="form-control"
+                              formControlName="nacionalidadid"
                               [class.is-invalid]="fieldNotValid(relacionForm, 'nacionalidadid')">
                               <option value="">Seleccionar Nacionalidad</option>
-                              <option 
-                                *ngFor="let nacionalidad of lstCatNacionalidades" 
+                              <option
+                                *ngFor="let nacionalidad of lstCatNacionalidades"
                                 [value]="nacionalidad.nacionalidadid">
                                 {{ nacionalidad.nacionalidad }}
                               </option>
                             </select>
                             <div *ngIf="fieldNotValid(relacionForm, 'nacionalidadid')">
-                              <small 
+                              <small
                                 *ngIf="getCtrl(relacionForm)['nacionalidadid'].errors?.['required']"
                                 class="text-danger">
                                 Campo requerido
@@ -899,14 +899,14 @@
                         <!-- //NOTE - PAIS DE NACIMIENTO -->
                         <div class="col">
                           <div class="form-group">
-                            <select 
-                              class="form-control" 
+                            <select
+                              class="form-control"
                               formControlName="paisNac">
                               <option value="0">
                                 Seleccionar Pais de Nacimiento
                               </option>
-                              <option 
-                                *ngFor="let pais of lstCatPaises" 
+                              <option
+                                *ngFor="let pais of lstCatPaises"
                                 [value]="pais.nacionalidadid">
                                 {{ pais.pais }}
                               </option>
@@ -919,16 +919,16 @@
                             <!-- //NOTE -  PARENTESCO -->
                             <div class="col-6">
                               <div class="form-group">
-                                <input 
-                                  type="text" 
-                                  class="form-control" 
+                                <input
+                                  type="text"
+                                  class="form-control"
                                   placeholder="Parentesco"
                                   formControlName="parentesco"
                                   [class.is-invalid]="fieldNotValid(relacionForm, 'parentesco')"
                                 />
 
                                 <div *ngIf="fieldNotValid(relacionForm, 'parentesco')">
-                                  <small 
+                                  <small
                                     *ngIf="getCtrl(relacionForm)['parentesco'].errors?.['required']"
                                     class="text-danger">
                                     Campo requerido
@@ -940,22 +940,22 @@
                             <!-- //NOTE - PORCENTAJE -->
                             <div class="col-6">
                               <div class="form-group">
-                                <input 
-                                  type="number" 
-                                  class="form-control" 
+                                <input
+                                  type="number"
+                                  class="form-control"
                                   placeholder="Porcentaje"
                                   formControlName="porcentaje"
                                   [class.is-invalid]="fieldNotValid(relacionForm, 'porcentaje')"
                                 />
 
                                 <div *ngIf="fieldNotValid(relacionForm, 'porcentaje')">
-                                  <small 
+                                  <small
                                     *ngIf="getCtrl(relacionForm)['porcentaje'].errors?.['required']"
                                     class="text-danger">
                                     Campo requerido
                                   </small>
 
-                                  <small 
+                                  <small
                                     *ngIf="getCtrl(relacionForm)['porcentaje'].errors?.['maxlength']"
                                     class="text-danger">
                                     Campo máximo de 3 dígitos
@@ -971,8 +971,8 @@
                             <!-- //NOTE -  SEXO -->
                             <div class="col-6">
                               <div class="form-group">
-                                <select 
-                                  class="form-control" 
+                                <select
+                                  class="form-control"
                                   formControlName="sexo"
                                   [class.is-invalid]="fieldNotValid(relacionForm, 'sexo')"
                                   >
@@ -982,7 +982,7 @@
                                 </select>
 
                                 <div *ngIf="fieldNotValid(relacionForm, 'sexo')">
-                                  <small 
+                                  <small
                                     *ngIf="getCtrl(relacionForm)['sexo'].errors?.['required']"
                                     class="text-danger">
                                     Campo requerido
@@ -995,22 +995,22 @@
                             <!-- //NOTE - ESTADO CIVIL -->
                             <div class="col-6">
                               <div class="form-group">
-                                <select 
-                                  class="form-control" 
+                                <select
+                                  class="form-control"
                                   formControlName="estadocivilid"
                                   [class.is-invalid]="fieldNotValid(relacionForm, 'estadocivilid')">
                                   <option value="">
                                     Seleccionar Estado Civil
                                   </option>
-                                  <option 
-                                    *ngFor="let edoCivil of lstCatEdoCivil" 
+                                  <option
+                                    *ngFor="let edoCivil of lstCatEdoCivil"
                                     [value]="edoCivil.edocivilid">
                                     {{ edoCivil.descripcion }}
                                   </option>
                                 </select>
 
                                 <div *ngIf="fieldNotValid(relacionForm, 'estadocivilid')">
-                                  <small 
+                                  <small
                                     *ngIf="getCtrl(relacionForm)['estadocivilid'].errors?.['required']"
                                     class="text-danger">
                                     Campo requerido
@@ -1025,20 +1025,20 @@
                         <div class="col-12">
                           <!-- //NOTE - REGIMEN -->
                           <div class="form-group">
-                            <select 
-                                class="form-control" 
+                            <select
+                                class="form-control"
                                 formControlName="regimen"
                                 [class.is-invalid]="fieldNotValid(relacionForm, 'regimen')">
                               <option value="">Seleccionar Régimen</option>
-                              <option 
-                                *ngFor="let regimen of lstCatRegimen" 
+                              <option
+                                *ngFor="let regimen of lstCatRegimen"
                                 [value]="regimen.regimenid">
                                 {{ regimen.descripcion }}
                               </option>
                             </select>
 
                             <div *ngIf="fieldNotValid(relacionForm, 'regimen')">
-                              <small 
+                              <small
                                 *ngIf="getCtrl(relacionForm)['regimen'].errors?.['required']"
                                 class="text-danger">
                                 Campo requerido
@@ -1088,7 +1088,11 @@
           </div>
 
           <!-- [disabled]="altaSolClienteForm.invalid" -->
-          <button type="submit" class="btn btn-primary mt-3">
+          <button
+            type="button"
+            class="btn btn-primary mt-3"
+            (click)="saveSolicitud()"
+          >
             Guardar
           </button>
         </form>

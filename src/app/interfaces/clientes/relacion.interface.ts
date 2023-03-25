@@ -1,0 +1,23 @@
+export interface Relacion {
+  relacionid?: number,
+  parentesco: string,
+  porcentaje: number,
+  esbeneficiario: number,
+  esreferenciapersonal: number,
+  esrepresentante: number,
+  escootitular: number,
+  personajuridicaid: number,
+  estadocivilid: number,
+  sexo: number,
+  correoelectronico: string,
+  telefonocelular: string,
+  esconyuge: number,
+  esdependiente: number,
+  esextranjero: number,
+  regimen: number,
+  nombreconyuge: string,
+  puesto: string,
+  espropietarioreal: number,
+  esaccionista: number,
+  esproveedor: number
+}

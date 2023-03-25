@@ -34,6 +34,8 @@ import { NivelEstudiosService } from '../../services/moduloClientes/catalogos/ni
 import { ReferenciaService } from '../../services/moduloClientes/catalogos/referencia.service';
 import { PeriodoMovimientosService } from '../../services/moduloClientes/catalogos/periodo-movimientos.service';
 import { PerioricidadIngresoService } from 'src/app/services/moduloClientes/catalogos/perioricidad-ingreso.service';
+import { AltaSolicitudClienteService } from '../../services/moduloClientes/alta-solicitud-cliente.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-solicitud-ingreso',
@@ -58,6 +60,7 @@ export class SolicitudIngresoComponent implements OnInit {
     private catEstudiosService: NivelEstudiosService,
     private catMovimientosService: PeriodoMovimientosService,
     private catReferenciaService: ReferenciaService,
+    private altaSolClienteService: AltaSolicitudClienteService,
     private datePipe: DatePipe
   ) { }
 
@@ -228,8 +231,13 @@ export class SolicitudIngresoComponent implements OnInit {
 
   }
 
-  onSubmit(): void {
-    console.log(this.altaSolClienteForm.value);
+  saveSolicitud(): void {
+    //console.log(this.altaSolClienteForm.value);
+    const data = this.altaSolClienteForm.value;
+    this.altaSolClienteService.createAltaSolCliente(data)
+      .subscribe(msj => {
+        this.getMessageAlert('success', msj.mensaje);
+      });
   }
 
   emitDescriptionModule(): void {
@@ -305,6 +313,16 @@ export class SolicitudIngresoComponent implements OnInit {
   onlyNumbersValidator(control: FormControl): { [key: string]: any } | null {
     const valid = /^\d+$/.test(control.value);
     return valid ? null : { onlyNumbers: true };
+  }
+
+  private getMessageAlert(alerta: any, title: string): void {
+    Swal.fire({
+      position: 'center',
+      icon: alerta,
+      title: title,
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
 }
