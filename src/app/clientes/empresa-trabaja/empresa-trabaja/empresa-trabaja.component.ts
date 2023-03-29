@@ -26,7 +26,7 @@ export class EmpresaTrabajaComponent implements OnInit {
       nombrejefedirecto: ['', Validators.required]
     });
 
-    this.datosLaboralesForm.addControl('empresa_trabaja', this.empresaTrabajaForm);
+    this.datosLaboralesForm.addControl('empres_trabaja', this.empresaTrabajaForm);
   }
 
   fieldNotValid(field: string): boolean | undefined {
