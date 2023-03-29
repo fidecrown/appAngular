@@ -1087,10 +1087,10 @@
             </div>
           </div>
 
-          <!-- [disabled]="altaSolClienteForm.invalid" -->
           <button
             type="button"
             class="btn btn-primary mt-3"
+            [disabled]="altaSolClienteForm.invalid"
             (click)="saveSolicitud()"
           >
             Guardar
@@ -1101,8 +1101,8 @@
     </div>
 
 
-      <pre>
+      <!-- <pre>
         {{altaSolClienteForm.value | json}}
-      </pre>
+      </pre> -->
   </div>
 </div>
