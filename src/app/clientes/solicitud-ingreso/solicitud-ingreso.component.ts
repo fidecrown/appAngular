@@ -232,11 +232,11 @@ export class SolicitudIngresoComponent implements OnInit {
   }
 
   saveSolicitud(): void {
-    //console.log(this.altaSolClienteForm.value);
     const data = this.altaSolClienteForm.value;
     this.altaSolClienteService.createAltaSolCliente(data)
       .subscribe(msj => {
         this.getMessageAlert('success', msj.mensaje);
+        this.altaSolClienteForm.reset();
       });
   }
 
