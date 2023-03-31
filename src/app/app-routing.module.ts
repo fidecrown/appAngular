@@ -6,6 +6,7 @@ import { CreditosComponent } from './page/creditos/creditos.component';
 import { InicioComponent } from './page/inicio/inicio.component';
 
 const routes: Routes = [
+  {path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)},
   {path: 'inicio',component: InicioComponent},
   {path: 'clientes', loadChildren: () => import('./clientes/clientes.module').then(m => m.ClientesModule)},
   {path: 'catalogos', loadChildren: () => import('./catalogos/catalogos.module').then(m => m.CatalogosModule)},
